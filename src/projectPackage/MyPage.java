@@ -19,7 +19,7 @@ import javax.swing.Icon;
 import javax.swing.JSeparator;
 import javax.swing.DropMode;
 
-public class myPage extends JPanel {
+public class MyPage extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private MainFrame mainFrame;
@@ -34,7 +34,7 @@ public class myPage extends JPanel {
 	private JTextField tf_user_phone;
 	private JTextField tf_user_email;
 	
-	public myPage(MainFrame mainFrame) {
+	public MyPage(MainFrame mainFrame) {
 
 		this.mainFrame = mainFrame;
 		this.setSize(1280, 800 - 150);
@@ -48,7 +48,7 @@ public class myPage extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel cgving = new JLabel(new ImageIcon(myPage.class.getResource("/image/ohtani/cgving2.png")));
+		JLabel cgving = new JLabel(new ImageIcon(MyPage.class.getResource("/image/ohtani/cgving2.png")));
 		cgving.setBounds(540, 20, 200, 42);
 		panel.add(cgving);
 		
@@ -126,7 +126,7 @@ public class myPage extends JPanel {
 		panel.add(tf_user_phone);
 		
 		JButton bt_delete_myPage = new JButton("");
-		bt_delete_myPage.setIcon(new ImageIcon(myPage.class.getResource("/image/seungho/bt_delete.png")));
+		bt_delete_myPage.setIcon(new ImageIcon(MyPage.class.getResource("/image/seungho/bt_delete.png")));
 		bt_delete_myPage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

@@ -30,9 +30,10 @@ public class MainFrame extends JFrame {
 	private JPanel HeadPanel;	
 	
 	private HashMap<MainFrame.PANELNAME, JPanel> panelMap;
+	private UserInfoVo userInfo;
 	
 	public enum PANELNAME {MAIN, PAGE0, PAGE1, PAGE2, LOGIN, JOIN1, JOIN2, 
-		JOIN3, SELECT, TICKETING, TICKET, PAYMENT};
+		JOIN3, SELECT, TICKETING, TICKET, PAYMENT, BIRD, JOIN_AGREE};
 
 	/**
 	 * Launch the application.
@@ -56,11 +57,11 @@ public class MainFrame extends JFrame {
 	 */
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
+		userInfo = null;
 		index = 0;		
 		panelMap = new HashMap<MainFrame.PANELNAME, JPanel>();
 		
-		HeadPanel = new HeadPanel(this);	
+		HeadPanel = new TopPanelTest(this);	
 		
 		//생성 판넬 관리
 		JPanel ContentPanel = new OhtanisPanel(this);
@@ -70,10 +71,12 @@ public class MainFrame extends JFrame {
 	    JPanel ContentPanel5 = new AnCont2(this);
 	    JPanel ContentPanel6 = new AnCont3(this);
 	    JPanel ContentPanel7 = new AnCont4(this);
-	    JPanel ContentPanel8 = new login(this);
-	    JPanel ContentPanel9 = new createId_1(this);
-	    JPanel ContentPanel10 = new createId_2(this);
-	    JPanel ContentPanel11 = new createId_3(this);
+	    JPanel ContentPanel8 = new Login_New(this);
+	    JPanel ContentPanel9 = new CreateId_1(this);
+	    JPanel ContentPanel10 = new CreateId_2(this);
+	    JPanel ContentPanel11 = new CreateId_3(this);
+	    JPanel ContentPanel12 = new BirdRichard(this);
+	    JPanel ContentPanel13 = new JoinAgree(this);
 
 		
 		//생성된 판넬 Map 자료 구조에 넣기
@@ -89,6 +92,8 @@ public class MainFrame extends JFrame {
 	    panelMap.put(MainFrame.PANELNAME.JOIN1, ContentPanel9);
 	    panelMap.put(MainFrame.PANELNAME.JOIN2, ContentPanel10);
 	    panelMap.put(MainFrame.PANELNAME.JOIN3, ContentPanel11);
+	    panelMap.put(MainFrame.PANELNAME.BIRD, ContentPanel12);
+	    panelMap.put(MainFrame.PANELNAME.JOIN_AGREE, ContentPanel13);
 
 		
 		//System.out.println(MainFrame.class.getResource("./../image/ring.jpg"));
@@ -103,7 +108,8 @@ public class MainFrame extends JFrame {
 		MainPane.setLayout(new BoxLayout(MainPane, BoxLayout.Y_AXIS));
 		
 		//메인 페이지 초기화 코드
-		ContentPanel.setVisible(true);		
+		//ContentPanel.setVisible(true);
+		ContentPanel8.setVisible(true);
 		
 		//Main 판넬에 하위 판넬 add 처리
 		this.getContentPane().add(HeadPanel);
@@ -117,7 +123,9 @@ public class MainFrame extends JFrame {
 	    this.getContentPane().add(ContentPanel8);   //LOGIN
 	    this.getContentPane().add(ContentPanel9);   //JOIN1
 	    this.getContentPane().add(ContentPanel10);   //JOIN2
-	    this.getContentPane().add(ContentPanel11);   //JOIN3		
+	    this.getContentPane().add(ContentPanel11);   //JOIN3	
+	    this.getContentPane().add(ContentPanel12); 	 // bird
+	    this.getContentPane().add(ContentPanel13);
 	}
 	
 	public void Pagechange_init(JPanel _panel, boolean headVisible)
@@ -145,7 +153,7 @@ public class MainFrame extends JFrame {
 			Pagechange_init(panelMap.get(MainFrame.PANELNAME.PAGE0), true);
 			break;
 		case PAGE1:
-			Pagechange_init(panelMap.get(MainFrame.PANELNAME.PAGE1), false);			
+			Pagechange_init(panelMap.get(MainFrame.PANELNAME.PAGE1), true);			
 			break;	
 		case PAGE2:
 			panelMap.get(MainFrame.PANELNAME.PAGE2).setVisible(true);
@@ -174,7 +182,28 @@ public class MainFrame extends JFrame {
 	      case JOIN3:
 	         panelMap.get(MainFrame.PANELNAME.JOIN3).setVisible(true);
 	         break;
+	      case BIRD:
+	    	 panelMap.get(MainFrame.PANELNAME.BIRD).setVisible(true);
+		     break;
+	      case JOIN_AGREE:
+		    	 panelMap.get(MainFrame.PANELNAME.JOIN_AGREE).setVisible(true);
+			     break;
 		}
+	}
+	
+	public void Set_UserInfo_forLogout()
+	{
+		this.userInfo = null;
+	}
+	
+	public UserInfoVo Get_UserInfo()
+	{
+		return userInfo;
+	}
+	
+	public void Set_UserInfo(UserInfoVo userInfo)
+	{
+		this.userInfo = userInfo;
 	}
 
 }

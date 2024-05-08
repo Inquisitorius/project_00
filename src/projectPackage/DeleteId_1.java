@@ -21,10 +21,10 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.DropMode;
 
-public class deleteId_1 extends JPanel {
+public class DeleteId_1 extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private MainFrame mainFrame;
+	private MainTestFrame mainFrame;
 	private Connection conn;
 	/**
 	 * Create the panel.
@@ -43,7 +43,7 @@ public class deleteId_1 extends JPanel {
 //		}
 //	}
 	
-	public deleteId_1(MainFrame mainFrame) {
+	public DeleteId_1(MainTestFrame mainFrame) {
 
 		this.mainFrame = mainFrame;
 		this.setSize(1280, 800 - 150);
@@ -57,7 +57,7 @@ public class deleteId_1 extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel cgving = new JLabel(new ImageIcon(deleteId_1.class.getResource("/image/ohtani/cgving2.png")));
+		JLabel cgving = new JLabel(new ImageIcon(DeleteId_1.class.getResource("/image/ohtani/cgving2.png")));
 		cgving.setBounds(540, 20, 200, 42);
 		panel.add(cgving);
 		
@@ -89,7 +89,7 @@ public class deleteId_1 extends JPanel {
 		panel.add(tf_pw);
 		
 		JButton bt_deleteConfirm = new JButton("");
-		bt_deleteConfirm.setIcon(new ImageIcon(deleteId_1.class.getResource("/image/seungho/bt_delete_small.png")));
+		bt_deleteConfirm.setIcon(new ImageIcon(DeleteId_1.class.getResource("/image/seungho/bt_delete_small.png")));
 		bt_deleteConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -100,10 +100,10 @@ public class deleteId_1 extends JPanel {
 		panel.add(bt_deleteConfirm);
 		
 		JButton bt_cancel = new JButton("");
-		bt_cancel.setIcon(new ImageIcon(deleteId_1.class.getResource("/image/seungho/bt_cancel.png")));
+		bt_cancel.setIcon(new ImageIcon(DeleteId_1.class.getResource("/image/seungho/bt_cancel.png")));
 		bt_cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainFrame.PageChange(MainFrame.PANELNAME.MAIN);
+				mainFrame.PageChange(MainTestFrame.PANELNAME.MAIN);
 			}
 		});
 		bt_cancel.setFont(new Font("굴림", Font.PLAIN, 12));

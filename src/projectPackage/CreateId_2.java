@@ -23,7 +23,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.DropMode;
 import javax.swing.JPasswordField;
 
-public class createId_2 extends JPanel {
+public class CreateId_2 extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private MainFrame mainFrame;
@@ -38,9 +38,9 @@ public class createId_2 extends JPanel {
 	private JTextField tf_user_phone;
 	private JPasswordField tf_user_pw;
 	
-	public createId_2(MainFrame mainFrame) {
+	public CreateId_2(MainFrame mainFrame2) {
 
-		this.mainFrame = mainFrame;
+		this.mainFrame = mainFrame2;
 		this.setSize(1280, 800 - 150);
 		this.setPreferredSize(new Dimension(1280, 800 - 150));
 		this.setBackground(bg);
@@ -52,7 +52,7 @@ public class createId_2 extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel cgving = new JLabel(new ImageIcon(createId_2.class.getResource("/image/ohtani/cgving2.png")));
+		JLabel cgving = new JLabel(new ImageIcon(CreateId_2.class.getResource("/image/ohtani/cgving2.png")));
 		cgving.setBounds(540, 20, 200, 42);
 		panel.add(cgving);
 		
@@ -138,10 +138,10 @@ public class createId_2 extends JPanel {
 		tf_user_phone.setColumns(125);
 		
 		JButton bt_join = new JButton("");
-		bt_join.setIcon(new ImageIcon(createId_2.class.getResource("/image/seungho/bt_join2.png")));
+		bt_join.setIcon(new ImageIcon(CreateId_2.class.getResource("/image/seungho/bt_join2.png")));
 		bt_join.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainFrame.PageChange(MainFrame.PANELNAME.JOIN3);
+				mainFrame2.PageChange(MainFrame.PANELNAME.JOIN3);
 			}
 		});
 		bt_join.setFont(new Font("나눔고딕", Font.PLAIN, 12));

@@ -21,7 +21,7 @@ public class MainTestFrame extends MainFrame {
 	private static final long serialVersionUID = 1L;
 	private int index;
 	private JPanel MainPane;	
-	private JPanel HeadPanel;	
+	private JPanel TopPanelTest;	
 	
 	private HashMap<MainFrame.PANELNAME, JPanel> panelMap;
 
@@ -51,7 +51,7 @@ public class MainTestFrame extends MainFrame {
 		panelMap = new HashMap<MainFrame.PANELNAME, JPanel>();
 		
 		
-		HeadPanel = new HeadPanel(this);	
+		TopPanelTest = new TopPanelTest(this);	
 		
 		this.setResizable(false);
 		
@@ -81,7 +81,7 @@ public class MainTestFrame extends MainFrame {
 		ContentPanel.setVisible(true);		
 		
 		//Main 판넬에 하위 판넬 add 처리
-		this.getContentPane().add(HeadPanel);
+		this.getContentPane().add(TopPanelTest);
 		this.getContentPane().add(ContentPanel);
 		this.getContentPane().add(ContentPanel2);
 		this.getContentPane().add(ContentPanel3);

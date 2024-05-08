@@ -4,20 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Point;
-
-import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -27,14 +16,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
 
-public class Admin_UserList extends JPanel {
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+
+public class Admin_MovieList extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private MainFrame mainFrame;
+	
 	private JTextField textField;
 	private JTable table;
 	private UserDetailInfoFrame userDetailFrame;
@@ -42,70 +40,53 @@ public class Admin_UserList extends JPanel {
 	private Container contentPane;
 	private JComboBox<String> comboBox;
 	
-	private enum FINDTYPE {USER_ID, USER_NAME, AUTH_NO, USER_NO};
+
+	private enum MOIVE_FINDTYPE { MOVIE_NAME, MOVIE_NO, FILE_NAME, ACTIVATE };
 	
-	
-	Vector<String> columnName = null;   // String을 원소로 갖는 갖는 리스트
-	Vector<Vector<String>> data = null; // String 여러개를 갖는 백터들을 원소로 갖는 리스트
+	private Vector<String> columnName = null;   // String을 원소로 갖는 갖는 리스트
+	private Vector<Vector<String>> data = null; // String 여러개를 갖는 백터들을 원소로 갖는 리스트
 
 	/**
 	 * Create the panel.
 	 */
-	public Admin_UserList(MainFrame mainFrame) {
+	public Admin_MovieList(MainFrame mainFrame) {
 		
 		this.mainFrame = mainFrame;
-		this.userDetailFrame = new UserDetailInfoFrame();
-		this.userDetailFrame.setParentPage(this);
-		
 		this.setSize(1280,800-150);
 		this.setPreferredSize(new Dimension(1280,800-150));
-		this.setBackground(Color.darkGray);
-		setLayout(null);
 		
+		this.setBackground(Color.darkGray);
+		setLayout(null);		
 		this.setVisible(false);
 		
-		JLabel lblAdminUserlist = new JLabel("Admin - UserList");
+		JLabel lblAdminUserlist = new JLabel("Admin - MovieList");
 		lblAdminUserlist.setForeground(new Color(255, 255, 255));
 		lblAdminUserlist.setFont(new Font("나눔바른고딕", Font.PLAIN, 20));
 		lblAdminUserlist.setBounds(12, 10, 1256, 55);
 		add(lblAdminUserlist);
-		/*---------------------------------------------------------*/
 		
 		textField = new JTextField();
 		textField.setBounds(771, 119, 347, 30);
 		add(textField);
 		textField.setColumns(10);
 		
+		
+		//button init
 		JButton btnNewButton_4 = new JButton("Search");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String id =  textField.getText();
-				Get_UserInfomation(data,id);
+				Get_MovieInfomation(data,id);
 				tableUpdate();
 				
 			}
 		});
+		
+		this.tableInit();
+		
 		btnNewButton_4.setBounds(1130, 118, 97, 30);
 		add(btnNewButton_4);
 		
-		tableInit();		
-	}
-	
-	class UserInfoTableModel extends DefaultTableModel
-	{
-		public UserInfoTableModel(Vector<? extends Vector> data, Vector<?> columnNames) {
-			setDataVector(data, columnNames);
-		}
-		
-		 public boolean isCellEditable(int rowIndex, int mColIndex) {
-             return false;
-         }		
-	}	
-	
-	public void tableUpdate()
-	{
-		UserInfoTableModel temp = new UserInfoTableModel(data,columnName);
-		table.setModel(temp);		
 	}
 	
 	public void tableInit()
@@ -114,24 +95,17 @@ public class Admin_UserList extends JPanel {
 		columnName = new Vector<String>();
 		data = new Vector<Vector<String>>();		
 		
-		Get_UserInfomation(data);
+		Get_MovieInfomation(data);
 		
-		columnName.add("USER_NO");
-		columnName.add("USER_ID");
-		columnName.add("USER_PW");
-		columnName.add("USER_NAME");
-		columnName.add("USER_EMAIL");
-		columnName.add("USER_PHONE");
-		columnName.add("AUTH_NO");
+		columnName.add("MOVIE_NO");
+		columnName.add("MOVIE_NAME");
+		columnName.add("FILE_NAME");
+		columnName.add("FILE_DIRECTORY");
+		columnName.add("ACTIVATE");
+		
 		
 		UserInfoTableModel aa = new UserInfoTableModel(data,columnName);
-		
-		/*DefaultTableModel mod = new DefaultTableModel(data, columnName) 
-		{		
-	        public boolean isCellEditable(int rowIndex, int mColIndex) {
-	                return false;
-	            }
-	    };*/
+	
 		
 		table = new JTable(aa);
 		table.getTableHeader().setReorderingAllowed(false); // 컬럼들 이동 불가
@@ -156,6 +130,8 @@ public class Admin_UserList extends JPanel {
         			 String s = String.format("%s (%s)", m.getValueAt(row, 0), m.getValueAt(row, 1));
         			 System.out.println(s);
         			 
+        			 
+        			 //이거 고쳐
         			 UserInfoVo usinfo = new UserInfoVo();
         			 usinfo.setUser_no(Integer.parseInt( (String)m.getValueAt(row, 0) ));
         			 usinfo.setUser_id((String)m.getValueAt(row, 1));
@@ -187,11 +163,13 @@ public class Admin_UserList extends JPanel {
 		
 		comboBox = new JComboBox<String>();
 		
-		comboBox.insertItemAt("USER_ID", FINDTYPE.USER_ID.ordinal());
-		comboBox.insertItemAt("USER_NAME", FINDTYPE.USER_NAME.ordinal());
-		comboBox.insertItemAt("AUTH_NO", FINDTYPE.AUTH_NO.ordinal());		
-		comboBox.insertItemAt("USER_NO", FINDTYPE.USER_NO.ordinal());		
+		comboBox.insertItemAt("MOVIE_NAME", MOIVE_FINDTYPE.MOVIE_NAME.ordinal());
+		comboBox.insertItemAt("MOVIE_NO", MOIVE_FINDTYPE.MOVIE_NO.ordinal());
+		comboBox.insertItemAt("FILE_NAME", MOIVE_FINDTYPE.FILE_NAME.ordinal());		
+		comboBox.insertItemAt("ACTIVATE", MOIVE_FINDTYPE.ACTIVATE.ordinal());		
 		//comboBox.insertItemAt("AUTH_NO", 5);
+		
+	
 		
 		comboBox.setBounds(657, 119, 105, 30);
 		comboBox.setSelectedIndex(0);
@@ -200,7 +178,96 @@ public class Admin_UserList extends JPanel {
 		
 	}
 	
-	public void Get_UserInfomation(Vector<Vector<String>> data,String input)
+	public String Get_FindUserQuery(int index, String input)
+	{
+		String sql = "";
+		
+		if(index == MOIVE_FINDTYPE.MOVIE_NAME.ordinal())
+		{
+			sql = "SELECT MOVIE_NO ,MOVIE_NAME ,MOVIE_COMMENT , FILE_NAME, FILE_DIRECTORY, ACTIVATE FROM MOVIE"
+					+ " WHERE MOVIE_NAME LIKE '%"+ input + "%' ORDER BY MOVIE_NO";
+		}
+		else if(index == MOIVE_FINDTYPE.MOVIE_NO.ordinal())
+		{
+			sql = "SELECT MOVIE_NO ,MOVIE_NAME ,MOVIE_COMMENT , FILE_NAME, FILE_DIRECTORY, ACTIVATE FROM MOVIE"
+					+ " WHERE MOVIE_NO LIKE '%"+ input + "%' ORDER BY MOVIE_NO";
+		}
+		else if(index == MOIVE_FINDTYPE.FILE_NAME.ordinal())
+		{
+			sql = "SELECT MOVIE_NO ,MOVIE_NAME ,MOVIE_COMMENT , FILE_NAME, FILE_DIRECTORY, ACTIVATE FROM MOVIE"
+					+ " WHERE FILE_NAME LIKE '%"+ input + "%' ORDER BY MOVIE_NO";
+		}	
+		else if(index == MOIVE_FINDTYPE.ACTIVATE.ordinal())
+		{
+			sql = "SELECT MOVIE_NO ,MOVIE_NAME ,MOVIE_COMMENT , FILE_NAME, FILE_DIRECTORY, ACTIVATE FROM MOVIE"
+					+ " WHERE ACTIVATE LIKE '%"+ input + "%' ORDER BY MOVIE_NO";
+		}	
+		
+		return sql;
+	}
+	
+	public void Get_MovieInfomation(Vector<Vector<String>> data)
+	{
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@//14.42.124.35:1521/XE";
+		String user = "c##wjrls";
+		String pw = "881125";
+		
+		data.clear();
+		
+		try {
+			
+			Class.forName(driver);
+			System.out.println("jdbc driver lading success.");
+			
+			Connection conn = DriverManager.getConnection(url,user,pw);
+			System.out.println("oralce connection success.");
+			
+			String sql = "SELECT MOVIE_NO ,MOVIE_NAME ,MOVIE_COMMENT , "
+					+ "FILE_NAME, FILE_DIRECTORY, ACTIVATE FROM MOVIE";
+			
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);	
+			
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next())
+			{				
+				MovieVo movieinfo = 
+						new MovieVo(	
+						rs.getInt("MOVIE_NO"),
+						rs.getString("MOVIE_NAME"), 					
+						rs.getString("MOVIE_COMMENT"),
+						rs.getString("FILE_NAME"),
+						rs.getString("FILE_DIRECTORY"),
+						rs.getString("ACTIVATE")				
+						);
+				
+				Vector<String> info = new Vector<String>();
+				info.add(Integer.toString(movieinfo.getMovie_no()));
+				info.add(movieinfo.getMovie_name());
+				info.add(movieinfo.getMovie_comment());
+				info.add(movieinfo.getFile_name());				
+				info.add(movieinfo.getActivate());				
+				
+				data.add(info);
+			}
+			
+			pstmt.close();
+			
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void Get_MovieInfomation(Vector<Vector<String>> data,String input)
 	{
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@//14.42.124.35:1521/XE";
@@ -229,25 +296,22 @@ public class Admin_UserList extends JPanel {
 			
 			while(rs.next())
 			{				
-				UserInfoVo usinfo = 
-						new UserInfoVo(	
-						rs.getInt("USER_NO"),
-						rs.getString("USER_ID"), 
-						rs.getString("USER_PW"),
-						rs.getString("USER_NAME"),
-						rs.getString("USER_EMAIL"),
-						rs.getString("USER_PHONE"),
-						rs.getInt("AUTH_NO")				
-						);
-				
+				MovieVo movieinfo = 
+						new MovieVo(	
+						rs.getInt("MOVIE_NO"),
+						rs.getString("MOVIE_NAME"), 					
+						rs.getString("MOVIE_COMMENT"),
+						rs.getString("FILE_NAME"),
+						rs.getString("FILE_DIRECTORY"),
+						rs.getString("ACTIVATE")				
+						);				
+
 				Vector<String> info = new Vector<String>();
-				info.add(Integer.toString(usinfo.getUser_no()));
-				info.add(usinfo.getUser_id());
-				info.add(usinfo.getUser_pw());
-				info.add(usinfo.getUser_name());
-				info.add(usinfo.getUser_email());
-				info.add(usinfo.getUser_phone());
-				info.add(Integer.toString(usinfo.getAuth_no()));
+				info.add(Integer.toString(movieinfo.getMovie_no()));
+				info.add(movieinfo.getMovie_name());
+				info.add(movieinfo.getMovie_comment());
+				info.add(movieinfo.getFile_name());				
+				info.add(movieinfo.getActivate());	
 				
 				data.add(info);
 			}
@@ -264,106 +328,34 @@ public class Admin_UserList extends JPanel {
 		}
 	}
 	
-	public String Get_FindUserQuery(int index, String input)
+	public void tableUpdate()
 	{
-		String sql = "";
-		
-		if(index == FINDTYPE.USER_ID.ordinal())
-		{
-			sql = "select USER_NO, USER_ID, USER_PW, USER_NAME, USER_EMAIL, USER_PHONE, AUTH_NO from USER_INFO"
-					+ " WHERE USER_ID LIKE '%"+ input + "%' ORDER BY USER_NO";
-		}
-		else if(index == FINDTYPE.USER_NAME.ordinal())
-		{
-			sql = "select USER_NO, USER_ID, USER_PW, USER_NAME, USER_EMAIL, USER_PHONE, AUTH_NO from USER_INFO"
-					+ " WHERE USER_NAME LIKE '%"+ input + "%' ORDER BY USER_NO";
-		}
-		else if(index == FINDTYPE.AUTH_NO.ordinal())
-		{
-			sql = "select USER_NO, USER_ID, USER_PW, USER_NAME, USER_EMAIL, USER_PHONE, AUTH_NO from USER_INFO"
-					+ " WHERE AUTH_NO LIKE '%"+ input + "%' ORDER BY USER_NO";
-		}
-		else if(index == FINDTYPE.USER_NO.ordinal())
-		{
-			sql = "select USER_NO, USER_ID, USER_PW, USER_NAME, USER_EMAIL, USER_PHONE, AUTH_NO from USER_INFO"
-					+ " WHERE USER_NO = "+ input + " ORDER BY USER_NO";
-		}		
-		
-		return sql;
+		UserInfoTableModel temp = new UserInfoTableModel(data,columnName);
+		table.setModel(temp);
 	}
 	
 	public void Refresh_Table()
 	{
 		String input =  textField.getText();
 		
-		if(!input.isEmpty())		
-			Get_UserInfomation(data,input);
+		if(!input.isEmpty())
+			Get_MovieInfomation(data,input);
 		else
-			Get_UserInfomation(data);
+			Get_MovieInfomation(data);
 		
 		tableUpdate();
 	}
 	
-	public void Get_UserInfomation(Vector<Vector<String>> data)
+	
+	class UserInfoTableModel extends DefaultTableModel
 	{
-		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@//14.42.124.35:1521/XE";
-		String user = "c##wjrls";
-		String pw = "881125";
-		
-		data.clear();
-		
-		try {
-			
-			Class.forName(driver);
-			System.out.println("jdbc driver lading success.");
-			
-			Connection conn = DriverManager.getConnection(url,user,pw);
-			System.out.println("oralce connection success.");
-			
-			String sql = "select USER_NO, USER_ID, USER_PW, USER_NAME, USER_EMAIL, USER_PHONE, AUTH_NO from USER_INFO ORDER BY USER_NO";			
-			
-			
-			PreparedStatement pstmt = conn.prepareStatement(sql);	
-			
-			
-			ResultSet rs = pstmt.executeQuery();
-			
-			while(rs.next())
-			{				
-				UserInfoVo usinfo = 
-						new UserInfoVo(	
-						rs.getInt("USER_NO"),
-						rs.getString("USER_ID"), 
-						rs.getString("USER_PW"),
-						rs.getString("USER_NAME"),
-						rs.getString("USER_EMAIL"),
-						rs.getString("USER_PHONE"),
-						rs.getInt("AUTH_NO")				
-						);
-				
-				Vector<String> info = new Vector<String>();
-				info.add(Integer.toString(usinfo.getUser_no()));
-				info.add(usinfo.getUser_id());
-				info.add(usinfo.getUser_pw());
-				info.add(usinfo.getUser_name());
-				info.add(usinfo.getUser_email());
-				info.add(usinfo.getUser_phone());
-				info.add(Integer.toString(usinfo.getAuth_no()));
-				
-				data.add(info);
-			}
-			
-			pstmt.close();
-			
-			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		public UserInfoTableModel(Vector<? extends Vector> data, Vector<?> columnNames) {
+			setDataVector(data, columnNames);
 		}
 		
+		 public boolean isCellEditable(int rowIndex, int mColIndex) {
+             return false;
+         }		
 	}
+
 }

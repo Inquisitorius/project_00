@@ -9,10 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import projectPackage.HeadPanel.popupDefine;
+import projectPackage.MainFrame.PANELNAME;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.Icon;
 
@@ -142,6 +145,8 @@ public class OhtanisPanel extends JPanel {
 			
 			JLabel imageLabel = new JLabel(new ImageIcon(OhtanisPanel.class.getResource("/image/ohtani/birds.jpg")));
 			imageLabel.setBounds(0, 0, 1277, 237);
+			
+			imageLabel.addMouseListener(new MyMouseListener());
 			add(imageLabel);
 
 		} catch (Exception e) {
@@ -150,6 +155,15 @@ public class OhtanisPanel extends JPanel {
 
 		this.setVisible(false);
 	}
+	
+	class MyMouseListener extends MouseAdapter{            // 이벤트 리스너 구현
+		@Override
+        public void mouseClicked(MouseEvent e) 
+		{
+			mainFrame.PageChange(PANELNAME.BIRD);
+		}
+	}
+
 
 	// popup 이벤트 구현
 	class crimePopupAction implements ActionListener {
