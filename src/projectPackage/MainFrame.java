@@ -33,7 +33,7 @@ public class MainFrame extends JFrame {
 	private UserInfoVo userInfo;
 	
 	public enum PANELNAME {MAIN, PAGE0, PAGE1, PAGE2, LOGIN, JOIN1, JOIN2, 
-		JOIN3, SELECT, TICKETING, TICKET, PAYMENT, BIRD};
+		JOIN3, SELECT, TICKETING, TICKET, PAYMENT, BIRD, JOIN_AGREE};
 
 	/**
 	 * Launch the application.
