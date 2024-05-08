@@ -160,8 +160,8 @@ public class MyPage_New extends JPanel {
 			PreparedStatement pstmt = conn.prepareStatement(sql);	
 			ResultSet rs = pstmt.executeQuery();
 			
-			while(rs.next())
-			{		
+			rs.next();
+		
 			
 			
 		} catch (ClassNotFoundException e) {
