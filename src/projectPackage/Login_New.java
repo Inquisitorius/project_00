@@ -50,6 +50,8 @@ public class Login_New extends JPanel {
 		
 		Init_Elements();
 		
+		this.setVisible(false);
+		
 	}
 	
 	public void Init_Elements()
