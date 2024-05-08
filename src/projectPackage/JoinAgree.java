@@ -61,11 +61,11 @@ public class JoinAgree extends JPanel {
 
         // 사용자 입력 필드
         textField_1 = new JTextField();
-        textField_1.setBounds(846, 200, 341, 32);
+        textField_1.setBounds(846, 161, 341, 32);
         add(textField_1);
 
         passwordField_1 = new JPasswordField();
-        passwordField_1.setBounds(846, 161, 341, 32);
+        passwordField_1.setBounds(846, 200, 341, 32);
         add(passwordField_1);
 
         passwordField_2 = new JPasswordField();
