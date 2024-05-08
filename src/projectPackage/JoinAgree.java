@@ -102,6 +102,11 @@ public class JoinAgree extends JPanel {
         btnNewButton_1.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/back.png")));
         btnNewButton_1.setBounds(813, 477, 110, 42);
         add(btnNewButton_1);
+        btnNewButton_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.PageChange(MainFrame.PANELNAME.MAIN);  // Assuming PANELNAME.OHTANI is correct
+            }
+        });
 
         JButton btnNewButton_2 = new JButton("");
         btnNewButton_2.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/ok.png")));
