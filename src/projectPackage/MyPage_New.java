@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -130,7 +132,7 @@ public class MyPage_New extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println("123213");				
+				UpdateUserInfo();		
 			}
 		} );
 		add(UpdateBtn);
@@ -158,11 +160,18 @@ public class MyPage_New extends JPanel {
 			"' " + "WHERE USER_NO = " + userInfo.getUser_no();
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);	
-			ResultSet rs = pstmt.executeQuery();
+			int rs = pstmt.executeUpdate();		
 			
-			rs.next();
-		
-			
+			if(rs == 1)
+			{
+				JOptionPane.showMessageDialog(null, "변경되었습니다.");
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Err : Update UserInfo.");
+			}
+			pstmt.close();
+			conn.close();		
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

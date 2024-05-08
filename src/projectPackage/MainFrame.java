@@ -57,6 +57,10 @@ public class MainFrame extends JFrame {
 	 */
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		this.setTitle("CGVING");
+		this.setResizable(false);
+		
 		userInfo = null;
 		index = 0;		
 		panelMap = new HashMap<MainFrame.PANELNAME, JPanel>();
