@@ -72,6 +72,7 @@ public class JoinAgree extends JPanel {
         add(textField_1);
 
         passwordField_1 = new JPasswordField();
+        passwordField_1.setToolTipText("");
         passwordField_1.setBorder(new EmptyBorder(0, 10, 0, 0));
         passwordField_1.setBounds(846, 200, 341, 32);
         add(passwordField_1);
@@ -83,19 +84,19 @@ public class JoinAgree extends JPanel {
 
         textField_2 = new JTextField();
         textField_2.setBorder(new EmptyBorder(0, 10, 0, 0));
-        textField_2.setColumns(10);
+        textField_2.setColumns(12);
         textField_2.setBounds(846, 312, 341, 32);
         add(textField_2);
 
         textField_3 = new JTextField();
         textField_3.setBorder(new EmptyBorder(0, 10, 0, 0));
-        textField_3.setColumns(10);
+        textField_3.setColumns(16);
         textField_3.setBounds(846, 350, 341, 32);
         add(textField_3);
 
         textField_4 = new JTextField();
         textField_4.setBorder(new EmptyBorder(0, 10, 0, 0));
-        textField_4.setColumns(10);
+        textField_4.setColumns(14);
         textField_4.setBounds(846, 388, 341, 32);
         add(textField_4);
 
