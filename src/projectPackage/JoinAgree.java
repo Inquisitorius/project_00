@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.border.EmptyBorder;
 
 public class JoinAgree extends JPanel {
 
@@ -24,7 +25,7 @@ public class JoinAgree extends JPanel {
         setBackground(Color.BLACK);
         this.setSize(1280, 800 - 150);
         this.setPreferredSize(new Dimension(1280, 800 - 150));
-        
+        this.setVisible(false);
         setLayout(null);
 
         TextArea textArea_1 = new TextArea();
@@ -63,28 +64,35 @@ public class JoinAgree extends JPanel {
 
         // 사용자 입력 필드
         textField_1 = new JTextField();
+        textField_1.setBorder(new EmptyBorder(0, 10, 0, 0));
+        textField_1.setColumns(16);
         textField_1.setBounds(846, 161, 341, 32);
         add(textField_1);
 
         passwordField_1 = new JPasswordField();
+        passwordField_1.setBorder(new EmptyBorder(0, 10, 0, 0));
         passwordField_1.setBounds(846, 200, 341, 32);
         add(passwordField_1);
 
         passwordField_2 = new JPasswordField();
+        passwordField_2.setBorder(new EmptyBorder(0, 10, 0, 0));
         passwordField_2.setBounds(846, 238, 341, 32);
         add(passwordField_2);
 
         textField_2 = new JTextField();
+        textField_2.setBorder(new EmptyBorder(0, 10, 0, 0));
         textField_2.setColumns(10);
         textField_2.setBounds(846, 312, 341, 32);
         add(textField_2);
 
         textField_3 = new JTextField();
+        textField_3.setBorder(new EmptyBorder(0, 10, 0, 0));
         textField_3.setColumns(10);
         textField_3.setBounds(846, 350, 341, 32);
         add(textField_3);
 
         textField_4 = new JTextField();
+        textField_4.setBorder(new EmptyBorder(0, 10, 0, 0));
         textField_4.setColumns(10);
         textField_4.setBounds(846, 388, 341, 32);
         add(textField_4);
@@ -110,7 +118,7 @@ public class JoinAgree extends JPanel {
         JLabel lblNewLabel_1 = new JLabel("JOIN");
         lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 48));
-        lblNewLabel_1.setForeground(Color.WHITE);
+        lblNewLabel_1.setForeground(new Color(238, 46, 36));
         lblNewLabel_1.setBounds(502, 36, 172, 42);
         add(lblNewLabel_1);
         
