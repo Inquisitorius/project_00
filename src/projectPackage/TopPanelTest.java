@@ -36,7 +36,7 @@ public class TopPanelTest extends JPanel {
 
         textField_1 = new JTextField();
         textField_1.setBorder(new EmptyBorder(0, 10, 0, 0));
-        textField_1.setBounds(953, 101, 250, 21);
+        textField_1.setBounds(954, 93, 250, 30);
         panel_1.add(textField_1);
         textField_1.setColumns(40);
         
