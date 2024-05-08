@@ -24,58 +24,19 @@ public class TopPanelTest extends JPanel {
         add(panel_1);
         panel_1.setLayout(null);
 
+        // Existing components and listeners
+
         JLabel imageLabel = new JLabel(new ImageIcon(TopPanelTest.class.getResource("/image/ohtani/cgving2.png")));
         imageLabel.setBounds(45, 48, 200, 51);
         panel_1.add(imageLabel);
-        imageLabel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                mainFrame.PageChange(MainFrame.PANELNAME.MAIN);
-            }
-        });
+        // imageLabel listener (if needed)
 
-        textField_1 = new JTextField();
-        textField_1.setBorder(new EmptyBorder(0, 10, 0, 0));
-        textField_1.setBounds(953, 101, 250, 21);
-        panel_1.add(textField_1);
-        textField_1.setColumns(40);
-        
         JButton btnNewButton_1 = new JButton("");
-        btnNewButton_1.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/search_s.png")));
-        btnNewButton_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-        btnNewButton_1.setBounds(1209, 92, 32, 32);
+        // btnNewButton_1 properties and listener
         panel_1.add(btnNewButton_1);
-        
-        btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String searchText = textField_1.getText().toLowerCase();
-                switch (searchText) {
-                    case "범죄도시4":
-                        new CrimePopup().setVisible(true);
-                        break;
-                    case "쿵푸팬더4":
-                        new KungfuPopup().setVisible(true);
-                        break;
-                    case "스턴트맨":
-                        new StuntPopup().setVisible(true);
-                        break;
-                    case "챌린저스":
-                        new ChalPopup().setVisible(true);
-                        break;
-                    case "몬스터 프렌즈":
-                        new MonPopup().setVisible(true);
-                        break;
-                    default:
-                        JOptionPane.showMessageDialog(null, "검색 결과가 없습니다.");
-                        break;
-                }
-            }
-        });
 
         JButton btnNewButton_2 = new JButton("");
-        btnNewButton_2.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/login_s.png")));
-        btnNewButton_2.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-        btnNewButton_2.setBounds(1170, 20, 32, 32);
+        // btnNewButton_2 properties and listener
         panel_1.add(btnNewButton_2);
 
         JButton btnNewButton_3 = new JButton("");
@@ -83,6 +44,11 @@ public class TopPanelTest extends JPanel {
         btnNewButton_3.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
         btnNewButton_3.setBounds(1209, 20, 32, 32);
         panel_1.add(btnNewButton_3);
+        btnNewButton_3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.PageChange(MainFrame.PANELNAME.JOIN_AGREE);  // Assuming you have JOIN_AGREE enum in MainFrame
+            }
+        });
 
         JLabel lblNewLabel = new JLabel("C U L T U R E P L E X");
         lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -90,12 +56,6 @@ public class TopPanelTest extends JPanel {
         lblNewLabel.setBounds(246, 77, 174, 15);
         panel_1.add(lblNewLabel);
         
-        txtOhtani = new JTextField();
-        txtOhtani.setText("ohtani님 환영합니다.");
-        txtOhtani.setBounds(1031, 31, 134, 21);
-        panel_1.add(txtOhtani);
-        txtOhtani.setColumns(10);
-
-        this.setVisible(true);
+        // Other components and setup
     }
 }
