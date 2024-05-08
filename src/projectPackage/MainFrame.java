@@ -76,6 +76,7 @@ public class MainFrame extends JFrame {
 	    JPanel ContentPanel10 = new CreateId_2(this);
 	    JPanel ContentPanel11 = new CreateId_3(this);
 	    JPanel ContentPanel12 = new BirdRichard(this);
+	    JPanel ContentPanel13 = new JoinAgree(this);
 
 		
 		//생성된 판넬 Map 자료 구조에 넣기
@@ -92,6 +93,7 @@ public class MainFrame extends JFrame {
 	    panelMap.put(MainFrame.PANELNAME.JOIN2, ContentPanel10);
 	    panelMap.put(MainFrame.PANELNAME.JOIN3, ContentPanel11);
 	    panelMap.put(MainFrame.PANELNAME.BIRD, ContentPanel12);
+	    panelMap.put(MainFrame.PANELNAME.JOIN_AGREE, ContentPanel13);
 
 		
 		//System.out.println(MainFrame.class.getResource("./../image/ring.jpg"));
@@ -123,6 +125,7 @@ public class MainFrame extends JFrame {
 	    this.getContentPane().add(ContentPanel10);   //JOIN2
 	    this.getContentPane().add(ContentPanel11);   //JOIN3	
 	    this.getContentPane().add(ContentPanel12); 	 // bird
+	    this.getContentPane().add(ContentPanel13);
 	}
 	
 	public void Pagechange_init(JPanel _panel, boolean headVisible)
@@ -182,6 +185,9 @@ public class MainFrame extends JFrame {
 	      case BIRD:
 	    	 panelMap.get(MainFrame.PANELNAME.BIRD).setVisible(true);
 		     break;
+	      case JOIN_AGREE:
+		    	 panelMap.get(MainFrame.PANELNAME.JOIN_AGREE).setVisible(true);
+			     break;
 		}
 	}
 	

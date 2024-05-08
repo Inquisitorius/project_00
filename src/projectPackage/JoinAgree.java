@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 public class JoinAgree extends JPanel {
 
     private static final long serialVersionUID = 1L;
+    private MainFrame mainFrame;
     private JTextField textField_1;  // 아이디 필드
     private JPasswordField passwordField_1;  // 비밀번호 필드
     private JPasswordField passwordField_2;  // 비밀번호 확인 필드
@@ -17,7 +18,9 @@ public class JoinAgree extends JPanel {
     private JTextField textField_4;  // 휴대전화 필드
     private Checkbox checkbox_1, checkbox_2, checkbox_3;
 
-    public JoinAgree() {
+    public JoinAgree(MainFrame mainFrame) {
+    	
+    	this.mainFrame = mainFrame;
         setBackground(Color.BLACK);
         this.setSize(1280, 800 - 150);
         this.setPreferredSize(new Dimension(1280, 800 - 150));
