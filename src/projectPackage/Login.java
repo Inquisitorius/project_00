@@ -16,8 +16,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import projectPackage.MainTestFrame.PANELNAME;
-
 import java.awt.Component;
 import javax.swing.border.BevelBorder;
 import java.awt.Insets;
