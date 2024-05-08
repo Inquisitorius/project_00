@@ -20,6 +20,7 @@ public class JoinAgree extends JPanel {
     public JoinAgree() {
         setBackground(Color.BLACK);
         this.setSize(1280, 800 - 150);
+        this.setPreferredSize(new Dimension(1280,150));
         setLayout(null);
 
         TextArea textArea_1 = new TextArea();
