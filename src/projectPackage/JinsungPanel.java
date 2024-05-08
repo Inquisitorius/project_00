@@ -37,9 +37,9 @@ public class JinsungPanel extends JPanel {
 			  Class.forName("oracle.jdbc.OracleDriver");
 		  
 		  conn= DriverManager.getConnection(
-				  "jdbc:oracle:thin:@localhost:1521/xe",
-				  "c##green",
-				  "green1234" ); 
+				  "jdbc:oracle:thin:@//14.42.124.35:1521/XE",
+				  "c##wjrls",
+				  "881125" ); 
 		  
 		  String sql = "" + " SELECT * FROM MOVIE ";
 		  //" SELECT movie_id, title, location, screen " + " FROM movie " +
