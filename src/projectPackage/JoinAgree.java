@@ -103,7 +103,7 @@ public class JoinAgree extends JPanel {
         // 버튼 설정
         JButton btnNewButton_1 = new JButton("");
         btnNewButton_1.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/back.png")));
-        btnNewButton_1.setBounds(838, 509, 110, 42);
+        btnNewButton_1.setBounds(870, 509, 110, 42);
         add(btnNewButton_1);
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -120,7 +120,7 @@ public class JoinAgree extends JPanel {
                 }
             }
         });
-        btnNewButton_2.setBounds(981, 509, 110, 42);
+        btnNewButton_2.setBounds(1013, 509, 110, 42);
         add(btnNewButton_2);
 
         JLabel lblNewLabel_1 = new JLabel("Terms & Policy");
