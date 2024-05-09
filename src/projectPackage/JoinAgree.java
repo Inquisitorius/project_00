@@ -68,42 +68,42 @@ public class JoinAgree extends JPanel {
         textField_1 = new JTextField();
         textField_1.setBorder(new EmptyBorder(0, 10, 0, 0));
         textField_1.setColumns(16);
-        textField_1.setBounds(846, 162, 341, 32);
+        textField_1.setBounds(874, 170, 341, 32);
         add(textField_1);
 
         passwordField_1 = new JPasswordField();
         passwordField_1.setToolTipText("");
         passwordField_1.setBorder(new EmptyBorder(0, 10, 0, 0));
-        passwordField_1.setBounds(846, 200, 341, 32);
+        passwordField_1.setBounds(874, 208, 341, 32);
         add(passwordField_1);
 
         passwordField_2 = new JPasswordField();
         passwordField_2.setBorder(new EmptyBorder(0, 10, 0, 0));
-        passwordField_2.setBounds(846, 238, 341, 32);
+        passwordField_2.setBounds(874, 246, 341, 32);
         add(passwordField_2);
 
         textField_2 = new JTextField();
         textField_2.setBorder(new EmptyBorder(0, 10, 0, 0));
         textField_2.setColumns(12);
-        textField_2.setBounds(846, 312, 341, 32);
+        textField_2.setBounds(874, 320, 341, 32);
         add(textField_2);
 
         textField_3 = new JTextField();
         textField_3.setBorder(new EmptyBorder(0, 10, 0, 0));
         textField_3.setColumns(16);
-        textField_3.setBounds(846, 350, 341, 32);
+        textField_3.setBounds(874, 358, 341, 32);
         add(textField_3);
 
         textField_4 = new JTextField();
         textField_4.setBorder(new EmptyBorder(0, 10, 0, 0));
         textField_4.setColumns(14);
-        textField_4.setBounds(846, 388, 341, 32);
+        textField_4.setBounds(874, 396, 341, 32);
         add(textField_4);
 
         // 버튼 설정
         JButton btnNewButton_1 = new JButton("");
         btnNewButton_1.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/back.png")));
-        btnNewButton_1.setBounds(813, 477, 110, 42);
+        btnNewButton_1.setBounds(883, 496, 110, 42);
         add(btnNewButton_1);
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -120,51 +120,58 @@ public class JoinAgree extends JPanel {
                 }
             }
         });
-        btnNewButton_2.setBounds(956, 477, 110, 42);
+        btnNewButton_2.setBounds(1026, 496, 110, 42);
         add(btnNewButton_2);
 
-        JLabel lblNewLabel_1 = new JLabel("JOIN");
+        JLabel lblNewLabel_1 = new JLabel("Terms & Policy");
         lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 48));
+        lblNewLabel_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 40));
         lblNewLabel_1.setForeground(new Color(238, 46, 36));
-        lblNewLabel_1.setBounds(502, 45, 172, 42);
+        lblNewLabel_1.setBounds(170, 44, 301, 42);
         add(lblNewLabel_1);
         
         JLabel lblNewLabel_2 = new JLabel("아이디");
         lblNewLabel_2.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
         lblNewLabel_2.setForeground(Color.WHITE);
-        lblNewLabel_2.setBounds(732, 169, 57, 15);
+        lblNewLabel_2.setBounds(760, 177, 57, 15);
         add(lblNewLabel_2);
         
         JLabel lblNewLabel_3 = new JLabel("비밀번호");
         lblNewLabel_3.setForeground(Color.WHITE);
         lblNewLabel_3.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-        lblNewLabel_3.setBounds(732, 208, 71, 15);
+        lblNewLabel_3.setBounds(760, 216, 71, 15);
         add(lblNewLabel_3);
         
         JLabel lblNewLabel_4 = new JLabel("비밀번호확인");
         lblNewLabel_4.setForeground(Color.WHITE);
         lblNewLabel_4.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-        lblNewLabel_4.setBounds(732, 248, 102, 15);
+        lblNewLabel_4.setBounds(760, 256, 102, 15);
         add(lblNewLabel_4);
         
         JLabel lblNewLabel_5 = new JLabel("이 름");
         lblNewLabel_5.setForeground(Color.WHITE);
         lblNewLabel_5.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-        lblNewLabel_5.setBounds(732, 320, 71, 15);
+        lblNewLabel_5.setBounds(760, 328, 71, 15);
         add(lblNewLabel_5);
         
         JLabel lblNewLabel_6 = new JLabel("이메일");
         lblNewLabel_6.setForeground(Color.WHITE);
         lblNewLabel_6.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-        lblNewLabel_6.setBounds(732, 358, 71, 15);
+        lblNewLabel_6.setBounds(760, 366, 71, 15);
         add(lblNewLabel_6);
         
         JLabel lblNewLabel_7 = new JLabel("휴대전화");
         lblNewLabel_7.setForeground(Color.WHITE);
         lblNewLabel_7.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-        lblNewLabel_7.setBounds(732, 396, 71, 15);
+        lblNewLabel_7.setBounds(760, 404, 71, 15);
         add(lblNewLabel_7);
+        
+        JLabel lblNewLabel_1_1 = new JLabel("Sign in");
+        lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+        lblNewLabel_1_1.setForeground(new Color(238, 46, 36));
+        lblNewLabel_1_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 40));
+        lblNewLabel_1_1.setBounds(865, 44, 301, 42);
+        add(lblNewLabel_1_1);
     }
 
     private boolean validateEmail(String email) {
