@@ -33,7 +33,7 @@ public class TicketVo
 	public void Set_NameInfo(String  movie_Name, String movieHouse_Name, String theater_Name, String seat_Info, String schedule_time)
 	{
 		this.movie_Name = movie_Name;
-		this.movieHouse_Name = movie_Name;
+		this.movieHouse_Name = movieHouse_Name;
 		this.theater_Name = theater_Name;
 		this.seat_Info = seat_Info;
 		this.schedule_time =schedule_time;

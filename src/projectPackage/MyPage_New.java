@@ -61,7 +61,7 @@ public class MyPage_New extends JPanel {
 		textField_phone.setText(userInfo.getUser_phone());
 		textField_name.setText(userInfo.getUser_name());
 		
-		Get_TicketInfo();
+		this.TableInit();
 	}
 
 	public MyPage_New(MainFrame mainFrame) {
@@ -157,19 +157,22 @@ public class MyPage_New extends JPanel {
 		add(UpdateBtn);
 		this.setVisible(false);
 
-		TableInit();
+		//TableInit();
 	}
 
 	public void TableInit() {
 		columnName = new Vector<String>();
 		data = new Vector<Vector<String>>();
 
-		columnName.add("TICKET_NO");
+		//columnName.add("TICKET_NO");
 		columnName.add("MOVIE_NAME");
 		columnName.add("MOVIEHOUSE_NAME");
 		columnName.add("SEAT_INFO");
 		columnName.add("SCHEDULE_TIME");
+		columnName.add("TICKET_STATUS");
 
+		Get_TicketInfo();
+		
 		UserInfoTableModel InfoModel = new UserInfoTableModel(data, columnName);
 
 		table = new JTable(InfoModel);
@@ -213,7 +216,7 @@ public class MyPage_New extends JPanel {
 					+ "JOIN THEATER t2 ON t2.MOVIEHOUSE_NO = m3.MOVIEHOUSE_NO) "
 					+ "JOIN USER_INFO ui ON ui.USER_NO = A.USER_NO) "
 					+ "JOIN LOCAL ON LOCAL.LOCAL_NO  = m3.LOCAL_NO "
-					+ "WHERE a.user_no = " + 2;//this.mainFrame.Get_UserInfo().getUser_no();
+					+ "WHERE a.user_no = " + this.mainFrame.Get_UserInfo().getUser_no();
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);	
 			ResultSet rs = pstmt.executeQuery();
@@ -236,32 +239,13 @@ public class MyPage_New extends JPanel {
 				
 				Vector<String> info = new Vector<String>();
 				
-				ticket.Get_SimpleSchedule_time();
+				info.add(ticket.getMovie_Name()); 
+				info.add(ticket.getMovieHouse_Name());
+				info.add(ticket.getSeat_Info()); 
+				info.add(ticket.Get_SimpleSchedule_time());
+				info.add(ticket.getTicket_status());
 				
-				
-				
-				
-				/*UserInfoVo usinfo = 
-						new UserInfoVo(	
-						rs.getInt("USER_NO"),
-						rs.getString("USER_ID"), 
-						rs.getString("USER_PW"),
-						rs.getString("USER_NAME"),
-						rs.getString("USER_EMAIL"),
-						rs.getString("USER_PHONE"),
-						rs.getInt("AUTH_NO")				
-						);
-				
-				Vector<String> info = new Vector<String>();
-				info.add(Integer.toString(usinfo.getUser_no()));
-				info.add(usinfo.getUser_id());
-				info.add(usinfo.getUser_pw());
-				info.add(usinfo.getUser_name());
-				info.add(usinfo.getUser_email());
-				info.add(usinfo.getUser_phone());
-				info.add(Integer.toString(usinfo.getAuth_no()));
-				
-				data.add(info);*/
+				data.add(info);
 			}
 			
 			pstmt.close();
