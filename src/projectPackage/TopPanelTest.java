@@ -11,6 +11,8 @@ public class TopPanelTest extends JPanel {
     private static final long serialVersionUID = 1L;
     private JTextField textField_1;
     private MainFrame mainFrame;
+    
+    
 
     public TopPanelTest(MainFrame mainFrame) {
         setLayout(null);
@@ -109,5 +111,7 @@ public class TopPanelTest extends JPanel {
         panel_1.add(lblNewLabel_1);
 
         this.setVisible(true);
+        
+        
     }
 }
