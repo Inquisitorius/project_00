@@ -112,7 +112,7 @@ public class JoinAgree extends JPanel {
         });
 
         JButton btnNewButton_2 = new JButton("");
-        btnNewButton_2.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/ok.png")));
+        btnNewButton_2.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/join2.png")));
         btnNewButton_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (validateEmail(textField_3.getText()) && validatePasswords(new String(passwordField_1.getPassword()), new String(passwordField_2.getPassword()))) {
