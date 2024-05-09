@@ -36,14 +36,14 @@ public class TopPanelTest extends JPanel {
 
         textField_1 = new JTextField();
         textField_1.setBorder(new EmptyBorder(0, 10, 0, 0));
-        textField_1.setBounds(954, 93, 250, 30);
+        textField_1.setBounds(954, 73, 250, 30);
         panel_1.add(textField_1);
         textField_1.setColumns(40);
         
         JButton btnNewButton_1 = new JButton("");
         btnNewButton_1.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/search_s.png")));
         btnNewButton_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-        btnNewButton_1.setBounds(1210, 92, 32, 32);
+        btnNewButton_1.setBounds(1210, 73, 32, 32);
         panel_1.add(btnNewButton_1);
         
         btnNewButton_1.addActionListener(new ActionListener() {
