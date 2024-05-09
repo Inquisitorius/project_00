@@ -11,7 +11,15 @@ public class TopPanelTest extends JPanel {
     private static final long serialVersionUID = 1L;
     private JTextField textField_1;
     private MainFrame mainFrame;
+    private JLabel lblNewLabel_1;
+    private JButton btnNewButton_2; 
+    private JButton logoutBtn;
     
+    private JButton joinPageBtn;
+    private JButton myPageBtn;
+    
+    private ActionListener loginBtnAction;
+    private ActionListener logoutBtnAction;
     
 
     public TopPanelTest(MainFrame mainFrame) {
@@ -24,6 +32,27 @@ public class TopPanelTest extends JPanel {
         panel_1.setBounds(0, 0, 1280, 150);
         add(panel_1);
         panel_1.setLayout(null);
+        
+        
+        //---------Action ------------//
+        loginBtnAction =  new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e) {            	
+                mainFrame.PageChange(MainFrame.PANELNAME.LOGIN);
+                System.out.println("action login");
+            }
+        };
+        
+        logoutBtnAction =  new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e) {
+            	
+            	mainFrame.Set_UserInfo_forLogout();
+                mainFrame.PageChange(MainFrame.PANELNAME.LOGIN);
+                System.out.println("action logout");
+            }
+        };
+        //-------------------------------//
 
         JLabel imageLabel = new JLabel(new ImageIcon(TopPanelTest.class.getResource("/image/ohtani/cgving2.png")));
         imageLabel.setBounds(45, 48, 200, 51);
@@ -74,29 +103,40 @@ public class TopPanelTest extends JPanel {
             }
         });
 
-        JButton btnNewButton_2 = new JButton("");
+        btnNewButton_2 = new JButton("");
         btnNewButton_2.setBorderPainted(false);
         btnNewButton_2.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/login_s.png")));
         btnNewButton_2.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
         btnNewButton_2.setBounds(1159, 34, 32, 32);
         panel_1.add(btnNewButton_2);
-        btnNewButton_2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                mainFrame.PageChange(MainFrame.PANELNAME.LOGIN);
-            }
-        });
+        btnNewButton_2.addActionListener(loginBtnAction);
 
-        JButton btnNewButton_3 = new JButton("");
-        btnNewButton_3.setBorderPainted(false);
-        btnNewButton_3.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/join_s.png")));
-        btnNewButton_3.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-        btnNewButton_3.setBounds(1197, 34, 32, 32);
-        panel_1.add(btnNewButton_3);
-        btnNewButton_3.addActionListener(new ActionListener() {
+        joinPageBtn = new JButton("");
+        joinPageBtn.setBorderPainted(false);
+        joinPageBtn.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/join_s.png")));
+        joinPageBtn.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
+        joinPageBtn.setBounds(1197, 34, 32, 32);
+        panel_1.add(joinPageBtn);
+        joinPageBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 mainFrame.PageChange(MainFrame.PANELNAME.JOIN_AGREE);
             }
         });
+        
+        myPageBtn = new JButton("");
+        myPageBtn.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
+        myPageBtn.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/mypage_s.png")));
+        myPageBtn.setBorderPainted(false);
+        myPageBtn.setBounds(1197, 34, 32, 32);
+        myPageBtn.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.PageChange(MainFrame.PANELNAME.MYPAGE);
+				
+			}
+		});
+        panel_1.add(myPageBtn);
+        
 
         JLabel lblNewLabel = new JLabel("C U L T U R E P L E X");
         lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -104,14 +144,56 @@ public class TopPanelTest extends JPanel {
         lblNewLabel.setBounds(246, 77, 174, 15);
         panel_1.add(lblNewLabel);
         
-        JLabel lblNewLabel_1 = new JLabel("ohtani님, 환영합니다.");
+        lblNewLabel_1 = new JLabel("ohtani님, 환영합니다.");
         lblNewLabel_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
         lblNewLabel_1.setForeground(new Color(255, 255, 255));
-        lblNewLabel_1.setBounds(1039, 51, 121, 15);
+        lblNewLabel_1.setBounds(1000, 51, 160, 15);
         panel_1.add(lblNewLabel_1);
+        
+        logoutBtn = new JButton("");
+        logoutBtn.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
+        logoutBtn.setBorderPainted(false);
+        logoutBtn.setBounds(1159, 34, 32, 32);
+        panel_1.add(logoutBtn);
+        
+        logoutBtn.addActionListener(logoutBtnAction);        
+        logoutBtn.setVisible(false);
+        
+        logoutBtn.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/logout_s.png")));
+        
+       
 
-        this.setVisible(true);
+        this.setVisible(true);     
+
+        Logout_Init();
         
-        
+    }
+    
+    public void Login_Init()
+    {
+    	if(this.mainFrame.Get_UserInfo() == null)
+    		return;
+    	
+    	String text = this.mainFrame.Get_UserInfo().getUser_id() + " 님, 환영합니다.";
+    	
+    	btnNewButton_2.setVisible(false);    	
+    	logoutBtn.setVisible(true);    	
+    	
+    	joinPageBtn.setVisible(false);
+    	myPageBtn.setVisible(true);
+    	
+    	lblNewLabel_1.setText(text);
+    	lblNewLabel_1.setVisible(true);
+    }
+    
+    public void Logout_Init()
+    {
+    	btnNewButton_2.setVisible(true);    	
+    	logoutBtn.setVisible(false);
+    	
+    	joinPageBtn.setVisible(true);
+    	myPageBtn.setVisible(false);
+    	
+    	lblNewLabel_1.setVisible(false);
     }
 }

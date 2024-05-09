@@ -54,6 +54,13 @@ public class Login_New extends JPanel {
 		
 	}
 	
+	public void PageOpen_Init()
+	{
+		textField_Id.setText("");
+		textField_Pw.setText("");
+		
+	}
+	
 	public void Init_Elements()
 	{
 		textField_Id = new JTextField();
@@ -76,7 +83,8 @@ public class Login_New extends JPanel {
 				if(Try_Login())
 				{
 					//mainFrame.PageChange(PANELNAME.MAIN);
-					mainFrame.PageChange(PANELNAME.MYPAGE);
+					mainFrame.Login_Progress();
+					mainFrame.PageChange(PANELNAME.MAIN);
 				}
 			}
 		});

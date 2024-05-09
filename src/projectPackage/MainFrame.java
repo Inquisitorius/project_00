@@ -114,8 +114,8 @@ public class MainFrame extends JFrame {
 		MainPane.setLayout(new BoxLayout(MainPane, BoxLayout.Y_AXIS));
 		
 		//메인 페이지 초기화 코드
-		//ContentPanel.setVisible(true);
-		ContentPanel8.setVisible(true);
+		ContentPanel.setVisible(true);
+		//ContentPanel8.setVisible(true);
 		
 		//Main 판넬에 하위 판넬 add 처리
 		this.getContentPane().add(HeadPanel);
@@ -178,6 +178,7 @@ public class MainFrame extends JFrame {
 	         panelMap.get(MainFrame.PANELNAME.TICKET).setVisible(true);
 	         break;
 	      case LOGIN:
+	    	 ((Login_New)panelMap.get(MainFrame.PANELNAME.LOGIN)).PageOpen_Init();
 	         panelMap.get(MainFrame.PANELNAME.LOGIN).setVisible(true);
 	         break;
 	      case JOIN1:
@@ -205,6 +206,12 @@ public class MainFrame extends JFrame {
 	public void Set_UserInfo_forLogout()
 	{
 		this.userInfo = null;
+		((TopPanelTest)HeadPanel).Logout_Init();
+	}
+	
+	public void Login_Progress()
+	{
+		((TopPanelTest)HeadPanel).Login_Init();
 	}
 	
 	public UserInfoVo Get_UserInfo()
