@@ -101,6 +101,7 @@ public class TopPanelTest extends JPanel {
         panel_1.add(lblNewLabel);
         
         txtOhtani = new JTextField();
+        txtOhtani.setEditable(false);
         txtOhtani.setText("ohtani님 환영합니다.");
         txtOhtani.setBounds(1032, 30, 134, 21);
         panel_1.add(txtOhtani);
