@@ -1,5 +1,9 @@
 package projectPackage;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TicketVo 
 {
 	private int ticket_no;
@@ -7,6 +11,12 @@ public class TicketVo
 	private int seat_no;
 	private int user_no;
 	private String ticket_status;
+	
+	private String movie_Name;
+	private String movieHouse_Name;
+	private String theater_Name;
+	private String seat_Info;
+	private String schedule_time;
 	
 	public TicketVo() {}
 	
@@ -19,6 +29,89 @@ public class TicketVo
 		this.user_no = user_no;
 		this.ticket_status = ticket_status;
 	}
+	
+	public void Set_NameInfo(String  movie_Name, String movieHouse_Name, String theater_Name, String seat_Info, String schedule_time)
+	{
+		this.movie_Name = movie_Name;
+		this.movieHouse_Name = movie_Name;
+		this.theater_Name = theater_Name;
+		this.seat_Info = seat_Info;
+		this.schedule_time =schedule_time;
+	}
+	
+	public String Get_SimpleSchedule_time() 
+	{
+		String result = "";
+		
+		// FORMAT 2개 선언
+		// 받아줄 FORMAT
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		// 변환할 FORMAT
+		SimpleDateFormat format2 = new SimpleDateFormat("MM/dd hh:mm");
+		try {
+			// 받은 날짜를 DATE 형태로 변환
+			Date temp = format.parse(schedule_time);
+
+			// DATE를 목적에 맞는 형식으로 변환
+			result = format2.format(temp);
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	public String getMovie_Name() {
+		return movie_Name;
+	}
+
+
+	public void setMovie_Name(String movie_Name) {
+		this.movie_Name = movie_Name;
+	}
+
+
+	public String getMovieHouse_Name() {
+		return movieHouse_Name;
+	}
+
+
+	public void setMovieHouse_Name(String movieHouse_Name) {
+		this.movieHouse_Name = movieHouse_Name;
+	}
+
+
+	public String getTheater_Name() {
+		return theater_Name;
+	}
+
+
+	public void setTheater_Name(String theater_Name) {
+		this.theater_Name = theater_Name;
+	}
+
+
+	public String getSeat_Info() {
+		return seat_Info;
+	}
+
+
+	public void setSeat_Info(String seat_Info) {
+		this.seat_Info = seat_Info;
+	}
+
+
+	public String getSchedule_time() {
+		return schedule_time;
+	}
+
+
+	public void setSchedule_time(String schedule_time) {
+		this.schedule_time = schedule_time;
+	}
+
 
 	public int getTicket_no() {
 		return ticket_no;
