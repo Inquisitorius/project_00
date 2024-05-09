@@ -49,7 +49,8 @@ public class OhtanisPanel extends JPanel {
 			// 클릭시 이벤트 정의
 			// --------------------------------------------------//
 			crimePopup = new CrimePopup();
-			JButton btnNewButton_1 = new JButton("");		
+			JButton btnNewButton_1 = new JButton("");
+			btnNewButton_1.setBorderPainted(false);
 			btnNewButton_1.addActionListener(new crimePopupAction());
 			btnNewButton_1.setIcon(new ImageIcon(OhtanisPanel.class.getResource("/image/ohtani/crimetown.jpg")));
 			btnNewButton_1.setBounds(88, 309, 150, 214);
@@ -57,6 +58,7 @@ public class OhtanisPanel extends JPanel {
 
 			stuntPopup = new StuntPopup();
 			JButton btnNewButton_2 = new JButton("");
+			btnNewButton_2.setBorderPainted(false);
 			btnNewButton_2.addActionListener(new stuntPopupAction());
 			btnNewButton_2.setIcon(new ImageIcon(OhtanisPanel.class.getResource("/image/ohtani/stuntman.jpg")));
 			btnNewButton_2.setBounds(326, 309, 150, 214);
@@ -64,6 +66,7 @@ public class OhtanisPanel extends JPanel {
 
 			kungfuPopup = new KungfuPopup();
 			JButton btnNewButton_3 = new JButton("");
+			btnNewButton_3.setBorderPainted(false);
 			btnNewButton_3.addActionListener(new kungfuPopupAction());
 			btnNewButton_3.setIcon(new ImageIcon(OhtanisPanel.class.getResource("/image/ohtani/kungfupanda.jpg")));
 			btnNewButton_3.setBounds(560, 309, 150, 214);
@@ -71,6 +74,7 @@ public class OhtanisPanel extends JPanel {
 
 			chalPopup = new ChalPopup();
 			JButton btnNewButton_4 = new JButton("");
+			btnNewButton_4.setBorderPainted(false);
 			btnNewButton_4.addActionListener(new chalPopupAction());
 			btnNewButton_4.setIcon(new ImageIcon(OhtanisPanel.class.getResource("/image/ohtani/challengers.jpg")));
 			btnNewButton_4.setBounds(802, 309, 150, 214);
@@ -78,6 +82,7 @@ public class OhtanisPanel extends JPanel {
 			
 			monPopup = new MonPopup();
 			JButton btnNewButton_5 = new JButton("");
+			btnNewButton_5.setBorderPainted(false);
 			btnNewButton_5.addActionListener(new monPopupAction());
 			btnNewButton_5.setIcon(new ImageIcon(OhtanisPanel.class.getResource("/image/ohtani/monsterfriends.jpg")));
 			btnNewButton_5.setBounds(1040, 309, 150, 214);

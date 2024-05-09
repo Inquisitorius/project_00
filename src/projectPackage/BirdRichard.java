@@ -74,6 +74,7 @@ public class BirdRichard extends JPanel {
 		add(lblNewLabel_7);
 		
 		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBorderPainted(false);
 		btnNewButton_1.setIcon(new ImageIcon(BirdRichard.class.getResource("/image/button/reserve.png")));
 		btnNewButton_1.setBounds(464, 213, 110, 42);
 		add(btnNewButton_1);

@@ -40,6 +40,7 @@ public class TopPanelTest extends JPanel {
         textField_1.setColumns(40);
         
         JButton btnNewButton_1 = new JButton("");
+        btnNewButton_1.setBorderPainted(false);
         btnNewButton_1.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/search_s.png")));
         btnNewButton_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
         btnNewButton_1.setBounds(1197, 73, 32, 32);
@@ -72,6 +73,7 @@ public class TopPanelTest extends JPanel {
         });
 
         JButton btnNewButton_2 = new JButton("");
+        btnNewButton_2.setBorderPainted(false);
         btnNewButton_2.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/login_s.png")));
         btnNewButton_2.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
         btnNewButton_2.setBounds(1159, 34, 32, 32);
@@ -83,6 +85,7 @@ public class TopPanelTest extends JPanel {
         });
 
         JButton btnNewButton_3 = new JButton("");
+        btnNewButton_3.setBorderPainted(false);
         btnNewButton_3.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/join_s.png")));
         btnNewButton_3.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
         btnNewButton_3.setBounds(1197, 34, 32, 32);

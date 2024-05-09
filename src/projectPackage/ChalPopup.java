@@ -70,6 +70,7 @@ public class ChalPopup extends JFrame {
         contentPane.add(imageLabel);
         
         JButton btnNewButton = new JButton("");
+        btnNewButton.setBorderPainted(false);
         btnNewButton.setIcon(new ImageIcon(ChalPopup.class.getResource("/image/button/reserve.png")));
         btnNewButton.setBounds(73, 306, 110, 42);
         contentPane.add(btnNewButton);
