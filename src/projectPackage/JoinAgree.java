@@ -270,7 +270,7 @@ public class JoinAgree extends JPanel {
                     	 return;
                      }
                      
-                     JOptionPane.showMessageDialog(null, "회원가입 정보가 확인되었습니다.");                     
+                     JOptionPane.showMessageDialog(null, "TVING 가입을 환영합니다.");                     
                     
                 } else {
                     // Handle error
