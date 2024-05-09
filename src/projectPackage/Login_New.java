@@ -105,12 +105,12 @@ public class Login_New extends JPanel {
 		lblNewLabel = new JLabel("아직 아이디가 없으신가요");
 		lblNewLabel.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(407, 363, 497, 35);
+		lblNewLabel.setBounds(407, 322, 148, 35);
 		add(lblNewLabel);
 		
 		loginBtn = new JButton("");
 		loginBtn.setIcon(new ImageIcon(Login_New.class.getResource("/image/button/join.png")));
-		loginBtn.setBounds(794, 408, 110, 42);
+		loginBtn.setBounds(672, 311, 110, 42);
 		add(loginBtn);
 		
 		label_alert = new JLabel("");
