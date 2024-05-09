@@ -115,6 +115,7 @@ public class JoinAgree extends JPanel {
 
         // 버튼 설정
         JButton btnNewButton_1 = new JButton("");
+        btnNewButton_1.setBorderPainted(false);
         btnNewButton_1.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/back.png")));
         btnNewButton_1.setBounds(855, 499, 110, 42);
         add(btnNewButton_1);
@@ -125,6 +126,7 @@ public class JoinAgree extends JPanel {
         });
 
         JButton btnNewButton_2 = new JButton("");
+        btnNewButton_2.setBorderPainted(false);
         btnNewButton_2.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/join2.png")));
         btnNewButton_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
