@@ -3,6 +3,11 @@ package projectPackage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.border.EmptyBorder;
@@ -113,8 +118,9 @@ public class JoinAgree extends JPanel {
         textField_4.setBounds(804, 409, 341, 32);
         add(textField_4);
 
+        setupButtons();
         // 버튼 설정
-        JButton btnNewButton_1 = new JButton("");
+        /*JButton btnNewButton_1 = new JButton("");
         btnNewButton_1.setBorderPainted(false);
         btnNewButton_1.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/back.png")));
         btnNewButton_1.setBounds(855, 499, 110, 42);
@@ -136,7 +142,7 @@ public class JoinAgree extends JPanel {
             }
         });
         btnNewButton_2.setBounds(998, 499, 110, 42);
-        add(btnNewButton_2);
+        add(btnNewButton_2);*/
 
         JLabel lblNewLabel_1 = new JLabel("Terms & Policy");
         lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -244,12 +250,89 @@ public class JoinAgree extends JPanel {
         btnNewButton_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (validateEmail(textField_3.getText()) && validatePasswords(new String(passwordField_1.getPassword()), new String(passwordField_2.getPassword()))) {
-                    JOptionPane.showMessageDialog(null, "회원가입 정보가 확인되었습니다.");
+                                    	
+                	if(!checkbox_1.getState())
+                	{
+                		JOptionPane.showMessageDialog(null, "이용약관에 동의하여 주십시오.");
+                		return;
+                	}
+                	else if(!checkbox_2.getState())
+                	{
+                		JOptionPane.showMessageDialog(null, "개인정보 수집에 동의하여 주십시오.");
+                		return;
+                	}
+                	
+                     Boolean result =  InsertUser();          
+                     
+                     if(result)
+                     {
+                    	 JOptionPane.showMessageDialog(null, "아이디가 중복되었습니다.");
+                    	 return;
+                     }
+                     
+                     JOptionPane.showMessageDialog(null, "회원가입 정보가 확인되었습니다.");                     
+                    
                 } else {
                     // Handle error
+                	 JOptionPane.showMessageDialog(null, "입력한 정보를 확인해주십시오.");
                 }
             }
         });
+    }
+    public Boolean InsertUser()
+    {
+    	try 
+    	{
+			Class.forName("oracle.jdbc.OracleDriver");
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@14.42.124.35:1521/xe", "C##wjrls", "881125");
+			
+			String sql_test = "select count(*) as COUNT FROM USER_INFO WHERE USER_ID = '" + textField_1.getText() +"'";
+			PreparedStatement pstmt_test = conn.prepareStatement(sql_test);
+			
+			ResultSet rs = pstmt_test.executeQuery();
+			rs.next();
+			int result_test = rs.getInt("COUNT");
+			
+			
+			if(result_test >= 1)
+			{
+			pstmt_test.close();
+			    conn.close();
+			    
+			    return true;
+			}
+				
+						
+			
+			String sql = "INSERT INTO USER_INFO(USER_NO, USER_NAME, USER_ID, USER_PW, USER_EMAIL, USER_PHONE, AUTH_NO) "
+					+ " VALUES(USER_BNO.NEXTVAL, ? , ? , ?, ?, ?, 2)";
+			
+			
+	        PreparedStatement pstmt = conn.prepareStatement(sql);
+	        
+	        pstmt.setString(1, textField_2.getText());
+	        pstmt.setString(2, textField_1.getText()); 
+	        pstmt.setString(3, new String(passwordField_1.getPassword()));
+	        pstmt.setString(4, textField_3.getText());
+	        pstmt.setString(5, textField_4.getText());
+	        
+	        int result = pstmt.executeUpdate();
+	        if(result < 0)
+	        {
+	        	System.out.println("Insert User Err--");
+	        }
+
+	        pstmt.close();
+	        pstmt_test.close();
+	        conn.close();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return false;
+        
     }
 
     private void setupLabels() {
