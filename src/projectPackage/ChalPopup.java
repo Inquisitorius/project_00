@@ -57,6 +57,7 @@ public class ChalPopup extends JFrame {
         }
         
         JTextArea textArea = new JTextArea();
+        textArea.setEditable(false);
         textArea.setBorder(new EmptyBorder(10, 10, 0, 0));
         
         textArea.setFont(new Font("나눔바른고딕", Font.PLAIN, 14));
