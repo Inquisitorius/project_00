@@ -265,13 +265,13 @@ public class JinsungPanelT extends JPanel {
 		 }
 		 } 
 		 }	 
-		JLabel person = new JLabel("관람수");
+		JLabel person = new JLabel("좌석");
 		person.setForeground(Color.WHITE);
 		person.setFont(new Font("나눔고딕", Font.PLAIN, 25));
 		person.setBounds(54, 514, 111, 41);
 		panel.add(person);	
 		   
-		JLabel personp = new JLabel("2명");
+		JLabel personp = new JLabel("A1,A2");
 		personp.setForeground(Color.WHITE);
 		personp.setFont(new Font("나눔고딕", Font.PLAIN, 25));
 		personp.setBounds(1059, 514, 124, 41);
