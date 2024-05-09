@@ -75,7 +75,8 @@ public class Login_New extends JPanel {
 			{
 				if(Try_Login())
 				{
-					mainFrame.PageChange(PANELNAME.MAIN);
+					//mainFrame.PageChange(PANELNAME.MAIN);
+					mainFrame.PageChange(PANELNAME.MYPAGE);
 				}
 			}
 		});
