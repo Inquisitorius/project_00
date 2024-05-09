@@ -52,6 +52,7 @@ public class MonPopup extends JFrame {
         }
         
         JTextArea textArea = new JTextArea();
+        textArea.setEditable(false);
         textArea.setBorder(new EmptyBorder(10, 10, 0, 0));
         textArea.setFont(new Font("나눔바른고딕", Font.PLAIN, 14));
         textArea.setText("“전설의 몬스터가 보고 싶어요!”\r\n \r\n\r\n몬스터들은 아무도 모르는 곳에 따로 모여사는 세상.\r\n몬스터와 친구가 되고 싶어하는 ‘한나’는 \r\n우연히 몬스터 마을을 발견한다.\r\n\r\n그곳에서 ‘한나’가 마주친 건 무시무시한 몬스터들!\r\n빨간모자와 늑대의 ‘울프걸’부터 설인의 전설 속 ‘예티’까지\r\n모두 처음 본 인간인 ‘한나’를 경계하기 시작한다.\r\n\r\n설상가상으로 악마의 사신 ‘가고일’이 자신의 은밀한 계획을 위해\r\n외눈박이 거인 ‘사이클롭스’와 함께 한나를 납치하는데…\r\n\r\n과연 ‘한나’는 몬스터들과 친구가 될 수 있을까?");

@@ -95,7 +95,7 @@ public class BirdRichard extends JPanel {
 		textArea_1.setText("황새가 키운 최강 꼬마참새 ‘리차드’가 돌아왔다!\r\n\r\n \r\n아프리카의 해변에서 황새 가족의 따듯한 보살핌 속에\r\n\r\n\r\n뛰어난 비행 실력을 지닌 용감한 참새로 자란 ‘리차드’.\r\n \r\n\r\n어느 날 ‘리차드’는 친구인 앵무새 ‘키키’, 올빼미 ‘올가’와 함께\r\n\r\n\r\n우연히 위험천만한 사막을 지나 신비로운 도시에 도착하게 된다.\r\n\r\n \r\n하지만 그들은 곧 공작새 ‘자마노’의 부하인\r\n\r\n\r\n대머리황새들에게 공격을 당하고\r\n\r\n\r\n도시 참새의 리더 ‘사미아’의 도움을 받아\r\n\r\n\r\n가까스로 위기에서 벗어난다.\r\n\r\n\r\n자신을 구해준 도시 참새들이 탐욕스러운\r\n\r\n\r\n‘자마노’에게 잡혀 있다는 사실을 알게 된\r\n\r\n\r\n‘리차드’와 친구들은 이제 그들을\r\n\r\n\r\n구하기 위해 전설 속 보석을 찾기로 결심하는데…\r\n\r\n\r\n더 빠르게! 더 신나게! 더 높게!\r\n\r\n\r\n신비한 보석을 찾아 아프리카 속으로 훨훨 날아볼까?");
 		textArea_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
 		textArea_1.setEditable(false);
-		textArea_1.setBounds(464, 275, 460, 356);
+		textArea_1.setBounds(464, 275, 460, 375);
 		add(textArea_1);
 
 		try {
