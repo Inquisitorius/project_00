@@ -77,6 +77,11 @@ public class TopPanelTest extends JPanel {
         btnNewButton_2.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
         btnNewButton_2.setBounds(1170, 20, 32, 32);
         panel_1.add(btnNewButton_2);
+        btnNewButton_2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.PageChange(MainFrame.PANELNAME.LOGIN);
+            }
+        });
 
         JButton btnNewButton_3 = new JButton("");
         btnNewButton_3.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/join_s.png")));
@@ -85,7 +90,7 @@ public class TopPanelTest extends JPanel {
         panel_1.add(btnNewButton_3);
         btnNewButton_3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainFrame.PageChange(MainFrame.PANELNAME.JOIN_AGREE);  // Assuming you have JOIN_AGREE enum in MainFrame
+                mainFrame.PageChange(MainFrame.PANELNAME.JOIN_AGREE);
             }
         });
 
