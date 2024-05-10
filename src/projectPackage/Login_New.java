@@ -22,6 +22,8 @@ import java.sql.SQLException;
 import javax.swing.SwingConstants;
 
 import projectPackage.MainFrame.PANELNAME;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login_New extends JPanel {
 
@@ -32,7 +34,7 @@ public class Login_New extends JPanel {
 	private JLabel lblId;
 	private JLabel lblpw;
 	private JLabel lblNewLabel;
-	private JButton loginBtn;
+	private JButton joinBtn;
 	private JLabel label_alert;
 	private JButton LoginBtn;
 
@@ -75,8 +77,9 @@ public class Login_New extends JPanel {
 		
 		
 		LoginBtn = new JButton("");
+		LoginBtn.setBorderPainted(false);
 		LoginBtn.setIcon(new ImageIcon(Login_New.class.getResource("/image/button/login.png")));
-		LoginBtn.setBounds(794, 311, 110, 42);
+		LoginBtn.setBounds(794, 305, 110, 42);
 		LoginBtn.addMouseListener(new MouseAdapter() {
 			@Override public void mouseClicked(MouseEvent e)
 			{
@@ -105,13 +108,23 @@ public class Login_New extends JPanel {
 		lblNewLabel = new JLabel("아직 아이디가 없으신가요");
 		lblNewLabel.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(407, 322, 148, 35);
+		lblNewLabel.setBounds(406, 324, 148, 35);
 		add(lblNewLabel);
 		
-		loginBtn = new JButton("");
-		loginBtn.setIcon(new ImageIcon(Login_New.class.getResource("/image/button/join.png")));
-		loginBtn.setBounds(672, 311, 110, 42);
-		add(loginBtn);
+		joinBtn = new JButton("");
+		joinBtn.setBorderPainted(false);
+		joinBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		joinBtn.setIcon(new ImageIcon(Login_New.class.getResource("/image/button/join_s.png")));
+		joinBtn.setBounds(540, 315, 32, 32);
+		add(joinBtn);
+		joinBtn.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                mainFrame.PageChange(MainFrame.PANELNAME.JOIN_AGREE);
+	            }
+	        });
 		
 		label_alert = new JLabel("");
 		label_alert.setForeground(Color.WHITE);
