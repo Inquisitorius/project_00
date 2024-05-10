@@ -63,10 +63,9 @@ public class MainFrame extends JFrame {
 		
 		userInfo = null;
 		index = 0;		
-		panelMap = new HashMap<MainFrame.PANELNAME, JPanel>();
+		panelMap = new HashMap<MainFrame.PANELNAME, JPanel>();		
 		
 		HeadPanel = new TopPanelTest(this);	
-		
 		//생성 판넬 관리
 		JPanel ContentPanel = new OhtanisPanel(this);
 		JPanel ContentPanel2 = new Admin_UserList(this);
@@ -201,6 +200,11 @@ public class MainFrame extends JFrame {
 	    	 panelMap.get(MainFrame.PANELNAME.MYPAGE).setVisible(true);
 	    	 break;
 		}
+	}
+	
+	public JPanel Get_Panel_Main()
+	{		
+		return panelMap.get(MainFrame.PANELNAME.MAIN);
 	}
 	
 	public void Set_UserInfo_forLogout()

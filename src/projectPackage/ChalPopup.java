@@ -20,32 +20,15 @@ public class ChalPopup extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
+    private OhtanisPanel parentPanel; 
  
-    /**
-     * Launch the application.
-     */
-    
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    CrimePopup frame = new CrimePopup();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Create the frame.
-     */
-    public ChalPopup() {
+    public ChalPopup(OhtanisPanel parentPanel) {
     	setTitle("챌린저스");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(300, 300, 700, 434);
         setResizable(false);
+        this.parentPanel = parentPanel;
+        
         contentPane = new JPanel();
         contentPane.setBackground(new Color(0, 0, 0));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -74,6 +57,13 @@ public class ChalPopup extends JFrame {
         btnNewButton.setBorderPainted(false);
         btnNewButton.setIcon(new ImageIcon(ChalPopup.class.getResource("/image/button/reserve.png")));
         btnNewButton.setBounds(73, 306, 110, 42);
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//progress
+        		parentPanel.TicketMove();
+        	}
+        });
+        
         contentPane.add(btnNewButton);
         
     }

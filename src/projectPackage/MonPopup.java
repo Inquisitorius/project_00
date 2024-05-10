@@ -17,32 +17,16 @@ public class MonPopup extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
+    private OhtanisPanel parentPanel; 
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	MonPopup frame = new MonPopup();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Create the frame.
-     */
-    public MonPopup() {
+    public MonPopup(OhtanisPanel parentPanel) {
     	setResizable(false);
     	setForeground(new Color(255, 255, 255));
     	setTitle("몬스터 프렌즈");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(300, 300, 700, 434);
+        this.parentPanel = parentPanel;
+        
         contentPane = new JPanel();
         contentPane.setBackground(new Color(0, 0, 0));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,6 +53,13 @@ public class MonPopup extends JFrame {
         btnNewButton.setBorderPainted(false);
         btnNewButton.setIcon(new ImageIcon(MonPopup.class.getResource("/image/button/reserve.png")));
         btnNewButton.setBounds(73, 306, 110, 42);
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//progress
+        		parentPanel.TicketMove();
+        	}
+        });
+        
         contentPane.add(btnNewButton);
     }
 }

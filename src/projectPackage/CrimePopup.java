@@ -17,31 +17,16 @@ public class CrimePopup extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
+    private OhtanisPanel parentPanel;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    CrimePopup frame = new CrimePopup();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
-    /**
-     * Create the frame.
-     */
-    public CrimePopup() {
+    public CrimePopup(OhtanisPanel parentPanel) {
     	setTitle("범죄도시4");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(300, 300, 700, 434);
         setResizable(false);
+        this.parentPanel = parentPanel;
+        
         contentPane = new JPanel();
         contentPane.setBackground(new Color(0, 0, 0));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,6 +54,13 @@ public class CrimePopup extends JFrame {
         btnNewButton.setIcon(new ImageIcon(CrimePopup.class.getResource("/image/button/reserve.png")));
         btnNewButton.setBounds(73, 306, 110, 42);
         contentPane.add(btnNewButton);
+        
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//progress
+        		parentPanel.TicketMove();
+        	}
+        });
         
     }
 }
