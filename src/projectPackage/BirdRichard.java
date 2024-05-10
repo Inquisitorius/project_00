@@ -10,6 +10,9 @@ import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.DropMode;
 import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.border.EmptyBorder;
 
 
@@ -78,6 +81,11 @@ public class BirdRichard extends JPanel {
 		btnNewButton_1.setIcon(new ImageIcon(BirdRichard.class.getResource("/image/button/reserve.png")));
 		btnNewButton_1.setBounds(464, 213, 110, 42);
 		add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.PageChange(MainFrame.PANELNAME.TICKETING);
+            }
+        });
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(BirdRichard.class.getResource("/image/ohtani/egg2.png")));

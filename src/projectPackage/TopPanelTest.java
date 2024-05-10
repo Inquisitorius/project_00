@@ -82,19 +82,25 @@ public class TopPanelTest extends JPanel {
                 String searchText = textField_1.getText().toLowerCase();
                 switch (searchText) {
                     case "범죄도시4":
-                        new CrimePopup().setVisible(true);
+                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).Set_PopupInit();
+                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).getCrimePopup().setVisible(true);
                         break;
                     case "쿵푸팬더4":
-                        new KungfuPopup().setVisible(true);
+                    	//OhtanisPanel parentPanel = (OhtanisPanel)mainFrame.Get_Panel_Main();
+                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).Set_PopupInit();
+                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).getKungfuPopup().setVisible(true);
                         break;
-                    case "스턴트맨":
-                        new StuntPopup().setVisible(true);
+                    case "스턴트맨":                    	
+                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).Set_PopupInit();
+                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).getStuntPopup().setVisible(true);
                         break;
-                    case "챌린저스":
-                        new ChalPopup().setVisible(true);
+                    case "챌린저스":                    	
+                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).Set_PopupInit();
+                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).getChalPopup().setVisible(true);
                         break;
                     case "몬스터 프렌즈":
-                        new MonPopup().setVisible(true);
+                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).Set_PopupInit();
+                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).getMonPopup().setVisible(true);
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "검색 결과가 없습니다.");

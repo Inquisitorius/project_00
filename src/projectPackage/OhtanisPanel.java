@@ -29,6 +29,45 @@ public class OhtanisPanel extends JPanel {
 	private JFrame chalPopup;
 	private JFrame monPopup;
 
+	public JFrame getCrimePopup() {
+		return crimePopup;
+	}
+
+	public void setCrimePopup(JFrame crimePopup) {
+		this.crimePopup = crimePopup;
+	}
+
+	public JFrame getStuntPopup() {
+		return stuntPopup;
+	}
+
+	public void setStuntPopup(JFrame stuntPopup) {
+		this.stuntPopup = stuntPopup;
+	}
+
+	public JFrame getKungfuPopup() {
+		return kungfuPopup;
+	}
+
+	public void setKungfuPopup(JFrame kungfuPopup) {
+		this.kungfuPopup = kungfuPopup;
+	}
+
+	public JFrame getChalPopup() {
+		return chalPopup;
+	}
+
+	public void setChalPopup(JFrame chalPopup) {
+		this.chalPopup = chalPopup;
+	}
+
+	public JFrame getMonPopup() {
+		return monPopup;
+	}
+
+	public void setMonPopup(JFrame monPopup) {
+		this.monPopup = monPopup;
+	}
 
 	/**
 	 * Create the panel.
@@ -48,7 +87,7 @@ public class OhtanisPanel extends JPanel {
 			// 팝업 jframe 정의
 			// 클릭시 이벤트 정의
 			// --------------------------------------------------//
-			crimePopup = new CrimePopup();
+			crimePopup = new CrimePopup(this);
 			JButton btnNewButton_1 = new JButton("");
 			btnNewButton_1.setBorderPainted(false);
 			btnNewButton_1.addActionListener(new crimePopupAction());
@@ -56,7 +95,7 @@ public class OhtanisPanel extends JPanel {
 			btnNewButton_1.setBounds(88, 309, 150, 214);
 			add(btnNewButton_1);
 
-			stuntPopup = new StuntPopup();
+			stuntPopup = new StuntPopup(this);
 			JButton btnNewButton_2 = new JButton("");
 			btnNewButton_2.setBorderPainted(false);
 			btnNewButton_2.addActionListener(new stuntPopupAction());
@@ -64,7 +103,7 @@ public class OhtanisPanel extends JPanel {
 			btnNewButton_2.setBounds(326, 309, 150, 214);
 			add(btnNewButton_2);
 
-			kungfuPopup = new KungfuPopup();
+			kungfuPopup = new KungfuPopup(this);
 			JButton btnNewButton_3 = new JButton("");
 			btnNewButton_3.setBorderPainted(false);
 			btnNewButton_3.addActionListener(new kungfuPopupAction());
@@ -72,7 +111,7 @@ public class OhtanisPanel extends JPanel {
 			btnNewButton_3.setBounds(560, 309, 150, 214);
 			add(btnNewButton_3);
 
-			chalPopup = new ChalPopup();
+			chalPopup = new ChalPopup(this);
 			JButton btnNewButton_4 = new JButton("");
 			btnNewButton_4.setBorderPainted(false);
 			btnNewButton_4.addActionListener(new chalPopupAction());
@@ -80,7 +119,7 @@ public class OhtanisPanel extends JPanel {
 			btnNewButton_4.setBounds(802, 309, 150, 214);
 			add(btnNewButton_4);
 			
-			monPopup = new MonPopup();
+			monPopup = new MonPopup(this);
 			JButton btnNewButton_5 = new JButton("");
 			btnNewButton_5.setBorderPainted(false);
 			btnNewButton_5.addActionListener(new monPopupAction());
@@ -159,6 +198,26 @@ public class OhtanisPanel extends JPanel {
 		}
 
 		this.setVisible(false);
+	}
+	
+	public void Set_PopupInit()
+	{
+		crimePopup.setVisible(false);
+		stuntPopup.setVisible(false);
+		kungfuPopup.setVisible(false);
+		chalPopup.setVisible(false);
+		monPopup.setVisible(false);
+	}
+	
+	public void TicketMove()
+	{
+		crimePopup.setVisible(false);
+		stuntPopup.setVisible(false);
+		kungfuPopup.setVisible(false);
+		chalPopup.setVisible(false);
+		monPopup.setVisible(false);
+		
+		mainFrame.PageChange(PANELNAME.TICKETING);
 	}
 	
 	class MyMouseListener extends MouseAdapter{            // 이벤트 리스너 구현

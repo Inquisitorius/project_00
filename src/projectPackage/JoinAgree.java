@@ -272,7 +272,7 @@ public class JoinAgree extends JPanel {
                     	 return;
                      }
                      
-                     JOptionPane.showMessageDialog(null, "TVING 가입을 환영합니다.");                     
+                     JOptionPane.showMessageDialog(null, "CGVING 회원가입을 환영합니다.");                     
                     
                 } else {
                     // Handle error

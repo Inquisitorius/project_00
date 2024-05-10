@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.Icon;
@@ -16,27 +18,9 @@ public class StuntPopup extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
+    private OhtanisPanel parentPanel;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                	StuntPopup frame = new StuntPopup();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Create the frame.
-     */
-    public StuntPopup() {
+    public StuntPopup(OhtanisPanel parentPanel) {
     	setTitle("스턴트맨");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(300, 300, 700, 434);
@@ -68,5 +52,12 @@ public class StuntPopup extends JFrame {
         btnNewButton.setIcon(new ImageIcon(StuntPopup.class.getResource("/image/button/reserve.png")));
         btnNewButton.setBounds(73, 306, 110, 42);
         contentPane.add(btnNewButton);
+        
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		//progress
+        		parentPanel.TicketMove();
+        	}
+        });
     }
 }
