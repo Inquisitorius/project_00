@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import projectPackage.MainFrame.PANELNAME;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.EmptyBorder;
 
 public class Login_New extends JPanel {
 
@@ -66,11 +67,13 @@ public class Login_New extends JPanel {
 	public void Init_Elements()
 	{
 		textField_Id = new JTextField();
+		textField_Id.setBorder(new EmptyBorder(0, 10, 0, 0));
 		textField_Id.setBounds(407, 181, 497, 41);
 		add(textField_Id);
 		textField_Id.setColumns(10);
 		
 		textField_Pw = new JPasswordField();
+		textField_Pw.setBorder(new EmptyBorder(0, 10, 0, 0));
 		textField_Pw.setColumns(10);
 		textField_Pw.setBounds(407, 245, 497, 41);
 		add(textField_Pw);		
