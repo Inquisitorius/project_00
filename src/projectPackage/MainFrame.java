@@ -33,7 +33,7 @@ public class MainFrame extends JFrame {
 	private UserInfoVo userInfo;
 	
 	public enum PANELNAME {MAIN, PAGE0, PAGE1, PAGE2, LOGIN, JOIN1, JOIN2, 
-		JOIN3, SELECT, TICKETING, TICKET, PAYMENT, BIRD, JOIN_AGREE, MYPAGE};
+		JOIN3, SELECT, TICKETING, TICKET, PAYMENT, BIRD, JOIN_AGREE, MYPAGE, SEATSELECT};
 
 	/**
 	 * Launch the application.
@@ -82,6 +82,7 @@ public class MainFrame extends JFrame {
 	    JPanel ContentPanel12 = new BirdRichard(this);
 	    JPanel ContentPanel13 = new JoinAgree(this);
 	    JPanel ContentPanel14 = new MyPage_New(this);
+	    JPanel ContentPanel15 = new SeatSelectPage(this);
 
 		
 		//생성된 판넬 Map 자료 구조에 넣기
@@ -99,6 +100,7 @@ public class MainFrame extends JFrame {
 	    panelMap.put(MainFrame.PANELNAME.BIRD, ContentPanel12);
 	    panelMap.put(MainFrame.PANELNAME.JOIN_AGREE, ContentPanel13);
 	    panelMap.put(MainFrame.PANELNAME.MYPAGE, ContentPanel14);
+	    panelMap.put(MainFrame.PANELNAME.SEATSELECT, ContentPanel15);
 
 		
 		//System.out.println(MainFrame.class.getResource("./../image/ring.jpg"));
@@ -132,6 +134,7 @@ public class MainFrame extends JFrame {
 	    this.getContentPane().add(ContentPanel12); 	 // bird
 	    this.getContentPane().add(ContentPanel13);
 	    this.getContentPane().add(ContentPanel14);
+	    this.getContentPane().add(ContentPanel15);
 	}
 	
 	public void Pagechange_init(JPanel _panel, boolean headVisible)
@@ -152,7 +155,7 @@ public class MainFrame extends JFrame {
 		
 		
 		switch (name) {
-		case MAIN: 			
+		case MAIN: 						
 			Pagechange_init(panelMap.get(MainFrame.PANELNAME.MAIN), true);
 			break;
 		case PAGE0:
@@ -195,11 +198,15 @@ public class MainFrame extends JFrame {
 		     break;
 	      case JOIN_AGREE:
 	    	  panelMap.get(MainFrame.PANELNAME.JOIN_AGREE).setVisible(true);
-	    	  break;
+	    	  break;      
 	      case MYPAGE:	    	  
 	    	 ((MyPage_New)panelMap.get(MainFrame.PANELNAME.MYPAGE)).MypageInit();
 	    	 panelMap.get(MainFrame.PANELNAME.MYPAGE).setVisible(true);
 	    	 break;
+	      case SEATSELECT:
+	    	  ((SeatSelectPage)panelMap.get(MainFrame.PANELNAME.SEATSELECT)).PageInit();
+	    	  panelMap.get(MainFrame.PANELNAME.SEATSELECT).setVisible(true);
+	    	  break;
 		}
 	}
 	

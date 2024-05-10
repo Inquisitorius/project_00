@@ -23,6 +23,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import projectPackage.MainFrame.PANELNAME;
+
 public class SeatSelectPage extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -142,7 +144,11 @@ public class SeatSelectPage extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				if(contentPanel.Count_SelectedSeat() <= 0)
+				if(mainFrame.Get_UserInfo() == null)
+				{
+					mainFrame.PageChange(PANELNAME.LOGIN);
+				}
+				else if(contentPanel.Count_SelectedSeat() <= 0)
 				{
 					JOptionPane.showMessageDialog(null, "좌석을 선택해주세요.");
 				}				
@@ -169,6 +175,8 @@ public class SeatSelectPage extends JPanel {
 		int moviehouse_no = 7;
 		String time = "2024-04-01 13:00:00";
 		
+		SeatInit();
+		
 		try 
 		{			
 			Class.forName(driver);
@@ -179,20 +187,22 @@ public class SeatSelectPage extends JPanel {
 			sql += "AND m.MOVIEHOUSE_NO = " + moviehouse_no +" ";
 			sql += "AND TO_CHAR(m.SCHEDULE_TIME,'yyyy-mm-dd hh24:mi:ss') LIKE '%" + time + "%'";
 			
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			
+			PreparedStatement pstmt = conn.prepareStatement(sql);			
 			ResultSet rs = pstmt.executeQuery();
+			
 			while(rs.next())
 			{
 				String seatName =  rs.getString("SEAT_INFO");
+				String status = rs.getString("TICKET_STATUS");
+				
 				SeatObj temp =  this.Get_SeatObj(seatName);
 				
 				if(temp == null)
 					System.out.println("not found seat Err!!");
-				else
+				else if(status.equals("RS"))
 				{
 					temp.adapter.SellSeat_Init();
-				}		
+				}
 			}
 			
 			pstmt.close();
@@ -203,6 +213,20 @@ public class SeatSelectPage extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+	}
+	
+	public void SeatInit()
+	{
+		Iterator<String> keys = this.seatMap.keySet().iterator();
+		int result = 0;
+		
+		while (keys.hasNext()) 
+		{
+		    String key = keys.next();
+		    this.seatMap.get(key).adapter.SeatDefault();
+		}
+		
+		UpdateSelectedSeat();
 	}
 	
 	public SeatObj Get_SeatObj(String seatInfo)
@@ -251,10 +275,6 @@ public class SeatSelectPage extends JPanel {
 		String imgDir = "/image/screen/sale.png";
 		int X = startX - 40; //213 - 40;
 		int Y = 252 - 40;
-		
-		//x 축 = 번호
-		//y 축 = 알파벳
-		//1234 5678 891011
 		
 		int yName = (int)'A';
 		
@@ -346,6 +366,13 @@ public class SeatSelectPage extends JPanel {
 			this.TextObj.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));	
 			this.TextObj.setHorizontalAlignment(JLabel.CENTER);
 			value = STATUS.NONE;
+		}
+		
+		public void SeatDefault()
+		{
+			this.value = STATUS.NONE;
+			this.TextObj.setForeground(new Color(255, 255, 255));
+			this.SeatObj.setIcon(new ImageIcon(SeatSelectPage.class.getResource(iconPath_clicked)));
 		}
 		
 		public void SellSeat_Init()
