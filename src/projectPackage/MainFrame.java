@@ -59,7 +59,7 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		this.setTitle("CGVING");
-		this.setResizable(false);
+		
 		
 		userInfo = null;
 		index = 0;		
@@ -70,7 +70,7 @@ public class MainFrame extends JFrame {
 		//생성 판넬 관리
 		JPanel ContentPanel = new OhtanisPanel(this);
 		JPanel ContentPanel2 = new Admin_UserList(this);
-		JPanel ContentPanel3 = new ContentPanel3(this);
+		JPanel ContentPanel3 = new Admin_MovieList(this);
 		JPanel ContentPanel4 = new AnCont1(this);
 	    JPanel ContentPanel5 = new AnCont2(this);
 	    JPanel ContentPanel6 = new AnCont3(this);
@@ -115,7 +115,7 @@ public class MainFrame extends JFrame {
 		
 		//메인 페이지 초기화 코드
 		ContentPanel.setVisible(true);
-		//ContentPanel8.setVisible(true);
+		//ContentPanel3.setVisible(true);
 		
 		//Main 판넬에 하위 판넬 add 처리
 		this.getContentPane().add(HeadPanel);
