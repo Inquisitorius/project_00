@@ -329,8 +329,6 @@ public class Ticketreserve extends JPanel {
 			
 			
 			//1. 전부 선택 되고 눌렀다.
-					
-			
 			
 			mainTestFrame.PageChange(MainFrame.PANELNAME.PAGE1);
 		}
