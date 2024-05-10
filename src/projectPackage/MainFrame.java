@@ -67,6 +67,7 @@ public class MainFrame extends JFrame {
 		
 		HeadPanel = new TopPanelTest(this);	
 		//생성 판넬 관리
+		//JPanel ContentPanel = new SeatSelectPage(this);
 		JPanel ContentPanel = new OhtanisPanel(this);
 		JPanel ContentPanel2 = new Admin_UserList(this);
 		JPanel ContentPanel3 = new Admin_MovieList(this);
