@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.Icon;
@@ -18,7 +20,6 @@ public class ChalPopup extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    
  
     /**
      * Launch the application.
