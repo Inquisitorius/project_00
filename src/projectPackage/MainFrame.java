@@ -71,7 +71,7 @@ public class MainFrame extends JFrame {
 		JPanel ContentPanel = new OhtanisPanel(this);
 		JPanel ContentPanel2 = new Admin_UserList(this);
 		JPanel ContentPanel3 = new Admin_MovieList(this);
-		JPanel ContentPanel4 = new AnCont1(this);
+		JPanel ContentPanel4 = new Ticketreserve(this);
 	    JPanel ContentPanel5 = new AnCont2(this);
 	    JPanel ContentPanel6 = new AnCont3(this);
 	    JPanel ContentPanel7 = new AnCont4(this);
@@ -88,7 +88,6 @@ public class MainFrame extends JFrame {
 		panelMap.put(MainFrame.PANELNAME.MAIN, ContentPanel);
 		panelMap.put(MainFrame.PANELNAME.PAGE0, ContentPanel2);
 		panelMap.put(MainFrame.PANELNAME.PAGE1, ContentPanel3);
-		panelMap.put(MainFrame.PANELNAME.PAGE2, ContentPanel4);
 	    panelMap.put(MainFrame.PANELNAME.TICKETING, ContentPanel4);
 	    panelMap.put(MainFrame.PANELNAME.SELECT, ContentPanel5);
 	    panelMap.put(MainFrame.PANELNAME.PAYMENT, ContentPanel6);
@@ -166,6 +165,7 @@ public class MainFrame extends JFrame {
 			panelMap.get(MainFrame.PANELNAME.PAGE2).setVisible(true);
 			break;	
 	     case TICKETING:
+	    	((Ticketreserve)panelMap.get(MainFrame.PANELNAME.TICKETING)).PageOpenInit();
 	         panelMap.get(MainFrame.PANELNAME.TICKETING).setVisible(true);
 	         break;   
 	      case SELECT:

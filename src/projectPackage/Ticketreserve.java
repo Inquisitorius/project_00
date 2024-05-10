@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,25 +23,31 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class Ticketreserve extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private MainTestFrame mainTestFrame;
+	private MainFrame mainTestFrame;
 	private JList<String> movie_name_list, movie_location_list, movie_theater_list, movie_time_list;
+	private JScrollPane thaeterP;
+	
+	private enum LISTYPE {MOVIE, LOCAL, MOVIEHOUSE, TIME, END };
 
 	/**
 	 * Create the panel.
 	 */
-	public Ticketreserve(MainTestFrame mainTestFrame) {
+	public Ticketreserve(MainFrame mainTestFrame) {
 		this.mainTestFrame = mainTestFrame;
 
 		setLayout(null);
 		this.setSize(1280, 800 - 150);
 		this.setPreferredSize(new Dimension(1280, 800 - 150));
 		this.setBackground(new Color(0, 0, 0));
+		
+		this.setVisible(false);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
@@ -105,257 +112,195 @@ public class Ticketreserve extends JPanel {
 		JScrollPane namep = new JScrollPane(movie_name_list);
 		namep.setBounds(12, 144, 205, 334);
 		panel_1.add(namep);
-		loadSQLData(movie_name_list);
+		//loadSQLData(movie_name_list, LISTYPE.MOVIE);
 
 		// 지역 리스트
 		movie_location_list = new JList<String>();
 		movie_location_list.setBounds(229, 172, 149, 243);
 		movie_location_list.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		panel_1.add(movie_location_list);
-
+		
 		JScrollPane locationP = new JScrollPane(movie_location_list);
 		locationP.setBounds(229, 144, 167, 333);
 		panel_1.add(locationP);
-		// localSQLData(movie_location_list);
 
 		// 극장 리스트
 		movie_theater_list = new JList<String>();
 		movie_theater_list.setBounds(390, 172, 156, 243);
 		movie_theater_list.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		panel_1.add(movie_theater_list);
-
-		JScrollPane thaeterP = new JScrollPane(movie_theater_list);
+		
+		thaeterP = new JScrollPane(movie_theater_list);
 		thaeterP.setBounds(404, 144, 190, 334);
+		movie_theater_list.setBackground(Color.white);
 		panel_1.add(thaeterP);
-		// loadSQLData(movie_location_list);
 
 		// 시간 리스트
 		movie_time_list = new JList<String>();
 		movie_time_list.setBounds(558, 171, 196, 243);
 		movie_time_list.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		panel_1.add(movie_time_list);
 
 		JScrollPane time = new JScrollPane(movie_time_list);
 		time.setBounds(606, 144, 292, 334);
 		panel_1.add(time);
-
-		// loadSQLData(movie_time_list);
-
+		
+		ListInit();
 	}
-
-	private void loadSQLData(JList<String> _list) {
-
-		DefaultListModel<String> model = new DefaultListModel<>();
-
-		// movie_name_list = new JList<>(model);
-		_list.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		_list.setCellRenderer(new DefaultListCellRenderer());
-
-		// 디비연결
-		Connection conn = getDBConnection();
-
-		try {
-			String sql = "" + " SELECT MOVIE_NAME " + " FROM MOVIE ";
-
-			PreparedStatement pstmt1 = conn.prepareStatement(sql);
-
-			ResultSet rs = pstmt1.executeQuery();
-
-			while (rs.next()) {
-
-				String movieName = rs.getString("MOVIE_NAME");
-				model.addElement(movieName);
-
-			}
-			pstmt1.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
-
-		_list.setModel(model);
-		// ListSelectionLis tener
-		_list.addMouseListener(new MouseAdapter() {
+	
+	public void PageOpenInit()
+	{
+		this.loadSqlData_test(movie_name_list, LISTYPE.MOVIE, "", "", "");
+		
+		DefaultListModel<String> nullObj = new DefaultListModel<String>();
+		
+		movie_location_list.setModel(nullObj);
+		movie_time_list.setModel(nullObj);
+		movie_theater_list.setModel(nullObj);		
+	}
+	
+	public void ListInit()
+	{
+		//_list.addMouseListener(new MouseAdapter() {
+		this.loadSqlData_test(movie_name_list, LISTYPE.MOVIE, "", "", "");
+		
+		movie_name_list.addMouseListener(new MouseAdapter() 
+		{			
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				localSQLData(movie_location_list);
-				removeActionPerformed(e);
-
-			}
-
-			private void removeActionPerformed(MouseEvent e) {
-				// TODO Auto-generated method stub
+			public void mouseClicked(MouseEvent e)
+			{
+				String selectValue = movie_name_list.getSelectedValue();				
+				loadSqlData_test(movie_location_list, LISTYPE.LOCAL, selectValue, "", "");
 				
+				DefaultListModel<String> nullObj = new DefaultListModel<String>();
+				movie_time_list.setModel(nullObj);
+				movie_theater_list.setModel(nullObj);
 			}
 		});
+		
+		movie_location_list.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				String movie_selectValue = movie_name_list.getSelectedValue();	
+				String local_selectValue = movie_location_list.getSelectedValue();
+				
+				loadSqlData_test(movie_theater_list, LISTYPE.MOVIEHOUSE, movie_selectValue , local_selectValue, "");
+				
+				DefaultListModel<String> nullObj = new DefaultListModel<String>();
+				movie_time_list.setModel(nullObj);
+			}
+		});
+		
+		movie_theater_list.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				String movie_selectValue = movie_name_list.getSelectedValue();	
+				String local_selectValue = movie_location_list.getSelectedValue();	
+				String house_selectValue = movie_theater_list.getSelectedValue();
+				
+				loadSqlData_test(movie_time_list, LISTYPE.TIME, movie_selectValue, local_selectValue, house_selectValue);
+			}
+		});
+		
+		movie_time_list.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+			
+			}
+			
+		});
+		
 	}
-
-	// 지역명 불러오기
-	private void localSQLData(JList<String> local_list) {
-
-		DefaultListModel<String> local = new DefaultListModel<>();
-
-		local_list.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		local_list.setCellRenderer(new DefaultListCellRenderer());
-
-		// 디비연결
-		Connection conn = getDBConnection();
-		try {
-			String sql = "" + " SELECT LOCAL_NAME " + " FROM LOCAL";
-
-			PreparedStatement pstmt1 = conn.prepareStatement(sql);
-
-			ResultSet rs = pstmt1.executeQuery();
-
-			while (rs.next()) {
-
-				String localName = rs.getString("LOCAL_NAME");
-				local.addElement(localName);
-			}
-			pstmt1.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-			}
+	
+	public void loadSqlData_test(JList<String> _list, LISTYPE _type, String movieName, String LocalName, String houseName)
+	{
+		//db -> data 가져오는 함수
+		DefaultListModel<String> model = new DefaultListModel<>();
+		
+		_list.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		_list.setCellRenderer(new DefaultListCellRenderer());	
+		
+		
+		String sql = "SELECT m.SCHEDULE_NO, m2.MOVIE_NO, m2.MOVIE_NAME, m3.MOVIEHOUSE_NO, m3.MOVIEHOUSE_NAME, m.SCHEDULE_TIME, LOCAL.LOCAL_NO ,LOCAL.LOCAL_NAME "
+				+ "		FROM "
+				+ "		((( "
+				+ "		MOVIESCHEDULE m "
+				+ "		JOIN MOVIE m2 ON m2.MOVIE_NO = m.MOVIE_NO ) "
+				+ "		JOIN MOVIEHOUSE m3 ON m3.MOVIEHOUSE_NO = m.MOVIEHOUSE_NO) "
+				+ "		JOIN LOCAL ON LOCAL.LOCAL_NO = m3.LOCAL_NO)";		
+		
+		//WHERE m2.MOVIE_NAME = '스턴트맨'
+		//AND LOCAL.LOCAL_NAME = '의정부'
+		//AND m3.MOVIEHOUSE_NAME = '1관'
+		
+		switch (_type) 
+		{
+			case MOVIE: 
+				sql = "SELECT MOVIE_NAME FROM MOVIE ";
+				break;
+			case LOCAL:
+				sql += "WHERE m2.MOVIE_NAME = '"+ movieName +"' ";
+				 break;
+			case MOVIEHOUSE:
+				sql += "WHERE m2.MOVIE_NAME = '"+ movieName +"' ";
+				sql += "AND LOCAL.LOCAL_NAME = '" + LocalName + "' ";
+				break;
+			case TIME:
+				sql += "WHERE m2.MOVIE_NAME = '"+ movieName +"' ";
+				sql += "AND LOCAL.LOCAL_NAME = '" + LocalName + "' ";
+				sql += "AND m3.MOVIEHOUSE_NAME = '" + houseName + "' ";
+				break;
 		}
 
-		local_list.setModel(local);
-		local_list.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				TheaterSQLData(movie_theater_list);
-
-			}
-		});
-	}
-
-//극장명 불러오기
-	private void TheaterSQLData(JList<String> theater_list) {
-
-		DefaultListModel<String> theater = new DefaultListModel<>();
-
-		theater_list.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		theater_list.setCellRenderer(new DefaultListCellRenderer());
-
-		// 디비연결
-		Connection conn = getDBConnection();
-		try {
-			String sql = " " + " SELECT THEATER_NAME  " + " FROM THEATER";
-
+		try 
+		{
+			Class.forName("oracle.jdbc.OracleDriver");
+			Connection conn = DriverManager.getConnection(
+					"jdbc:oracle:thin:@//14.42.124.35:1521/XE", 
+					"c##wjrls", 
+					"881125");
+			
 			PreparedStatement pstmt1 = conn.prepareStatement(sql);
-
 			ResultSet rs = pstmt1.executeQuery();
-
-			while (rs.next()) {
-
-				String theaterName = rs.getString("THEATER_NAME");
-				theater.addElement(theaterName);
+			
+			while (rs.next()) 
+			{	
+				switch (_type) 
+				{
+					case MOVIE: 
+						String movie_Name = rs.getString("MOVIE_NAME");
+						model.addElement(movie_Name);
+						break;
+					case LOCAL:
+						String local_name = rs.getString("LOCAL_NAME");
+						model.addElement(local_name);
+						break;
+					case MOVIEHOUSE:
+						String house_name = rs.getString("MOVIEHOUSE_NAME");
+						model.addElement(house_name);
+						break;
+					case TIME:					
+						//나중에
+						String time_name = rs.getString("SCHEDULE_TIME");
+						model.addElement(time_name);
+						break;
+				}	
 			}
+			
 			pstmt1.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
-
-		theater_list.setModel(theater);
-		theater_list.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				TimeSQLData(movie_time_list);
-
-			}
-		});
-	}
-
-//상영시간 불러오기
-	private void TimeSQLData(JList<String> Time_list) {
-
-		DefaultListModel<String> time = new DefaultListModel<>();
-
-		Time_list.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		Time_list.setCellRenderer(new DefaultListCellRenderer());
-
-		// 디비연결
-		Connection conn = getDBConnection();
-		try {
-			String sql = " " + " SELECT SCHEDULE_TIME  " + " FROM MOVIESCHEDULE";
-
-			PreparedStatement pstmt1 = conn.prepareStatement(sql);
-
-			ResultSet rs = pstmt1.executeQuery();
-
-			while (rs.next()) {
-
-				String timeName = rs.getString("SCHEDULE_TIME");
-				time.addElement(ChangeDateFormat(timeName));
-
-			}
-			pstmt1.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
-
-		Time_list.setModel(time);
-		Time_list.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				// TheaterSQLData(movie_theater_list);
-
-			}
-		});
-	}
-
-//시간변환출력
-	public String ChangeDateFormat(String dateStr) {
-		String result = "";
-
-// FORMAT 2개 선언
-// 받아줄 FORMAT
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-// 변환할 FORMAT
-		SimpleDateFormat format2 = new SimpleDateFormat("MM/dd hh:mm");
-		try {
-			// 받은 날짜를 DATE 형태로 변환
-			Date temp = format.parse(dateStr);
-
-			// DATE를 목적에 맞는 형식으로 변환
-			result = format2.format(temp);
-
-		} catch (ParseException e) {
+			conn.close();
+			
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-
-		return result;
+		}		
+		
+		_list.setModel(model);
 	}
+
 
 //버튼 액션
 	class BackAction implements ActionListener {
@@ -369,58 +314,26 @@ public class Ticketreserve extends JPanel {
 	class SeatAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
+			
+			//0.검사
+			int movieCheker = movie_name_list.getSelectedIndex();
+			int localChecker = movie_location_list.getSelectedIndex();
+			int timeChecker = movie_time_list.getSelectedIndex();
+			int houseChecker = movie_theater_list.getSelectedIndex();
+			
+			if( movieCheker < 0 || localChecker < 0 || timeChecker < 0 || houseChecker < 0)
+			{
+				JOptionPane.showMessageDialog(null, "선택하라우.");
+				return;
+			}			
+			
+			
+			//1. 전부 선택 되고 눌렀다.
+					
+			
+			
 			mainTestFrame.PageChange(MainFrame.PANELNAME.PAGE1);
 		}
 	}
-
-	// 디비 연결과 티켓정보
-	private Connection getDBConnection() {
-		Connection conn = null;
-
-		int ticket_no = 0;
-		String movie_name = "";
-		String time = "";
-		String th_name = "";
-		String mh_name = "";
-		String seat_info = "";
-		String local_name = "";
-
-		try {
-			Class.forName("oracle.jdbc.OracleDriver");
-
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@//14.42.124.35:1521/XE", "c##wjrls", "881125");
-
-			String sql = "SELECT LOCAL.LOCAL_NAME, A.TICKET_NO, A.SEAT_INFO, A.SEAT_INFO, A.USER_NO, ui.USER_NAME ,m.SCHEDULE_NO,t2.THEATER_NAME , m3.MOVIEHOUSE_NAME ,m.SCHEDULE_TIME, m.SCHEDULE_ENDTIME, m2.MOVIE_NAME "
-					+ "from " + "( "
-					+ "(((((SELECT t.TICKET_NO ,t.SEAT_NO, s.SEAT_INFO, T.SCHEDULE_NO, T.USER_NO  FROM TICKET t JOIN SEAT s ON t.SEAT_NO = s.SEAT_NO) A "
-					+ "JOIN MOVIESCHEDULE m ON A.SCHEDULE_NO = m.SCHEDULE_NO ) "
-					+ "JOIN MOVIE m2 ON m.MOVIE_NO = m2.MOVIE_NO) "
-					+ "JOIN MOVIEHOUSE m3 ON m3.MOVIEHOUSE_NO = m.MOVIEHOUSE_NO) "
-					+ "JOIN THEATER t2 ON t2.MOVIEHOUSE_NO = m3.MOVIEHOUSE_NO) "
-					+ "JOIN USER_INFO ui ON ui.USER_NO = A.USER_NO) " + "JOIN LOCAL ON LOCAL.LOCAL_NO = m3.LOCAL_NO "
-					+ "WHERE a.TICKET_NO = " + "41";
-
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-
-				// 예매 번호, 영화명, 상영시간, 상영관이름, 극장 이름, 좌석번호
-				ticket_no = rs.getInt("TICKET_NO");
-				movie_name = rs.getString("MOVIE_NAME");
-				time = rs.getString("SCHEDULE_TIME");
-				th_name = rs.getString("THEATER_NAME");
-				mh_name = rs.getString("MOVIEHOUSE_NAME");
-				seat_info = rs.getString("SEAT_INFO");
-				local_name = rs.getString("LOCAL_NAME");
-
-			}
-			/* pstmt.close(); */ } catch (ClassNotFoundException e) { // TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return conn;
-	}
+	
 }

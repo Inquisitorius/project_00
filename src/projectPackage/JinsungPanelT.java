@@ -96,27 +96,20 @@ public class JinsungPanelT extends JPanel {
 		panel.setBounds(0, 0, 1280, 650);
 		add(panel);
 		panel.setLayout(null);
-		  JLabel show_image = new JLabel(""); show_image.setIcon(new ImageIcon(JinsungPanel.class.getResource("/image/jinsung/poster3.jpg")));
-		  show_image.setBounds(151, 71, 152, 234); panel.add(show_image);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Manic-063\\Downloads\\사진모음\\cgving2.png"));
-		lblNewLabel.setForeground(new Color(255, 0, 0));
-		lblNewLabel.setFont(new Font("휴먼둥근헤드라인", Font.BOLD, 38));
-		lblNewLabel.setBounds(485, 0, 212, 84);
-		panel.add(lblNewLabel);
+		  JLabel show_image = new JLabel(""); show_image.setIcon(new ImageIcon(JinsungPanel.class.getResource("/image/ohtani/stuntman.jpg")));
+		  show_image.setBounds(178, 60, 161, 245); panel.add(show_image);
 		
 		JLabel lblNewLabelfix = new JLabel("예매 내역");
 		lblNewLabelfix.setForeground(Color.WHITE);
-		lblNewLabelfix.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 30));
-		lblNewLabelfix.setBounds(518, 71, 143, 51);
+		lblNewLabelfix.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 35));
+		lblNewLabelfix.setBounds(556, 25, 168, 77);
 		panel.add(lblNewLabelfix);
 		
 		//영화명
 		JLabel Title_name = new JLabel("영화명");
 		Title_name.setForeground(Color.WHITE);
 		Title_name.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		Title_name.setBounds(54, 300, 111, 41);
+		Title_name.setBounds(151, 300, 111, 41);
 		panel.add(Title_name);
 		
 		JLabel Title = new JLabel("영화");
@@ -129,7 +122,7 @@ public class JinsungPanelT extends JPanel {
 			 String sql ="" + " SELECT MOVIE_NAME " + " FROM MOVIE " + " WHERE MOVIE_COMMENT = ? ";
 		  
 		  PreparedStatement pstmt2 = conn.prepareStatement(sql);
-		  pstmt2.setString(1,"마동석");
+		  pstmt2.setString(1,"TEST_COMMENT");
 		  
 		  ResultSet rs = pstmt2.executeQuery(); 
 		  
@@ -178,7 +171,7 @@ public class JinsungPanelT extends JPanel {
 		JLabel Time = new JLabel("상영일시");
 		Time.setForeground(Color.WHITE);
 		Time.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		Time.setBounds(54, 361, 111, 41);
+		Time.setBounds(151, 361, 111, 41);
 		panel.add(Time);
 		
 		JLabel timep = new JLabel("00:00");
@@ -208,7 +201,7 @@ public class JinsungPanelT extends JPanel {
 		JLabel movielocal= new JLabel("극장명");
 		movielocal.setForeground(Color.WHITE);
 		movielocal.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		movielocal.setBounds(54, 412, 111, 41);
+		movielocal.setBounds(151, 412, 111, 41);
 		panel.add(movielocal);
 		
 		JLabel localp = new JLabel("CGV");
@@ -235,7 +228,7 @@ public class JinsungPanelT extends JPanel {
 		JLabel screen = new JLabel("상영관");
 		screen.setForeground(Color.WHITE);
 		screen.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		screen.setBounds(54, 463, 111, 41);
+		screen.setBounds(151, 463, 111, 41);
 		panel.add(screen);
 		JLabel screenp = new JLabel("0관");
 		screenp.setForeground(Color.WHITE);
@@ -268,7 +261,7 @@ public class JinsungPanelT extends JPanel {
 		JLabel person = new JLabel("좌석");
 		person.setForeground(Color.WHITE);
 		person.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		person.setBounds(54, 514, 111, 41);
+		person.setBounds(151, 514, 111, 41);
 		panel.add(person);	
 		   
 		JLabel personp = new JLabel("A1,A2");
@@ -281,7 +274,7 @@ public class JinsungPanelT extends JPanel {
 		JButton backButton = new JButton("");
 		backButton.addActionListener(new BackAction());
 		backButton.setIcon(new ImageIcon(JinsungPanelT.class.getResource("/image/button/back.png")));
-		backButton.setBounds(614, 544, 110, 42);
+		backButton.setBounds(701, 544, 110, 42);
 		panel.add(backButton);
 		
 		ticketFrame = new TicketFrame();
@@ -291,7 +284,7 @@ public class JinsungPanelT extends JPanel {
 		JButton cancleButton = new JButton("");
 		cancleButton.addActionListener(new CancleAction());
 		cancleButton.setIcon(new ImageIcon(JinsungPanelT.class.getResource("/image/jinsung/ticketcancle.png")));
-		cancleButton.setBounds(776, 544, 110, 42);
+		cancleButton.setBounds(844, 544, 110, 42);
 		panel.add(cancleButton);
 
 		this.setVisible(false);
@@ -311,8 +304,8 @@ public class JinsungPanelT extends JPanel {
 		
 		String sql = "" + " DELETE FROM MOVIE " + "WHERE TICKET =? " ;
 		PreparedStatement pstmt1 = conn.prepareStatement(sql);
-		  pstmt1.setString(1,"");
-		System.out.println("Progress in----");
+		  pstmt1.setString(1,"41");
+		System.out.println("Progress in----");	
 		
 		int rs = pstmt1.executeUpdate();
 		

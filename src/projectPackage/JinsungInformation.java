@@ -111,8 +111,8 @@ public class JinsungInformation extends JPanel {
 		
 		JLabel movie_Info= new JLabel("상세 정보");
 		movie_Info.setForeground(Color.WHITE);
-		movie_Info.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 30));
-		movie_Info.setBounds(569, 46, 143, 51);
+		movie_Info.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 35));
+		movie_Info.setBounds(569, 38, 152, 63);
 		panel.add(movie_Info);
 		
 		
@@ -133,7 +133,7 @@ public class JinsungInformation extends JPanel {
 			 String sql ="" + " SELECT MOVIE_NAME " + " FROM MOVIE " + " WHERE MOVIE_COMMENT = ? ";
 			  
 			  PreparedStatement pstmt2 = conn.prepareStatement(sql);
-			  pstmt2.setString(1,"마동석");
+			  pstmt2.setString(1,"TEST_COMMENT");
 			  
 			  ResultSet rs = pstmt2.executeQuery(); 
 			  
@@ -220,7 +220,7 @@ public class JinsungInformation extends JPanel {
 		JLabel Movie_timep= new JLabel("null");
 		Movie_timep.setForeground(Color.WHITE);
 		Movie_timep.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Movie_timep.setBounds(894, 367, 284, 41);
+		Movie_timep.setBounds(815, 367, 284, 41);
 		panel.add(Movie_timep);
 		 try { 
 			 String sql ="" + " SELECT SCHEDULE_TIME " + " FROM MOVIESCHEDULE " + " WHERE SCHEDULE_NO = ? ";
@@ -245,16 +245,13 @@ public class JinsungInformation extends JPanel {
 		JButton	BackButton= new JButton("");
 		BackButton.addActionListener(new BackAction());
 		BackButton.setIcon(new ImageIcon(JinsungInformation.class.getResource("/image/button/back.png")));
-		BackButton.setBounds(675, 534, 110, 42);
+		BackButton.setBounds(842, 534, 110, 42);
 		panel.add(BackButton);
 		
 		JButton InfoButton = new JButton("");
 		InfoButton.addActionListener(new InfoAction());
-
-		
-		//InfoButton.setIcon(new ImageIcon(JinsungInformation.class.getResource("/image/jinsung/ticketinfoma.png")));
 		InfoButton.setIcon(new ImageIcon(JinsungInformation.class.getResource("/image/jinsung/ticketinfoma.png")));
-		InfoButton.setBounds(815, 534, 110, 42);
+		InfoButton.setBounds(989, 534, 110, 42);
 		panel.add(InfoButton);
 	
 		this.setVisible(false);
