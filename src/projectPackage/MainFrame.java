@@ -34,9 +34,10 @@ public class MainFrame extends JFrame {
 	
 	private HashMap<MainFrame.PANELNAME, JPanel> panelMap;
 	private UserInfoVo userInfo;
+	private TicketVo selectedInfo;
 	
 	public enum PANELNAME {MAIN, PAGE0, PAGE1, PAGE2, LOGIN, JOIN1, JOIN2, 
-		JOIN3, SELECT, TICKETING, TICKET, PAYMENT, BIRD, JOIN_AGREE, MYPAGE, SEATSELECT};
+		JOIN3, SELECT, TICKETING, TICKET, PAYMENT, BIRD, JOIN_AGREE, MYPAGE, SEATSELECT, TICKETINFO, TICKETCANCLE};
 
 	/**
 	 * Launch the application.
@@ -87,7 +88,9 @@ public class MainFrame extends JFrame {
 	    JPanel ContentPanel13 = new JoinAgree(this);
 	    JPanel ContentPanel14 = new MyPage_New(this);
 	    JPanel ContentPanel15 = new SeatSelectPage(this);
-
+	    JPanel ContentPanel16 = new JinsungInformation(this);
+	    JPanel ContentPanel17 = new JinsungPanelT(this);
+	    
 		
 		//생성된 판넬 Map 자료 구조에 넣기
 		panelMap.put(MainFrame.PANELNAME.MAIN, ContentPanel);
@@ -105,6 +108,9 @@ public class MainFrame extends JFrame {
 	    panelMap.put(MainFrame.PANELNAME.JOIN_AGREE, ContentPanel13);
 	    panelMap.put(MainFrame.PANELNAME.MYPAGE, ContentPanel14);
 	    panelMap.put(MainFrame.PANELNAME.SEATSELECT, ContentPanel15);
+	    panelMap.put(MainFrame.PANELNAME.TICKETINFO, ContentPanel16);
+	    panelMap.put(MainFrame.PANELNAME.TICKETCANCLE, ContentPanel17);
+	    
 
 		
 		//System.out.println(MainFrame.class.getResource("./../image/ring.jpg"));
@@ -139,6 +145,8 @@ public class MainFrame extends JFrame {
 	    this.getContentPane().add(ContentPanel13);
 	    this.getContentPane().add(ContentPanel14);
 	    this.getContentPane().add(ContentPanel15);
+	    this.getContentPane().add(ContentPanel16);
+	    this.getContentPane().add(ContentPanel17);
 	}
 	
 	@Override
@@ -230,6 +238,13 @@ public class MainFrame extends JFrame {
 	    	  ((SeatSelectPage)panelMap.get(MainFrame.PANELNAME.SEATSELECT)).PageInit();
 	    	  panelMap.get(MainFrame.PANELNAME.SEATSELECT).setVisible(true);
 	    	  break;
+	      case TICKETINFO:
+	    	  panelMap.get(MainFrame.PANELNAME.TICKETINFO).setVisible(true);
+	    	  break;  
+	      case TICKETCANCLE:
+	    	  panelMap.get(MainFrame.PANELNAME.TICKETCANCLE).setVisible(true);
+	    	  break;
+	    	
 		}
 	}
 	
@@ -262,5 +277,9 @@ public class MainFrame extends JFrame {
 	public void Set_UserInfo(UserInfoVo userInfo)
 	{
 		this.userInfo = userInfo;
+	}
+	public void Set_selectedInfo(int movie_no, int local_no, int house_no, int schedule_no)
+	{
+		
 	}
 }
