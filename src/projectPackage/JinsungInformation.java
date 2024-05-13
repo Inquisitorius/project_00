@@ -71,24 +71,12 @@ public class JinsungInformation extends JPanel {
 				mh_name = rs.getString("MOVIEHOUSE_NAME");
 				seat_info = rs.getString("SEAT_INFO");
 				local_name = rs.getString("LOCAL_NAME");
-
-				System.out.println(ticket_no);
-				System.out.println(movie_name);
-				System.out.println(time);
-				System.out.println(th_name);
-				System.out.println(mh_name);
-				System.out.println(seat_info);
-
 			}
 			/* pstmt.close(); */ } catch (ClassNotFoundException e) { 
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		/*
-		 * finally { if(conn !=null) { try { conn.close(); } catch (SQLException e) {} }
-		 * }
-		 */
 		setLayout(null);
 		this.setSize(1280, 800 - 150);
 		this.setPreferredSize(new Dimension(1280, 800 - 150));

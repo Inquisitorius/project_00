@@ -47,7 +47,6 @@ public class TicketFrame extends JFrame {
 			}
 		});
 	}
-
 	/**
 	 * Create the frame.
 	 */
