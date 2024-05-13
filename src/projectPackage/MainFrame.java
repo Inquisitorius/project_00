@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -26,6 +27,8 @@ public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private int index;
+	private DBRequester dbRequester;
+	
 	private JPanel MainPane;	
 	private JPanel HeadPanel;	
 	
@@ -33,7 +36,7 @@ public class MainFrame extends JFrame {
 	private UserInfoVo userInfo;
 	
 	public enum PANELNAME {MAIN, PAGE0, PAGE1, PAGE2, LOGIN, JOIN1, JOIN2, 
-		JOIN3, SELECT, TICKETING, TICKET, PAYMENT, BIRD, JOIN_AGREE, MYPAGE};
+		JOIN3, SELECT, TICKETING, TICKET, PAYMENT, BIRD, JOIN_AGREE, MYPAGE, SEATSELECT};
 
 	/**
 	 * Launch the application.
@@ -55,11 +58,12 @@ public class MainFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	public MainFrame() {		
 		
 		this.setTitle("CGVING");
 		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		dbRequester = new DBRequester();
 		
 		userInfo = null;
 		index = 0;		
@@ -82,6 +86,7 @@ public class MainFrame extends JFrame {
 	    JPanel ContentPanel12 = new BirdRichard(this);
 	    JPanel ContentPanel13 = new JoinAgree(this);
 	    JPanel ContentPanel14 = new MyPage_New(this);
+	    JPanel ContentPanel15 = new SeatSelectPage(this);
 
 		
 		//생성된 판넬 Map 자료 구조에 넣기
@@ -99,6 +104,7 @@ public class MainFrame extends JFrame {
 	    panelMap.put(MainFrame.PANELNAME.BIRD, ContentPanel12);
 	    panelMap.put(MainFrame.PANELNAME.JOIN_AGREE, ContentPanel13);
 	    panelMap.put(MainFrame.PANELNAME.MYPAGE, ContentPanel14);
+	    panelMap.put(MainFrame.PANELNAME.SEATSELECT, ContentPanel15);
 
 		
 		//System.out.println(MainFrame.class.getResource("./../image/ring.jpg"));
@@ -132,8 +138,28 @@ public class MainFrame extends JFrame {
 	    this.getContentPane().add(ContentPanel12); 	 // bird
 	    this.getContentPane().add(ContentPanel13);
 	    this.getContentPane().add(ContentPanel14);
+	    this.getContentPane().add(ContentPanel15);
 	}
 	
+	@Override
+	protected void processWindowEvent(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+		if(e.getID() == WindowEvent.WINDOW_CLOSING)
+			this.dbRequester.DisConnectDB();
+		
+		super.processWindowEvent(e);
+	}
+
+	
+	public DBRequester getDbRequester() {
+		return dbRequester;
+	}
+
+	public void setDbRequester(DBRequester dbRequester) {
+		this.dbRequester = dbRequester;
+	}
+
 	public void Pagechange_init(JPanel _panel, boolean headVisible)
 	{
 		this.HeadPanel.setVisible(headVisible);
@@ -152,7 +178,7 @@ public class MainFrame extends JFrame {
 		
 		
 		switch (name) {
-		case MAIN: 			
+		case MAIN: 						
 			Pagechange_init(panelMap.get(MainFrame.PANELNAME.MAIN), true);
 			break;
 		case PAGE0:
@@ -195,12 +221,21 @@ public class MainFrame extends JFrame {
 		     break;
 	      case JOIN_AGREE:
 	    	  panelMap.get(MainFrame.PANELNAME.JOIN_AGREE).setVisible(true);
-	    	  break;
+	    	  break;      
 	      case MYPAGE:	    	  
 	    	 ((MyPage_New)panelMap.get(MainFrame.PANELNAME.MYPAGE)).MypageInit();
 	    	 panelMap.get(MainFrame.PANELNAME.MYPAGE).setVisible(true);
 	    	 break;
+	      case SEATSELECT:
+	    	  ((SeatSelectPage)panelMap.get(MainFrame.PANELNAME.SEATSELECT)).PageInit();
+	    	  panelMap.get(MainFrame.PANELNAME.SEATSELECT).setVisible(true);
+	    	  break;
 		}
+	}
+	
+	public void Set_TicketRserveData_forSeatSelect(String _moviName, String _movieHouseName, String _localName, String _timeData)
+	{
+		((SeatSelectPage)panelMap.get(MainFrame.PANELNAME.SEATSELECT)).Set_TicketRserveData(_moviName, _movieHouseName, _localName, _timeData);
 	}
 	
 	public JPanel Get_Panel_Main()
@@ -228,5 +263,4 @@ public class MainFrame extends JFrame {
 	{
 		this.userInfo = userInfo;
 	}
-
 }

@@ -23,6 +23,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import projectPackage.MainFrame.PANELNAME;
+
 public class SeatSelectPage extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -32,6 +34,10 @@ public class SeatSelectPage extends JPanel {
 	
 	private JLabel SelectedCntLabel;
 	private JLabel totalPrice;
+	
+	private String movieName, movieHouseName, localName, timeData;
+	private int movieNo, movieHouseNo, localNo, timeNo;
+	
 	int startX;
 	
 	int index = 0;
@@ -142,18 +148,25 @@ public class SeatSelectPage extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				if(contentPanel.Count_SelectedSeat() <= 0)
+				if(mainFrame.Get_UserInfo() == null)
+				{
+					mainFrame.PageChange(PANELNAME.LOGIN);
+				}
+				else if(contentPanel.Count_SelectedSeat() <= 0)
 				{
 					JOptionPane.showMessageDialog(null, "좌석을 선택해주세요.");
-				}				
+				}			
+				else
+				{
+					System.out.println("123213213");
+					TicketingProgress();
+				}
 			}
 		});
 		
 		reserveBtn.setBounds(849, 443, 180, 70);
 		add(reserveBtn);
 		
-		
-		PageInit();
 	}
 	
 	public void PageInit()
@@ -164,35 +177,44 @@ public class SeatSelectPage extends JPanel {
 		String user = "c##wjrls";
 		String pw = "881125";
 		
-		//전 페이지 에서 준 정보가 있다고 가정
-		int moive_no = 2;
-		int moviehouse_no = 7;
-		String time = "2024-04-01 13:00:00";
+		//전페이지에서 준 정보를 바탕으로 현재 상영관에 포함된 티켓 가져옴
+		Get_DbData_forSeat();
+				
+		//전체 좌석 Render 초기화
+		SeatInit();
 		
 		try 
 		{			
 			Class.forName(driver);
 			Connection conn = DriverManager.getConnection(url,user,pw);
 			
-			String sql = "SELECT t.TICKET_NO , SEAT.SEAT_NO , SEAT.SEAT_INFO , t.SCHEDULE_NO, t.TICKET_STATUS FROM (TICKET t JOIN MOVIESCHEDULE m ON t.SCHEDULE_NO = m.SCHEDULE_NO ) JOIN SEAT ON SEAT.SEAT_NO  = t.SEAT_NO ";
-			sql += "WHERE m.MOVIE_NO = " + moive_no + " ";
-			sql += "AND m.MOVIEHOUSE_NO = " + moviehouse_no +" ";
-			sql += "AND TO_CHAR(m.SCHEDULE_TIME,'yyyy-mm-dd hh24:mi:ss') LIKE '%" + time + "%'";
+			String sql = "SELECT t.TICKET_NO , SEAT.SEAT_NO , SEAT.SEAT_INFO , t.SCHEDULE_NO, t.TICKET_STATUS, m.THEATER_NO, LOCAL.LOCAL_NO "; 
+			sql += "FROM (((TICKET t JOIN MOVIESCHEDULE m ON t.SCHEDULE_NO = m.SCHEDULE_NO ) ";
+			sql += "JOIN SEAT ON SEAT.SEAT_NO  = t.SEAT_NO) ";
+			sql += "JOIN MOVIEHOUSE m2 ON m2.MOVIEHOUSE_NO = m.MOVIEHOUSE_NO) ";
+			sql += "JOIN LOCAL ON LOCAL.LOCAL_NO = m2.LOCAL_NO "; 			
 			
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			sql += "WHERE m.MOVIE_NO = " + this.movieNo + " ";
+			sql += "AND m.MOVIEHOUSE_NO = " + this.movieHouseNo +" ";
+			sql += "AND LOCAL.LOCAL_NO  = " + this.localNo + " ";
+			sql += "AND TO_CHAR(m.SCHEDULE_TIME,'yyyy-mm-dd hh24:mi:ss') LIKE '%" + this.timeData + "%'";
 			
+			PreparedStatement pstmt = conn.prepareStatement(sql);			
 			ResultSet rs = pstmt.executeQuery();
+			
 			while(rs.next())
 			{
 				String seatName =  rs.getString("SEAT_INFO");
+				String status = rs.getString("TICKET_STATUS");
+				
 				SeatObj temp =  this.Get_SeatObj(seatName);
 				
 				if(temp == null)
 					System.out.println("not found seat Err!!");
-				else
+				else if(status.equals("RS"))
 				{
 					temp.adapter.SellSeat_Init();
-				}		
+				}
 			}
 			
 			pstmt.close();
@@ -202,7 +224,34 @@ public class SeatSelectPage extends JPanel {
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}	
+	}
+	
+	public void Get_DbData_forSeat()
+	{
+		this.movieNo = this.mainFrame.getDbRequester().Get_MovieNo(this.movieName);
+		this.movieHouseNo = this.mainFrame.getDbRequester().Get_MovieHouseNo(this.movieHouseName);
+		this.localNo = this.mainFrame.getDbRequester().Get_LocalNo(this.localName);
+		this.timeNo = this.mainFrame.getDbRequester().Get_TimeNo(this.timeData);
+	}
+	
+	public Boolean TicketingProgress()
+	{			
+		return false;
+	}
+	
+	public void SeatInit()
+	{
+		Iterator<String> keys = this.seatMap.keySet().iterator();
+		int result = 0;
+		
+		while (keys.hasNext()) 
+		{
+		    String key = keys.next();
+		    this.seatMap.get(key).adapter.SeatDefault();
+		}
+		
+		UpdateSelectedSeat();
 	}
 	
 	public SeatObj Get_SeatObj(String seatInfo)
@@ -251,10 +300,6 @@ public class SeatSelectPage extends JPanel {
 		String imgDir = "/image/screen/sale.png";
 		int X = startX - 40; //213 - 40;
 		int Y = 252 - 40;
-		
-		//x 축 = 번호
-		//y 축 = 알파벳
-		//1234 5678 891011
 		
 		int yName = (int)'A';
 		
@@ -323,6 +368,14 @@ public class SeatSelectPage extends JPanel {
 		}		
 	}
 	
+	public void Set_TicketRserveData(String _movieName, String _movieHouseName, String _localName, String _timeData)
+	{
+		this.movieName = _movieName;
+		this.movieHouseName = _movieHouseName;
+		this.localName = _localName;
+		this.timeData = _timeData;
+	}
+	
 	class SeatMouseAdapter extends MouseAdapter
 	{
 		public JLabel SeatObj;
@@ -346,6 +399,13 @@ public class SeatSelectPage extends JPanel {
 			this.TextObj.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));	
 			this.TextObj.setHorizontalAlignment(JLabel.CENTER);
 			value = STATUS.NONE;
+		}
+		
+		public void SeatDefault()
+		{
+			this.value = STATUS.NONE;
+			this.TextObj.setForeground(new Color(255, 255, 255));
+			this.SeatObj.setIcon(new ImageIcon(SeatSelectPage.class.getResource(iconPath_clicked)));
 		}
 		
 		public void SellSeat_Init()
