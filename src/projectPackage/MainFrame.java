@@ -36,6 +36,8 @@ public class MainFrame extends JFrame {
 	private UserInfoVo userInfo;
 	private TicketVo selectedInfo;
 	
+	private PageChangeMessage messageObj;
+	
 	public enum PANELNAME {MAIN, PAGE0, PAGE1, PAGE2, LOGIN, JOIN1, JOIN2, 
 		JOIN3, SELECT, TICKETING, TICKET, PAYMENT, BIRD, JOIN_AGREE, MYPAGE, SEATSELECT, TICKETINFO, TICKETCANCLE};
 
@@ -55,6 +57,15 @@ public class MainFrame extends JFrame {
 			}
 		});
 	}
+	
+	public void PopupVisible(String value, MainFrame.PANELNAME PAGETYPE)
+	{
+		this.messageObj.PopupVisible(value, PAGETYPE);
+	}
+
+	public void setMessageObj(PageChangeMessage messageObj) {
+		this.messageObj = messageObj;
+	}
 
 	/**
 	 * Create the frame.
@@ -62,6 +73,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {		
 		
 		this.setTitle("CGVING");
+		this.messageObj = new PageChangeMessage(this);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		dbRequester = new DBRequester();
