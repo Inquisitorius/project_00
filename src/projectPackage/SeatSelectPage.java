@@ -158,8 +158,31 @@ public class SeatSelectPage extends JPanel {
 				}			
 				else
 				{
-					System.out.println("123213213");
-					TicketingProgress();
+					//어떤 좌석이 있는지 확인
+					Iterator<String> keys = seatMap.keySet().iterator();
+					
+					while (keys.hasNext()) 
+					{
+					    String key = keys.next();
+					    if(seatMap.get(key).adapter.value == SeatMouseAdapter.STATUS.CHECK)
+					    {
+					    	//이름 변환 작업하고 SEAT NO 찾기
+					    	String seatName = seatMap.get(key).adapter.TextObj.getText();
+					    	String alpa = seatName.substring(0,1);
+					    	String number = seatName.substring(1,3);
+					    	
+					    	seatName = alpa + "_" + number;					    	
+					    	
+					    	int seatNo = mainFrame.getDbRequester().Get_SeatInfo(seatName);
+					    	
+					    	Boolean result =  mainFrame.getDbRequester().Insert_Ticket(timeNo, seatNo, mainFrame.Get_UserInfo().getUser_no());
+					    	
+					    	if(result == true)
+					    		System.out.println("Err: Seat Ticket Reserve");
+					    }
+					}
+					
+					mainFrame.PageChange(PANELNAME.MAIN);
 				}
 			}
 		});
@@ -235,9 +258,9 @@ public class SeatSelectPage extends JPanel {
 		this.timeNo = this.mainFrame.getDbRequester().Get_TimeNo(this.timeData, this.movieNo, this.movieHouseNo);
 	}
 	
-	public Boolean TicketingProgress()
-	{			
-		return false;
+	public Boolean TicketingProgress(int seatNo)
+	{		
+		return mainFrame.getDbRequester().Insert_Ticket(this.timeNo, 0, mainFrame.Get_UserInfo().getUser_no());
 	}
 	
 	public void SeatInit()

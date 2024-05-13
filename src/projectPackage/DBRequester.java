@@ -112,13 +112,13 @@ public class DBRequester {
 		return movieNo;
 	}
 	
-	public int Get_TimeNo(String timeData)
-	{
-		//SELECT m.SCHEDULE_NO  FROM MOVIESCHEDULE m WHERE TO_CHAR(m.SCHEDULE_TIME,'yyyy-mm-dd hh24:mi:ss')  
-		//LIKE '%2024-04-01 19:00:00%'
-		
+	public int Get_TimeNo(String timeData, int MovieNo, int MovieHouse)
+	{		
 		String sql = "SELECT m.SCHEDULE_NO  FROM MOVIESCHEDULE m WHERE TO_CHAR(m.SCHEDULE_TIME,'yyyy-mm-dd hh24:mi:ss') ";
 		sql += "LIKE '%" + timeData + "%'";
+		sql += "AND m.MOVIE_NO = " + MovieNo +" ";
+		sql += "AND m.MOVIEHOUSE_NO = " + MovieHouse + " ";		
+		
 		int movieNo = -1;
 		try 
 		{
@@ -140,6 +140,59 @@ public class DBRequester {
 			System.out.println("Err : movieNo unKnown");
 		
 		return movieNo;
+	}
+	
+	public int Get_SeatInfo(String seatName)
+	{
+		String sql = "SELECT * FROM SEAT s ";
+		sql += "WHERE s.THEATER_NO = 2" ;
+		sql += "AND s.SEAT_INFO = '" +seatName+"'" ;		
+		int result = -1;
+		
+		try 
+		{
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs =  pstmt.executeQuery();
+			rs.next();
+			
+			result = rs.getInt("SEAT_NO");			
+			pstmt.close();
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return result;
+		
+	}
+	
+	public Boolean Insert_Ticket(int scheduleNo, int seatNo, int userNo)
+	{
+		String sql = "INSERT INTO TICKET(TICKET_NO, SCHEDULE_NO, SEAT_NO, USER_NO, TICKET_STATUS) VALUES( ";
+		sql += "TICKET_BNO.NEXTVAL , ";
+		sql += "(SELECT SCHEDULE_NO FROM MOVIESCHEDULE m2  WHERE m2.SCHEDULE_NO  = "+ scheduleNo +"), ";
+		sql += "(SELECT SEAT_NO  FROM SEAT WHERE SEAT_NO = "+ seatNo + "), ";		
+		sql += "(SELECT USER_NO FROM USER_INFO ui WHERE ui.USER_NO = " + userNo + "), 'RS' )";
+		
+		Boolean result = false;
+		try 
+		{
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			int rs =  pstmt.executeUpdate();
+			
+			if(rs < 0)
+			{
+				result = true;
+				System.out.println("Err : Insert_Ticket ");		
+			}					
+					
+			pstmt.close();
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return result;
 	}
 	
 	public void DisConnectDB()
