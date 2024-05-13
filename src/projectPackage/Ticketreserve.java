@@ -50,7 +50,7 @@ public class Ticketreserve extends JPanel {
 		this.setVisible(false);
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
+		panel.setBackground(new Color(0, 0, 0));
 		panel.setBounds(134, 10, 934, 591);
 		add(panel);
 		panel.setLayout(null);
@@ -323,16 +323,19 @@ public class Ticketreserve extends JPanel {
 			
 			if( movieCheker < 0 || localChecker < 0 || timeChecker < 0 || houseChecker < 0)
 			{
-				JOptionPane.showMessageDialog(null, "선택하라우.");
+				JOptionPane.showMessageDialog(null, "선택 항목을 확인해주세요.");
 				return;
 			}			
 			
+			String movieName = movie_name_list.getSelectedValue();
+			String localName = movie_location_list.getSelectedValue();
+			String timeName = movie_time_list.getSelectedValue();
+			String houseName = movie_theater_list.getSelectedValue();
 			
-			//1. 전부 선택 되고 눌렀다.
-					
 			
-			
-			mainTestFrame.PageChange(MainFrame.PANELNAME.PAGE1);
+			//1. 전부 선택 되고 눌렀다.			
+			mainTestFrame.Set_TicketRserveData_forSeatSelect(movieName, houseName, localName, timeName);
+			mainTestFrame.PageChange(MainFrame.PANELNAME.SEATSELECT);
 		}
 	}
 	

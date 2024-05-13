@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -26,6 +27,8 @@ public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private int index;
+	private DBRequester dbRequester;
+	
 	private JPanel MainPane;	
 	private JPanel HeadPanel;	
 	
@@ -55,11 +58,12 @@ public class MainFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	public MainFrame() {		
 		
 		this.setTitle("CGVING");
 		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		dbRequester = new DBRequester();
 		
 		userInfo = null;
 		index = 0;		
@@ -137,6 +141,25 @@ public class MainFrame extends JFrame {
 	    this.getContentPane().add(ContentPanel15);
 	}
 	
+	@Override
+	protected void processWindowEvent(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+		if(e.getID() == WindowEvent.WINDOW_CLOSING)
+			this.dbRequester.DisConnectDB();
+		
+		super.processWindowEvent(e);
+	}
+
+	
+	public DBRequester getDbRequester() {
+		return dbRequester;
+	}
+
+	public void setDbRequester(DBRequester dbRequester) {
+		this.dbRequester = dbRequester;
+	}
+
 	public void Pagechange_init(JPanel _panel, boolean headVisible)
 	{
 		this.HeadPanel.setVisible(headVisible);
@@ -210,6 +233,11 @@ public class MainFrame extends JFrame {
 		}
 	}
 	
+	public void Set_TicketRserveData_forSeatSelect(String _moviName, String _movieHouseName, String _localName, String _timeData)
+	{
+		((SeatSelectPage)panelMap.get(MainFrame.PANELNAME.SEATSELECT)).Set_TicketRserveData(_moviName, _movieHouseName, _localName, _timeData);
+	}
+	
 	public JPanel Get_Panel_Main()
 	{		
 		return panelMap.get(MainFrame.PANELNAME.MAIN);
@@ -235,5 +263,4 @@ public class MainFrame extends JFrame {
 	{
 		this.userInfo = userInfo;
 	}
-
 }
