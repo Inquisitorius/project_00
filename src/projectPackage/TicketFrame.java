@@ -103,7 +103,7 @@ public class TicketFrame extends JFrame {
 		public TicketFrame oriFrame2;
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			parentPage.progress();
+			parentPage.CancleProgress();
 			oriFrame2.dispose();
 			parentPage.get_MainTestFrame().PageChange(PANELNAME.MAIN);
 			

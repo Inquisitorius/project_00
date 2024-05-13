@@ -22,6 +22,16 @@ public class JinsungPanelT extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private MainTestFrame mainTestFrame;
 	private TicketFrame ticketFrame;
+	private Connection conn;
+		
+	private TicketVo ticketInfo;
+	int ticket_no = 0;
+	String movie_name = "";
+	String time = "";
+	String th_name = "";
+	String mh_name = "";
+	String seat_info = "";
+	String local_name = "";
 
 	/**
 	 * Create the panel.
@@ -30,55 +40,9 @@ public class JinsungPanelT extends JPanel {
 	public JinsungPanelT(MainTestFrame mainTestFrame) {
 
 		this.mainTestFrame = mainTestFrame;
-		Connection conn = null;
-
-		int ticket_no = 0;
-		String movie_name = "";
-		String time = "";
-		String th_name = "";
-		String mh_name = "";
-		String seat_info = "";
-		String local_name = "";
-
-		try {
-			Class.forName("oracle.jdbc.OracleDriver");
-
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@//14.42.124.35:1521/XE", "c##wjrls", "881125");
-
-			String sql = "SELECT LOCAL.LOCAL_NAME, A.TICKET_NO, A.SEAT_INFO, A.SEAT_INFO, A.USER_NO, ui.USER_NAME ,m.SCHEDULE_NO,t2.THEATER_NAME , m3.MOVIEHOUSE_NAME ,m.SCHEDULE_TIME, m.SCHEDULE_ENDTIME, m2.MOVIE_NAME "
-					+ "from " + "( "
-					+ "(((((SELECT t.TICKET_NO ,t.SEAT_NO, s.SEAT_INFO, T.SCHEDULE_NO, T.USER_NO  FROM TICKET t JOIN SEAT s ON t.SEAT_NO = s.SEAT_NO) A "
-					+ "JOIN MOVIESCHEDULE m ON A.SCHEDULE_NO = m.SCHEDULE_NO ) "
-					+ "JOIN MOVIE m2 ON m.MOVIE_NO = m2.MOVIE_NO) "
-					+ "JOIN MOVIEHOUSE m3 ON m3.MOVIEHOUSE_NO = m.MOVIEHOUSE_NO) "
-					+ "JOIN THEATER t2 ON t2.MOVIEHOUSE_NO = m3.MOVIEHOUSE_NO) "
-					+ "JOIN USER_INFO ui ON ui.USER_NO = A.USER_NO) " + "JOIN LOCAL ON LOCAL.LOCAL_NO = m3.LOCAL_NO "
-					+ "WHERE a.TICKET_NO = " + "41";
-
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-
-				// 예매 번호, 영화명, 상영시간, 상영관이름, 극장 이름, 좌석번호
-				ticket_no = rs.getInt("TICKET_NO");
-				movie_name = rs.getString("MOVIE_NAME");
-				time = rs.getString("SCHEDULE_TIME");
-				th_name = rs.getString("THEATER_NAME");
-				mh_name = rs.getString("MOVIEHOUSE_NAME");
-				seat_info = rs.getString("SEAT_INFO");
-				local_name = rs.getString("LOCAL_NAME");
-
-			}
-			/* pstmt.close(); */ } catch (ClassNotFoundException e) { // TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		/*
-		 * finally { if(conn !=null) { try { conn.close(); } catch (SQLException e) {} }
-		 * }
-		 */
+		ticketInfo  = new TicketVo(); 
+		
+		SQLDataconnect();
 		setLayout(null);
 		this.setSize(1280, 800 - 150);
 		this.setPreferredSize(new Dimension(1280, 800 - 150));
@@ -307,16 +271,9 @@ public class JinsungPanelT extends JPanel {
 
 		this.setVisible(false);
 	}
-
-	// -------------------------------------------------------------//
-	public MainTestFrame get_MainTestFrame() {
-		return mainTestFrame;
-	}
-
+	// 디비 연결
+	private Connection SQLDataconnect() {
 	
-	public void progress() {// code
-		Connection conn = null;
-
 		int ticket_no = 0;
 		String movie_name = "";
 		String time = "";
@@ -324,7 +281,7 @@ public class JinsungPanelT extends JPanel {
 		String mh_name = "";
 		String seat_info = "";
 		String local_name = "";
-
+		
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 
@@ -356,13 +313,30 @@ public class JinsungPanelT extends JPanel {
 				mh_name = rs.getString("MOVIEHOUSE_NAME");
 				seat_info = rs.getString("SEAT_INFO");
 				local_name = rs.getString("LOCAL_NAME");
+				
+				this.ticketInfo.setMovie_Name(movie_name);
+				this.ticketInfo.setMovieHouse_Name(mh_name);
+				this.ticketInfo.setLocal_name(local_name);
+				this.ticketInfo.setSchedule_time(time);
+				this.ticketInfo.setTheater_Name(th_name);
+				this.ticketInfo.setSeat_Info(seat_info);
+				this.ticketInfo.setTicket_no(ticket_no);	
 
 			}
 			/* pstmt.close(); */ } catch (ClassNotFoundException e) { 
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} return conn;
+	}
+	
+	// -------------------------------------------------------------//
+	public MainTestFrame get_MainTestFrame() {
+		return mainTestFrame;
+	}
+	// 티켓취소
+	public void CancleProgress() {
+		SQLDataconnect();
 		
 		try {
 			String sql = "" + " DELETE FROM MOVIE " + "WHERE TICKET =? ";

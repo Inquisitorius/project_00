@@ -17,7 +17,18 @@ public class TicketVo
 	private String theater_Name;
 	private String seat_Info;
 	private String schedule_time;
+	private String local_name;
 	
+	public String getLocal_name() {
+		return local_name;
+	}
+
+
+	public void setLocal_name(String local_name) {
+		this.local_name = local_name;
+	}
+
+
 	public TicketVo() {}
 	
 	

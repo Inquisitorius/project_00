@@ -258,7 +258,7 @@ public class JinsungInformation extends JPanel {
 			mainTestFrame.PageChange(MainFrame.PANELNAME.PAGE1);
 		}
 	}
-
+	
 	class BackAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
