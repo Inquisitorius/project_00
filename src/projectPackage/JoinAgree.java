@@ -12,6 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.border.EmptyBorder;
 
+import projectPackage.MainFrame.PANELNAME;
+
 public class JoinAgree extends JPanel {
 
     private static final long serialVersionUID = 1L;
@@ -272,7 +274,8 @@ public class JoinAgree extends JPanel {
                     	 return;
                      }
                      
-                     JOptionPane.showMessageDialog(null, "CGVING 회원가입을 환영합니다.");                     
+                     //JOptionPane.showMessageDialog(null, "CGVING 회원가입을 환영합니다.");   
+                     mainFrame.PopupVisible("CGVING 회원가입을 환영합니다.", PANELNAME.LOGIN);
                     
                 } else {
                     // Handle error

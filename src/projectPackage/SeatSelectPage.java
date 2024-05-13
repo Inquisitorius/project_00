@@ -182,7 +182,7 @@ public class SeatSelectPage extends JPanel {
 					    }
 					}
 					
-					mainFrame.PageChange(PANELNAME.MAIN);
+					mainFrame.PopupVisible("예매완료", PANELNAME.MAIN);
 				}
 			}
 		});
