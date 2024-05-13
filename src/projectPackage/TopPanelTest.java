@@ -154,7 +154,7 @@ public class TopPanelTest extends JPanel {
         lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
         lblNewLabel_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
         lblNewLabel_1.setForeground(new Color(255, 255, 255));
-        lblNewLabel_1.setBounds(992, 50, 160, 15);
+        lblNewLabel_1.setBounds(941, 50, 211, 15);
         panel_1.add(lblNewLabel_1);
         
         logoutBtn = new JButton("");
