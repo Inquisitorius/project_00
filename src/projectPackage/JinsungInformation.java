@@ -22,13 +22,13 @@ public class JinsungInformation extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel JinsungPanelT;
-	private MainFrame mainTestFrame;
+	private MainFrame mainFrame;
 
 	/**
 	 * Create the panel.
 	 */
-	public JinsungInformation(MainFrame mainTestFrame) {
-		this.mainTestFrame = mainTestFrame;
+	public JinsungInformation(MainFrame mainFrame) {
+		this.mainFrame = mainFrame;
 
 		Connection conn = null;
 
@@ -255,7 +255,7 @@ public class JinsungInformation extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			mainTestFrame.PageChange(MainFrame.PANELNAME.PAGE1);
+			mainFrame.PageChange(MainFrame.PANELNAME.TICKETCANCLE);
 		}
 	}
 	
@@ -263,7 +263,7 @@ public class JinsungInformation extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			mainTestFrame.PageChange(MainFrame.PANELNAME.MAIN);
+			mainFrame.PageChange(MainFrame.PANELNAME.MYPAGE);
 
 		}
 	}

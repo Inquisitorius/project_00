@@ -13,14 +13,13 @@ import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class JinsungPanelT extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private MainTestFrame mainTestFrame;
+	private MainFrame mainFrame;
 	private TicketFrame ticketFrame;
 	private Connection conn;
 		
@@ -37,9 +36,9 @@ public class JinsungPanelT extends JPanel {
 	 * Create the panel.
 	 */
 
-	public JinsungPanelT(MainTestFrame mainTestFrame) {
+	public JinsungPanelT(MainFrame mainFrame) {
 
-		this.mainTestFrame = mainTestFrame;
+		this.mainFrame = mainFrame;
 		ticketInfo  = new TicketVo(); 
 		
 		SQLDataconnect();
@@ -70,26 +69,26 @@ public class JinsungPanelT extends JPanel {
 	}
 
 		show_image.setIcon(new ImageIcon(JinsungPanel.class.getResource("/image/ohtani/stuntman.jpg")));
-		show_image.setBounds(178, 60, 161, 245);
+		show_image.setBounds(185, 33, 161, 245);
 		panel.add(show_image);
 
 		JLabel lblNewLabelfix = new JLabel("예매 내역");
 		lblNewLabelfix.setForeground(Color.WHITE);
 		lblNewLabelfix.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 35));
-		lblNewLabelfix.setBounds(556, 25, 168, 77);
+		lblNewLabelfix.setBounds(556, 10, 168, 77);
 		panel.add(lblNewLabelfix);
 
 		// 영화명
 		JLabel Title_name = new JLabel("영화명");
 		Title_name.setForeground(Color.WHITE);
 		Title_name.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		Title_name.setBounds(151, 300, 111, 41);
+		Title_name.setBounds(147, 273, 111, 41);
 		panel.add(Title_name);
 
 		JLabel Title = new JLabel("영화");
 		Title.setForeground(Color.WHITE);
 		Title.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		Title.setBounds(1059, 300, 202, 41);
+		Title.setBounds(1029, 273, 202, 41);
 		panel.add(Title);
 
 		try {
@@ -115,7 +114,7 @@ public class JinsungPanelT extends JPanel {
 		JLabel ticketNum = new JLabel("예매 번호");
 		ticketNum.setForeground(Color.WHITE);
 		ticketNum.setFont(new Font("나눔고딕", Font.BOLD, 28));
-		ticketNum.setBounds(798, 143, 152, 51);
+		ticketNum.setBounds(974, 130, 152, 51);
 		panel.add(ticketNum);
 
 		JLabel ticketNump = new JLabel("1234-567");
@@ -147,13 +146,13 @@ public class JinsungPanelT extends JPanel {
 		JLabel Time = new JLabel("상영일시");
 		Time.setForeground(Color.WHITE);
 		Time.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		Time.setBounds(151, 361, 111, 41);
+		Time.setBounds(147, 334, 111, 41);
 		panel.add(Time);
 
 		JLabel timep = new JLabel("00:00");
 		timep.setForeground(Color.WHITE);
 		timep.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		timep.setBounds(932, 361, 267, 41);
+		timep.setBounds(902, 334, 267, 41);
 		panel.add(timep);
 
 		try {
@@ -178,13 +177,13 @@ public class JinsungPanelT extends JPanel {
 		JLabel movielocal = new JLabel("극장명");
 		movielocal.setForeground(Color.WHITE);
 		movielocal.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		movielocal.setBounds(151, 412, 111, 41);
+		movielocal.setBounds(147, 385, 111, 41);
 		panel.add(movielocal);
 
 		JLabel localp = new JLabel("CGV");
 		localp.setForeground(Color.WHITE);
 		localp.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		localp.setBounds(1059, 412, 179, 41);
+		localp.setBounds(1029, 385, 179, 41);
 		panel.add(localp);
 
 		try {
@@ -207,12 +206,12 @@ public class JinsungPanelT extends JPanel {
 		JLabel screen = new JLabel("상영관");
 		screen.setForeground(Color.WHITE);
 		screen.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		screen.setBounds(151, 463, 111, 41);
+		screen.setBounds(147, 436, 111, 41);
 		panel.add(screen);
 		JLabel screenp = new JLabel("0관");
 		screenp.setForeground(Color.WHITE);
 		screenp.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		screenp.setBounds(1059, 463, 189, 41);
+		screenp.setBounds(1029, 436, 189, 41);
 		panel.add(screenp);
 
 		try {
@@ -243,20 +242,20 @@ public class JinsungPanelT extends JPanel {
 		JLabel person = new JLabel("좌석");
 		person.setForeground(Color.WHITE);
 		person.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		person.setBounds(151, 514, 111, 41);
+		person.setBounds(147, 487, 111, 41);
 		panel.add(person);
 
 		JLabel personp = new JLabel("A1,A2");
 		personp.setForeground(Color.WHITE);
 		personp.setFont(new Font("나눔고딕", Font.PLAIN, 25));
-		personp.setBounds(1059, 514, 124, 41);
+		personp.setBounds(1029, 487, 124, 41);
 		panel.add(personp);
 
 		// 뒤로가기버튼
 		JButton backButton = new JButton("");
 		backButton.addActionListener(new BackAction());
 		backButton.setIcon(new ImageIcon(JinsungPanelT.class.getResource("/image/button/back.png")));
-		backButton.setBounds(701, 544, 110, 42);
+		backButton.setBounds(268, 536, 110, 42);
 		panel.add(backButton);
 
 		ticketFrame = new TicketFrame();
@@ -266,7 +265,7 @@ public class JinsungPanelT extends JPanel {
 		JButton cancleButton = new JButton("");
 		cancleButton.addActionListener(new CancleAction());
 		cancleButton.setIcon(new ImageIcon(JinsungPanelT.class.getResource("/image/jinsung/ticketcancle.png")));
-		cancleButton.setBounds(844, 544, 110, 42);
+		cancleButton.setBounds(987, 536, 110, 42);
 		panel.add(cancleButton);
 
 		this.setVisible(false);
@@ -331,8 +330,8 @@ public class JinsungPanelT extends JPanel {
 	}
 	
 	// -------------------------------------------------------------//
-	public MainTestFrame get_MainTestFrame() {
-		return mainTestFrame;
+	public MainFrame get_MainTestFrame() {
+		return mainFrame;
 	}
 	// 티켓취소
 	public void CancleProgress() {
@@ -373,7 +372,7 @@ public class JinsungPanelT extends JPanel {
 	class BackAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			mainTestFrame.PageChange(MainFrame.PANELNAME.MAIN);
+			mainFrame.PageChange(MainFrame.PANELNAME.TICKETINFO);
 		}
 	}
 
