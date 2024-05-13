@@ -321,16 +321,19 @@ public class Ticketreserve extends JPanel {
 			int timeChecker = movie_time_list.getSelectedIndex();
 			int houseChecker = movie_theater_list.getSelectedIndex();
 			
+            String movieName = movie_name_list.getSelectedValue();
+            String localName = movie_location_list.getSelectedValue();
+            String timeName = movie_time_list.getSelectedValue();
+            String houseName = movie_theater_list.getSelectedValue();
+			
 			if( movieCheker < 0 || localChecker < 0 || timeChecker < 0 || houseChecker < 0)
 			{
 				JOptionPane.showMessageDialog(null, "선택하라우.");
 				return;
 			}			
 			
-			
-			//1. 전부 선택 되고 눌렀다.
-			
-			mainTestFrame.PageChange(MainFrame.PANELNAME.PAGE1);
+            mainTestFrame.Set_TicketRserveData_forSeatSelect(movieName, houseName, localName, timeName);
+			mainTestFrame.PageChange(MainFrame.PANELNAME.SEATSELECT);
 		}
 	}
 	

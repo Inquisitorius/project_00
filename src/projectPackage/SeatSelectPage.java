@@ -232,7 +232,7 @@ public class SeatSelectPage extends JPanel {
 		this.movieNo = this.mainFrame.getDbRequester().Get_MovieNo(this.movieName);
 		this.movieHouseNo = this.mainFrame.getDbRequester().Get_MovieHouseNo(this.movieHouseName);
 		this.localNo = this.mainFrame.getDbRequester().Get_LocalNo(this.localName);
-		this.timeNo = this.mainFrame.getDbRequester().Get_TimeNo(this.timeData);
+		this.timeNo = this.mainFrame.getDbRequester().Get_TimeNo(this.timeData, this.movieNo, this.movieHouseNo);
 	}
 	
 	public Boolean TicketingProgress()
