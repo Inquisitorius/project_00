@@ -50,7 +50,7 @@ public class Ticketreserve extends JPanel {
 		this.setVisible(false);
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
+		panel.setBackground(new Color(0, 0, 0));
 		panel.setBounds(134, 10, 934, 591);
 		add(panel);
 		panel.setLayout(null);
@@ -230,11 +230,7 @@ public class Ticketreserve extends JPanel {
 				+ "		MOVIESCHEDULE m "
 				+ "		JOIN MOVIE m2 ON m2.MOVIE_NO = m.MOVIE_NO ) "
 				+ "		JOIN MOVIEHOUSE m3 ON m3.MOVIEHOUSE_NO = m.MOVIEHOUSE_NO) "
-				+ "		JOIN LOCAL ON LOCAL.LOCAL_NO = m3.LOCAL_NO)";		
-		
-		//WHERE m2.MOVIE_NAME = '스턴트맨'
-		//AND LOCAL.LOCAL_NAME = '의정부'
-		//AND m3.MOVIEHOUSE_NAME = '1관'
+				+ "		JOIN LOCAL ON LOCAL.LOCAL_NO = m3.LOCAL_NO)";	
 		
 		switch (_type) 
 		{
@@ -242,16 +238,36 @@ public class Ticketreserve extends JPanel {
 				sql = "SELECT MOVIE_NAME FROM MOVIE ";
 				break;
 			case LOCAL:
+				//sql += "WHERE m2.MOVIE_NAME = '"+ movieName +"' ";
+				//선택된 영화를 상영하는 유효 지역이 나와야함
+				sql = "SELECT DISTINCT  LOCAL.LOCAL_NO, LOCAL.LOCAL_NAME "
+						+ "		FROM "
+						+ "		((( "
+						+ "		MOVIESCHEDULE m "
+						+ "		JOIN MOVIE m2 ON m2.MOVIE_NO = m.MOVIE_NO ) "
+						+ "		JOIN MOVIEHOUSE m3 ON m3.MOVIEHOUSE_NO = m.MOVIEHOUSE_NO) "
+						+ "		JOIN LOCAL ON LOCAL.LOCAL_NO = m3.LOCAL_NO)";	
 				sql += "WHERE m2.MOVIE_NAME = '"+ movieName +"' ";
-				 break;
+				break;
 			case MOVIEHOUSE:
+				sql = "SELECT DISTINCT  m3.MOVIEHOUSE_NO, m3.MOVIEHOUSE_NAME "
+						+ "		FROM "
+						+ "		((( "
+						+ "		MOVIESCHEDULE m "
+						+ "		JOIN MOVIE m2 ON m2.MOVIE_NO = m.MOVIE_NO ) "
+						+ "		JOIN MOVIEHOUSE m3 ON m3.MOVIEHOUSE_NO = m.MOVIEHOUSE_NO) "
+						+ "		JOIN LOCAL ON LOCAL.LOCAL_NO = m3.LOCAL_NO)";	
+				
 				sql += "WHERE m2.MOVIE_NAME = '"+ movieName +"' ";
 				sql += "AND LOCAL.LOCAL_NAME = '" + LocalName + "' ";
+				//상영하는 유효 영화관이 나와야함 local 정보 포함
+				
 				break;
 			case TIME:
 				sql += "WHERE m2.MOVIE_NAME = '"+ movieName +"' ";
 				sql += "AND LOCAL.LOCAL_NAME = '" + LocalName + "' ";
 				sql += "AND m3.MOVIEHOUSE_NAME = '" + houseName + "' ";
+				sql += "ORDER BY SCHEDULE_TIME ";
 				break;
 		}
 
