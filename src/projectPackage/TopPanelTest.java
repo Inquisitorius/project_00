@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.border.EmptyBorder;
 
+import projectPackage.MainFrame.PANELNAME;
+
 public class TopPanelTest extends JPanel {
     private static final long serialVersionUID = 1L;
     private JTextField textField_1;
@@ -17,6 +19,7 @@ public class TopPanelTest extends JPanel {
     
     private JButton joinPageBtn;
     private JButton myPageBtn;
+    private JButton adminPageBtn;
     
     private ActionListener loginBtnAction;
     private ActionListener logoutBtnAction;
@@ -168,6 +171,22 @@ public class TopPanelTest extends JPanel {
         
         logoutBtn.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/logout_s.png")));
         
+        adminPageBtn = new JButton("");
+        adminPageBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		System.out.println("12321");
+        		//PAGE MOVE
+        		mainFrame.PageChange(PANELNAME.PAGE0);
+        	}
+        });
+        adminPageBtn.setIcon(new ImageIcon(TopPanelTest.class.getResource("/image/button/admin.png")));
+        adminPageBtn.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
+        adminPageBtn.setBorderPainted(false);
+        adminPageBtn.setBounds(903, 73, 32, 32);
+        
+        adminPageBtn.setVisible(false);
+        panel_1.add(adminPageBtn);
+        
        
 
         this.setVisible(true);     
@@ -191,6 +210,11 @@ public class TopPanelTest extends JPanel {
     	
     	lblNewLabel_1.setText(text);
     	lblNewLabel_1.setVisible(true);
+    	
+    	if(mainFrame.Get_UserInfo() != null && mainFrame.Get_UserInfo().getAuth_no() != 3)
+    	{
+    		adminPageBtn.setVisible(true);
+    	}
     }
     
     public void Logout_Init()
