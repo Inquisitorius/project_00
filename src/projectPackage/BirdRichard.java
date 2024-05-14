@@ -83,6 +83,7 @@ public class BirdRichard extends JPanel {
 		add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	mainFrame.Set_selectedMovieName_TicketReserve("꼬마참새리차드");
                 mainFrame.PageChange(MainFrame.PANELNAME.TICKETING);
             }
         });
