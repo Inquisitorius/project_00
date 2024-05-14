@@ -61,7 +61,7 @@ public class MyPage_New extends JPanel {
 		textField_phone.setText(userInfo.getUser_phone());
 		textField_name.setText(userInfo.getUser_name());
 		
-		this.TableInit();
+		this.PageChangeInit();
 	}
 
 	public MyPage_New(MainFrame mainFrame) {
@@ -161,10 +161,8 @@ public class MyPage_New extends JPanel {
 			}
 		});
 		add(UpdateBtn);
-		
-		
 
-		//TableInit();
+		TableInit();
 	}
 	class MyTicketInfoAction implements ActionListener {
 		@Override
@@ -173,7 +171,19 @@ public class MyPage_New extends JPanel {
 			mainFrame.PageChange(MainFrame.PANELNAME.TICKETINFO);
 		}
 	}
+	
+	public void PageChangeInit()
+	{		
+		data.clear();
+		
+		
+		Get_TicketInfo();
+		UserInfoTableModel InfoModel = new UserInfoTableModel(data, columnName);
+		table.setModel(InfoModel);
+	}
+	
 	public void TableInit() {
+		//
 		columnName = new Vector<String>();
 		data = new Vector<Vector<String>>();
 
@@ -184,7 +194,7 @@ public class MyPage_New extends JPanel {
 		columnName.add("SCHEDULE_TIME");
 		columnName.add("TICKET_STATUS");
 
-		Get_TicketInfo();
+		//Get_TicketInfo();
 		
 		UserInfoTableModel InfoModel = new UserInfoTableModel(data, columnName);
 
@@ -200,10 +210,6 @@ public class MyPage_New extends JPanel {
 		table.setBounds(41, 154, 1196, 453);
 
 		this.add(sPane, BorderLayout.CENTER);
-
-		// 데이터 받아오기
-		// 테이블 업데이트
-		// 더블클릭 이벤트
 	}
 
 	public void Get_TicketInfo() {
@@ -219,7 +225,7 @@ public class MyPage_New extends JPanel {
 			Class.forName(driver);
 			Connection conn = DriverManager.getConnection(url, user, pw);
 			
-			String sql= "SELECT A.TICKET_NO, A.SEAT_INFO, A.SEAT_NO, A.TICKET_STATUS, A.USER_NO, ui.USER_NAME  ,m.SCHEDULE_NO,t2.THEATER_NAME , m3.MOVIEHOUSE_NAME ,m.SCHEDULE_TIME, m.SCHEDULE_ENDTIME, m2.MOVIE_NAME "
+			/*String sql= "SELECT A.TICKET_NO, A.SEAT_INFO, A.SEAT_NO, A.TICKET_STATUS, A.USER_NO, ui.USER_NAME  ,m.SCHEDULE_NO,t2.THEATER_NAME , m3.MOVIEHOUSE_NAME ,m.SCHEDULE_TIME, m.SCHEDULE_ENDTIME, m2.MOVIE_NAME "
 					+ "from "
 					+ "("
 					+ "(((((SELECT t.TICKET_NO, t.TICKET_STATUS ,t.SEAT_NO, s.SEAT_INFO, T.SCHEDULE_NO, T.USER_NO  FROM TICKET t JOIN SEAT s ON t.SEAT_NO = s.SEAT_NO) A "
@@ -229,7 +235,18 @@ public class MyPage_New extends JPanel {
 					+ "JOIN THEATER t2 ON t2.MOVIEHOUSE_NO = m3.MOVIEHOUSE_NO) "
 					+ "JOIN USER_INFO ui ON ui.USER_NO = A.USER_NO) "
 					+ "JOIN LOCAL ON LOCAL.LOCAL_NO  = m3.LOCAL_NO "
-					+ "WHERE a.user_no = " + this.mainFrame.Get_UserInfo().getUser_no();
+					+ "WHERE a.user_no = " + this.mainFrame.Get_UserInfo().getUser_no();*/
+			
+			String sql = "SELECT t.TICKET_NO, s.SEAT_INFO, s.SEAT_NO, t.TICKET_STATUS, t.USER_NO, m2.SCHEDULE_NO, t2.THEATER_NAME, m3.MOVIEHOUSE_NAME, ";
+			sql += "m2.SCHEDULE_TIME, m2.SCHEDULE_ENDTIME, m.MOVIE_NAME ";
+			sql += "FROM "; 
+			sql += "(((((TICKET t JOIN MOVIESCHEDULE m2 ON m2.SCHEDULE_NO = t.SCHEDULE_NO) ";
+			sql += "JOIN MOVIE m ON m.MOVIE_NO = m2.MOVIE_NO) ";
+			sql += "JOIN SEAT s ON s.SEAT_NO = t.SEAT_NO) ";
+			sql += "JOIN THEATER t2 ON t2.THEATER_NO = m2.THEATER_NO) ";
+			sql += "JOIN MOVIEHOUSE m3 ON m3.MOVIEHOUSE_NO = t2.MOVIEHOUSE_NO) ";
+			sql += "JOIN LOCAL ON LOCAL.LOCAL_NO = m3.LOCAL_NO ";
+			sql += "WHERE t.USER_NO  = " + + this.mainFrame.Get_UserInfo().getUser_no();
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);	
 			ResultSet rs = pstmt.executeQuery();
