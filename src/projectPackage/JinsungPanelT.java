@@ -38,23 +38,78 @@ public class JinsungPanelT extends JPanel {
 	
 	private JLabel Title;
 	private JLabel show_image;
-	private JLabel ticketNump;
+	private JLabel ticketNum;
 	private JLabel timep;
 	private JLabel localp;
 	private JLabel screenp;
 	private JLabel personp;
 
+	private int TicketNo = -1;
 	/**
 	 * Create the panel.
 	 */
 	
 	public void PageInit()	
 	{
+		if(TicketNo <= 0)
+		{
+			System.out.println("비정상적인 접근");
+			return;
+		}
+		
+		ticketInfo2 = new TicketVo();
+		
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			Connection conn = DriverManager.getConnection(
+					"jdbc:oracle:thin:@//14.42.124.35:1521/XE",
+					"c##wjrls", 
+					"881125");
+
+			String sql = "SELECT LOCAL.LOCAL_NAME, A.TICKET_NO, A.SEAT_INFO, A.SEAT_INFO, A.USER_NO, ui.USER_NAME ,m.SCHEDULE_NO,t2.THEATER_NAME , m3.MOVIEHOUSE_NAME ,m.SCHEDULE_TIME, m.SCHEDULE_ENDTIME, m2.MOVIE_NAME "
+					+ "from " + "( "
+					+ "(((((SELECT t.TICKET_NO ,t.SEAT_NO, s.SEAT_INFO, T.SCHEDULE_NO, T.USER_NO  FROM TICKET t JOIN SEAT s ON t.SEAT_NO = s.SEAT_NO) A "
+					+ "JOIN MOVIESCHEDULE m ON A.SCHEDULE_NO = m.SCHEDULE_NO ) "
+					+ "JOIN MOVIE m2 ON m.MOVIE_NO = m2.MOVIE_NO) "
+					+ "JOIN MOVIEHOUSE m3 ON m3.MOVIEHOUSE_NO = m.MOVIEHOUSE_NO) "
+					+ "JOIN THEATER t2 ON t2.MOVIEHOUSE_NO = m3.MOVIEHOUSE_NO) "
+					+ "JOIN USER_INFO ui ON ui.USER_NO = A.USER_NO) " + "JOIN LOCAL ON LOCAL.LOCAL_NO = m3.LOCAL_NO "
+					+ "WHERE a.TICKET_NO = " + this.TicketNo;
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();			
+			
+			ticketInfo2.setTicket_no(rs.getInt("TICKET_NO"));
+			ticketInfo2.setMovie_Name(rs.getString("MOVIE_NAME"));
+			ticketInfo2.setSchedule_time(rs.getString("SCHEDULE_TIME"));
+			ticketInfo2.setTheater_Name(rs.getString("THEATER_NAME"));
+			ticketInfo2.setMovieHouse_Name(rs.getString("MOVIEHOUSE_NAME"));
+			ticketInfo2.setSeat_Info(rs.getString("SEAT_INFO"));
+			ticketInfo2.setLocal_name(rs.getString("LOCAL_NAME"));
+			
+			pstmt.close();
+			conn.close();			
+		
+			} catch (ClassNotFoundException e) { 
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+	
+		/*
+		 * Movi_namep.setText(ticketInfo2.getMovie_Name());
+		 * ticket_Nump.setText(Integer.toString(ticketInfo2.getTicket_no()));
+		 * Local_namep.setText(ticketInfo2.getLocal_name());
+		 * Movie_timep.setText(ticketInfo2.getSchedule_time());
+		 */
 		Title.setText(ticketInfo2.getMovie_Name());
-		ticketNump.setText(Integer.toString(ticketInfo2.getTicket_no()));
+		ticketNum.setText(Integer.toString(ticketInfo2.getTicket_no()));
 		timep.setText(ticketInfo2.getSchedule_time());
 		localp.setText(ticketInfo2.getLocal_name());
 		screenp.setText(ticketInfo2.getTheater_Name());
+		personp.setText(ticketInfo2.getSeat_Info());
 		
 		MoviePosterUpdate();
 	}
@@ -91,11 +146,10 @@ public class JinsungPanelT extends JPanel {
 		show_image.setIcon(tempIcon);
 	}
 			
-
 	public JinsungPanelT(MainFrame mainFrame) {
 
 		this.mainFrame = mainFrame;
-		ticketInfo  = new TicketVo(); 
+		ticketInfo2  = new TicketVo(); 
 		
 		setLayout(null);
 		this.setSize(1280, 800 - 150);
@@ -111,9 +165,8 @@ public class JinsungPanelT extends JPanel {
 		//SQLDataconnect();
 		
 		show_image = new JLabel("");
-		show_image.setBounds(206, 154, 150, 214);	
+		show_image.setBounds(206, 162, 150, 214);	
 		panel.add(show_image);
-		
 
 		JLabel lblNewLabelfix = new JLabel("Reservation");
 		lblNewLabelfix.setHorizontalAlignment(SwingConstants.CENTER);
@@ -135,22 +188,19 @@ public class JinsungPanelT extends JPanel {
 		Title.setFont(new Font("나눔고딕", Font.BOLD, 22));
 		panel.add(Title);
 
-		
-
 		// 예매 번호
-		JLabel ticketNum = new JLabel("예매 번호");
+		ticketNum = new JLabel("");
 		ticketNum.setBackground(new Color(0, 0, 0));
 		ticketNum.setHorizontalAlignment(SwingConstants.CENTER);
 		ticketNum.setBounds(530, 110, 196, 77);
-		ticketNum.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 28));
+		ticketNum.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 30));
 		ticketNum.setForeground(new Color(252, 196, 52));
 		panel.add(ticketNum);
-		
-
-		ticketNump = new JLabel("1234-567");
-		ticketNum.setForeground(Color.WHITE);
-		ticketNum.setFont(new Font("나눔고딕", Font.BOLD, 28));
-		panel.add(ticketNum);
+	
+		/*
+		 * ticketNump = new JLabel("1234-567"); ticketNum.setForeground(Color.WHITE);
+		 * ticketNum.setFont(new Font("나눔고딕", Font.BOLD, 28)); panel.add(ticketNum);
+		 */
 		
 		// 상영시간
 		JLabel Time = new JLabel("상영일시");
@@ -175,7 +225,7 @@ public class JinsungPanelT extends JPanel {
 		localp = new JLabel("");
 		localp.setBounds(732, 297, 179, 40);
 		localp.setForeground(Color.WHITE);
-		localp.setFont(new Font("나눔고딕", Font.PLAIN, 22));
+		localp.setFont(new Font("나눔고딕", Font.BOLD , 22));
 		panel.add(localp);
 
 		// 상영관
@@ -198,7 +248,7 @@ public class JinsungPanelT extends JPanel {
 		person.setFont(new Font("나눔고딕", Font.BOLD, 26));
 		panel.add(person);
 
-		JLabel personp = new JLabel("");
+		personp = new JLabel("");
 		personp.setBounds(732, 397, 337, 40);
 		personp.setForeground(Color.WHITE);
 		personp.setFont(new Font("나눔고딕", Font.BOLD, 22));
@@ -296,6 +346,12 @@ public class JinsungPanelT extends JPanel {
 		return xyimg;
 	}
 	
+	public void Set_TicketNo(int ticketNo)
+	{
+		System.out.println(ticketNo);
+		this.TicketNo = ticketNo;
+	}	
+	
 	// 티켓취소
 	public void CancleProgress() {
 		//SQLDataconnect();
@@ -335,7 +391,7 @@ public class JinsungPanelT extends JPanel {
 	class BackAction implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			mainFrame.PageChange(MainFrame.PANELNAME.TICKETINFO);
+			mainFrame.PageChange(MainFrame.PANELNAME.MYPAGE);
 		}
 	}
 

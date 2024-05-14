@@ -267,9 +267,9 @@ public class MainFrame extends JFrame {
 		((JinsungPanelT)panelMap.get(MainFrame.PANELNAME.TICKETCANCLE)).Set_TicketInfo_Cancle(ticketInfo);
 	}
 	
-	public void Set_TicketInfomationPage_TicketNo(int ticketNo)
+	public void Set_TicketCanclePage_TicketNo(int ticketNo)
 	{
-		((JinsungInformation)panelMap.get(MainFrame.PANELNAME.TICKETINFO)).Set_TicketNo(ticketNo);
+		((JinsungPanelT)panelMap.get(MainFrame.PANELNAME.TICKETCANCLE)).Set_TicketNo(ticketNo);
 	}
 	
 	public void Set_TicketRserveData_forSeatSelect(String _moviName, String _movieHouseName, String _localName, String _timeData)

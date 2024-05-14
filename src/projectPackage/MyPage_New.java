@@ -145,14 +145,11 @@ public class MyPage_New extends JPanel {
 		textField_phone.setColumns(10);
 		textField_phone.setBounds(232, 399, 316, 56);
 		add(textField_phone);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new MyTicketInfoAction());
-		btnNewButton.setBounds(232, 469, 110, 56);
-		add(btnNewButton);
+
 		this.setVisible(false);
 		
 		JButton UpdateBtn = new JButton("");
+		UpdateBtn.setBorderPainted(false);
 		UpdateBtn.setIcon(new ImageIcon(MyPage_New.class.getResource("/image/button/ok.png")));
 		UpdateBtn.setBounds(438, 471, 110, 42);
 
@@ -168,14 +165,6 @@ public class MyPage_New extends JPanel {
 
 		TableInit();
 	}
-	class MyTicketInfoAction implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-
-			mainFrame.PageChange(MainFrame.PANELNAME.TICKETINFO);
-		}
-	}
-	
 	public void PageChangeInit()
 	{		
 		data.clear();
@@ -243,8 +232,9 @@ public class MyPage_New extends JPanel {
        	 			if(!status.equals("RS"))
        	 				return;
        	 			
-       	 			mainFrame.Set_TicketInfomationPage_TicketNo(ticketNo);
-       	 			mainFrame.PageChange(PANELNAME.TICKETINFO);
+       	 			//mainFrame.Set_TicketInfomationPage_TicketNo(ticketNo);
+       	 			mainFrame.Set_TicketCanclePage_TicketNo(ticketNo);
+       	 			mainFrame.PageChange(PANELNAME.TICKETCANCLE);
        	 			
        	 		}
        	 	}
