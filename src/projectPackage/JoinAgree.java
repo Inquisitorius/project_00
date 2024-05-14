@@ -118,6 +118,45 @@ public class JoinAgree extends JPanel {
         textField_4.setBorder(new EmptyBorder(0, 10, 0, 0));
         textField_4.setColumns(14);
         textField_4.setBounds(804, 409, 341, 32);
+        
+        textField_4.addKeyListener(new KeyAdapter()
+		{
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)						
+				{
+	                if (validateEmail(textField_3.getText()) && validatePasswords(new String(passwordField_1.getPassword()), new String(passwordField_2.getPassword()))) 
+	                {                                    	
+	                	if(!checkbox_1.getState())
+	                	{
+	                		JOptionPane.showMessageDialog(null, "이용약관에 동의하여 주십시오.");
+	                		return;
+	                	}
+	                	else if(!checkbox_2.getState())
+	                	{
+	                		JOptionPane.showMessageDialog(null, "개인정보 수집에 동의하여 주십시오.");
+	                		return;
+	                	}
+	                	
+	                     Boolean result =  InsertUser();          
+	                     
+	                     if(result)
+	                     {
+	                    	 JOptionPane.showMessageDialog(null, "아이디가 중복되었습니다.");
+	                    	 return;
+	                     }
+	                     
+	                     mainFrame.PopupVisible("CGVING 회원가입을 환영합니다.", PANELNAME.LOGIN);
+	                    
+	                } else {
+	                    // Handle error
+	                	 JOptionPane.showMessageDialog(null, "입력한 정보를 확인해주십시오.");
+	                }
+				}
+			}
+		} );
+        
         add(textField_4);
 
         setupButtons();
@@ -253,8 +292,8 @@ public class JoinAgree extends JPanel {
         add(btnNewButton_2);
         btnNewButton_2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (validateEmail(textField_3.getText()) && validatePasswords(new String(passwordField_1.getPassword()), new String(passwordField_2.getPassword()))) {
-                                    	
+                if (validateEmail(textField_3.getText()) && validatePasswords(new String(passwordField_1.getPassword()), new String(passwordField_2.getPassword()))) 
+                {                                    	
                 	if(!checkbox_1.getState())
                 	{
                 		JOptionPane.showMessageDialog(null, "이용약관에 동의하여 주십시오.");

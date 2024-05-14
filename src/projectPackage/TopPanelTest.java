@@ -70,6 +70,50 @@ public class TopPanelTest extends JPanel {
         textField_1 = new JTextField();
         textField_1.setBorder(new EmptyBorder(0, 10, 0, 0));
         textField_1.setBounds(941, 73, 250, 30);
+        
+        textField_1.addKeyListener(new KeyAdapter()
+		{
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)						
+				{
+					String searchText = textField_1.getText().toLowerCase();
+	                switch (searchText) {
+	                    case "범죄도시4":
+	                    	mainFrame.Set_selectedMovieName_TicketReserve("범죄도시4");
+	                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).Set_PopupInit();	                    	
+	                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).getCrimePopup().setVisible(true);
+	                        break;
+	                    case "쿵푸팬더4":
+	                    	mainFrame.Set_selectedMovieName_TicketReserve("쿵푸팬더4");
+	                    	//OhtanisPanel parentPanel = (OhtanisPanel)mainFrame.Get_Panel_Main();
+	                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).Set_PopupInit();
+	                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).getKungfuPopup().setVisible(true);
+	                        break;
+	                    case "스턴트맨":    
+	                    	mainFrame.Set_selectedMovieName_TicketReserve("스턴트맨");
+	                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).Set_PopupInit();
+	                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).getStuntPopup().setVisible(true);
+	                        break;
+	                    case "챌린저스": 
+	                    	mainFrame.Set_selectedMovieName_TicketReserve("챌린저스");
+	                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).Set_PopupInit();
+	                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).getChalPopup().setVisible(true);
+	                        break;
+	                    case "몬스터 프렌즈":
+	                    	mainFrame.Set_selectedMovieName_TicketReserve("몬스터 프렌즈");
+	                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).Set_PopupInit();
+	                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).getMonPopup().setVisible(true);
+	                        break;
+	                    default:
+	                        JOptionPane.showMessageDialog(null, "검색 결과가 없습니다.");
+	                        break;
+	                }
+				}
+			}
+		} );
+        
         panel_1.add(textField_1);
         textField_1.setColumns(40);
         
