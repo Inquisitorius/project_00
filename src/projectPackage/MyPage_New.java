@@ -11,9 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,8 +28,10 @@ import java.util.Vector;
 
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import projectPackage.Admin_UserList.UserInfoTableModel;
+import projectPackage.MainFrame.PANELNAME;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -180,6 +184,10 @@ public class MyPage_New extends JPanel {
 		Get_TicketInfo();
 		UserInfoTableModel InfoModel = new UserInfoTableModel(data, columnName);
 		table.setModel(InfoModel);
+		
+		table.getColumn("TICKET_NO").setWidth(0);
+		table.getColumn("TICKET_NO").setMinWidth(0);
+		table.getColumn("TICKET_NO").setMaxWidth(0);
 	}
 	
 	public void TableInit() {
@@ -187,7 +195,7 @@ public class MyPage_New extends JPanel {
 		columnName = new Vector<String>();
 		data = new Vector<Vector<String>>();
 
-		//columnName.add("TICKET_NO");
+		columnName.add("TICKET_NO");
 		columnName.add("MOVIE_NAME");
 		columnName.add("MOVIEHOUSE_NAME");
 		columnName.add("SEAT_INFO");
@@ -199,11 +207,42 @@ public class MyPage_New extends JPanel {
 		UserInfoTableModel InfoModel = new UserInfoTableModel(data, columnName);
 
 		table = new JTable(InfoModel);
+		
+		table.getColumn("TICKET_NO").setWidth(0);
+		table.getColumn("TICKET_NO").setMinWidth(0);
+		table.getColumn("TICKET_NO").setMaxWidth(0);
+		
 		table.getTableHeader().setReorderingAllowed(false); // 컬럼들 이동 불가
 		table.getTableHeader().setResizingAllowed(false); // 컬럼 크기 조절 불가
 
-		table.addMouseListener(new MouseAdapter() {
-		});
+		table.addMouseListener(new MouseAdapter() 
+        {
+       	 	@Override 
+       	 	public void mouseClicked(MouseEvent e) 
+       	 	{
+       	 		JTable t = (JTable)e.getSource();
+       	 		TableModel m = t.getModel();
+       		 
+       	 		if(e.getClickCount() == 2)
+       	 		{
+       	 			//data 넘겨주기
+       	 			//mainFrame.PageChange(PANELNAME.TICKETINFO);
+       	 			Point pt = e.getPoint();
+       	 			int i = t.rowAtPoint(pt);
+       	 			
+       	 			if(i < 0)
+       	 				return;
+       	 			
+       	 			int row = t.convertRowIndexToModel(i);
+       	 			int ticketNo = Integer.parseInt((String)m.getValueAt(row, 0));
+       	 			
+       	 			
+       	 			System.out.println(ticketNo);
+       	 		//mainFrame.PageChange(PANELNAME.TICKETINFO);
+       	 			
+       	 		}
+       	 	}
+       	 });
 
 		sPane = new JScrollPane(table);
 		sPane.setBounds(603, 135, 597, 378);
@@ -269,6 +308,7 @@ public class MyPage_New extends JPanel {
 				
 				Vector<String> info = new Vector<String>();
 				
+				info.add(Integer.toString(ticket.getTicket_no()));
 				info.add(ticket.getMovie_Name()); 
 				info.add(ticket.getMovieHouse_Name());
 				info.add(ticket.getSeat_Info()); 
