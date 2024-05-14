@@ -48,7 +48,7 @@ public class MyPage_New extends JPanel {
 	private JTextField textField_phone;
 
 	private UserDetailInfoFrame userDetailFrame;
-	private JTable table;
+	private TableDark table;
 	private JScrollPane sPane;
 
 	private Vector<String> columnName = null;
@@ -206,7 +206,9 @@ public class MyPage_New extends JPanel {
 		
 		UserInfoTableModel InfoModel = new UserInfoTableModel(data, columnName);
 
-		table = new JTable(InfoModel);
+		//table = new JTable(InfoModel);
+		table = new TableDark();
+		table.setModel(InfoModel);
 		
 		table.getColumn("TICKET_NO").setWidth(0);
 		table.getColumn("TICKET_NO").setMinWidth(0);
@@ -244,10 +246,16 @@ public class MyPage_New extends JPanel {
        	 	}
        	 });
 
-		sPane = new JScrollPane(table);
+		//sPane = new JScrollPane(table);
+		sPane = new JScrollPane();
+		sPane.setBackground(Color.black);	
+		
+		table.fixTable(sPane);
+		
 		sPane.setBounds(603, 135, 597, 378);
 		table.setBounds(41, 154, 1196, 453);
-
+	
+		sPane.setViewportView(table);
 		this.add(sPane, BorderLayout.CENTER);
 	}
 
