@@ -269,6 +269,7 @@ public class TopPanelTest extends JPanel {
     	joinPageBtn.setVisible(true);
     	myPageBtn.setVisible(false);
     	
+    	adminPageBtn.setVisible(false);
     	lblNewLabel_1.setVisible(false);
     }
 }
