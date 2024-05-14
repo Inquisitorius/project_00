@@ -3,6 +3,7 @@ package projectPackage;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -52,8 +53,7 @@ public class JinsungPanelT extends JPanel {
 		panel.setBackground(new Color(0, 0, 0));
 		panel.setBounds(0, 0, 1280, 650);
 		add(panel);
-		JLabel show_image = new JLabel("");
-		show_image.setBounds(320, 73, 124, 162);
+		
 		try {
 			String sql = "" + " SELECT FILE_DIRECTORY " + " FROM MOVIE " + " WHERE MOVIE_NAME=? " ;
 					PreparedStatement pstmt3 = conn.prepareStatement(sql);
@@ -69,20 +69,25 @@ public class JinsungPanelT extends JPanel {
 		e.printStackTrace();
 	}
 		panel.setLayout(null);
-
-		show_image.setIcon(new ImageIcon(JinsungPanel.class.getResource("/image/ohtani/stuntman.jpg")));
+		
+		JLabel show_image = new JLabel("");
+		show_image.setBounds(340, 88, 124, 162);
+		
+		ImageIcon tempIcon = new ImageIcon(JinsungPanelT.class.getResource("/image/ohtani/stuntman.jpg"));
+		tempIcon = imageSetSize(tempIcon, 90, 128);
+		show_image.setIcon(tempIcon);
 		panel.add(show_image);
 
-		JLabel lblNewLabelfix = new JLabel("예매 내역");
+		JLabel lblNewLabelfix = new JLabel("Reservation");
 		lblNewLabelfix.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabelfix.setBounds(529, 10, 168, 77);
-		lblNewLabelfix.setForeground(Color.WHITE);
-		lblNewLabelfix.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 32));
+		lblNewLabelfix.setForeground(new Color(238, 46, 36));
+		lblNewLabelfix.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 40));
+		lblNewLabelfix.setBounds(520, 22, 223, 77);
 		panel.add(lblNewLabelfix);
 
 		// 영화명
 		JLabel Title_name = new JLabel("영화명");
-		Title_name.setBounds(320, 260, 111, 40);
+		Title_name.setBounds(340, 260, 111, 40);
 		Title_name.setForeground(Color.WHITE);
 		Title_name.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(Title_name);
@@ -146,7 +151,7 @@ public class JinsungPanelT extends JPanel {
 
 		// 상영시간
 		JLabel Time = new JLabel("상영일시");
-		Time.setBounds(320, 300, 111, 40);
+		Time.setBounds(340, 300, 111, 40);
 		Time.setForeground(Color.WHITE);
 		Time.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(Time);
@@ -177,7 +182,7 @@ public class JinsungPanelT extends JPanel {
 
 		// 영화관 지역이름
 		JLabel movielocal = new JLabel("극장명");
-		movielocal.setBounds(320, 340, 111, 40);
+		movielocal.setBounds(340, 340, 111, 40);
 		movielocal.setForeground(Color.WHITE);
 		movielocal.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(movielocal);
@@ -206,7 +211,7 @@ public class JinsungPanelT extends JPanel {
 
 		// 상영관
 		JLabel screen = new JLabel("상영관");
-		screen.setBounds(320, 380, 111, 40);
+		screen.setBounds(340, 380, 111, 40);
 		screen.setForeground(Color.WHITE);
 		screen.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(screen);
@@ -242,7 +247,7 @@ public class JinsungPanelT extends JPanel {
 			}
 		}
 		JLabel person = new JLabel("좌석");
-		person.setBounds(320, 420, 111, 40);
+		person.setBounds(340, 420, 111, 40);
 		person.setForeground(Color.WHITE);
 		person.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(person);
@@ -256,7 +261,7 @@ public class JinsungPanelT extends JPanel {
 		// 뒤로가기버튼
 		JButton backButton = new JButton("");
 		backButton.setBorderPainted(false);
-		backButton.setBounds(508, 507, 110, 42);
+		backButton.setBounds(520, 480, 110, 42);
 		backButton.addActionListener(new BackAction());
 		backButton.setIcon(new ImageIcon(JinsungPanelT.class.getResource("/image/button/back.png")));
 		panel.add(backButton);
@@ -267,7 +272,7 @@ public class JinsungPanelT extends JPanel {
 		// 티켓취소버튼
 		JButton cancleButton = new JButton("");
 		cancleButton.setBorderPainted(false);
-		cancleButton.setBounds(656, 507, 110, 42);
+		cancleButton.setBounds(660, 480, 110, 42);
 		cancleButton.addActionListener(new CancleAction());
 		cancleButton.setIcon(new ImageIcon(JinsungPanelT.class.getResource("/image/jinsung/ticketcancle.png")));
 		panel.add(cancleButton);
@@ -337,6 +342,14 @@ public class JinsungPanelT extends JPanel {
 	public MainFrame get_MainTestFrame() {
 		return mainFrame;
 	}
+	//이미지아이콘 변경
+	public ImageIcon imageSetSize(ImageIcon icon, int i, int j) { // image Size Setting
+		Image ximg = icon.getImage();  //ImageIcon을 Image로 변환.
+		Image yimg = ximg.getScaledInstance(i, j, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon xyimg = new ImageIcon(yimg); 
+		return xyimg;
+	}
+	
 	// 티켓취소
 	public void CancleProgress() {
 		SQLDataconnect();

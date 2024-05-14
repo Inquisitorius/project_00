@@ -19,7 +19,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Component;
+import java.awt.Component;	
 
 import javax.swing.BoxLayout;
 

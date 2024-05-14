@@ -88,17 +88,17 @@ public class JinsungInformation extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 
-		JLabel movie_Info = new JLabel("상세 정보");
-		movie_Info.setForeground(Color.WHITE);
-		movie_Info.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 35));
-		movie_Info.setBounds(569, 38, 152, 63);
+		JLabel movie_Info = new JLabel("Information");
+		movie_Info.setForeground(new Color(238, 46, 36));
+		movie_Info.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 40));
+		movie_Info.setBounds(530, 26, 224, 74);
 		panel.add(movie_Info);
 
 		// 영화제목
 		JLabel Movie_name = new JLabel("영화명");
 		Movie_name.setForeground(Color.WHITE);
 		Movie_name.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Movie_name.setBounds(320, 220, 111, 40);
+		Movie_name.setBounds(330, 220, 111, 40);
 		panel.add(Movie_name);
 
 		JLabel Movi_namep = new JLabel("영화제목불러오기");
@@ -125,13 +125,13 @@ public class JinsungInformation extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Movi_namep.setText("");
+		Movi_namep.setText("00");
 
 		// 예매번호
 		JLabel ticketNum = new JLabel("예매 번호");
 		ticketNum.setForeground(Color.WHITE);
 		ticketNum.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		ticketNum.setBounds(320, 160, 152, 40);
+		ticketNum.setBounds(330, 160, 152, 40);
 		panel.add(ticketNum);
 
 		JLabel ticket_Nump = new JLabel("0000-001");
@@ -155,13 +155,13 @@ public class JinsungInformation extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		ticket_Nump.setText("");
+		ticket_Nump.setText("00");
 
 		// 극장명
 		JLabel Local_name = new JLabel("극장명");
 		Local_name.setForeground(Color.WHITE);
 		Local_name.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Local_name.setBounds(320, 280, 111, 40);
+		Local_name.setBounds(330, 280, 111, 40);
 		panel.add(Local_name);
 
 		JLabel Local_namep = new JLabel("CGV의정부");
@@ -184,13 +184,13 @@ public class JinsungInformation extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Local_namep.setText("");
+		Local_namep.setText("00");
 
 		// 상영시간
 		JLabel Movie_time = new JLabel("상영일시");
 		Movie_time.setForeground(Color.WHITE);
 		Movie_time.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Movie_time.setBounds(320, 340, 111, 40);
+		Movie_time.setBounds(330, 340, 111, 40);
 		panel.add(Movie_time);
 
 		JLabel Movie_timep = new JLabel("null");
@@ -215,20 +215,20 @@ public class JinsungInformation extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Movie_timep.setText("");
+		Movie_timep.setText("00");
 
 		JButton BackButton = new JButton("");
 		BackButton.setBorderPainted(false);
 		BackButton.addActionListener(new BackAction());
 		BackButton.setIcon(new ImageIcon(JinsungInformation.class.getResource("/image/button/back.png")));
-		BackButton.setBounds(520, 460, 110, 42);
+		BackButton.setBounds(520, 480, 110, 42);
 		panel.add(BackButton);
 
 		JButton InfoButton = new JButton("");
 		InfoButton.setBorderPainted(false);
 		InfoButton.addActionListener(new InfoAction());
 		InfoButton.setIcon(new ImageIcon(JinsungInformation.class.getResource("/image/jinsung/ticketinfoma.png")));
-		InfoButton.setBounds(668, 460, 110, 42);
+		InfoButton.setBounds(660, 480, 110, 42);
 		panel.add(InfoButton);
 
 		this.setVisible(false);

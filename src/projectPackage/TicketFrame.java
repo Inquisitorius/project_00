@@ -67,6 +67,7 @@ public class TicketFrame extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton BackButton = new JButton("");
+		BackButton.setBorderPainted(false);
 		
 		BackAction action = new BackAction();
 		action.oriFrame = this;
@@ -78,7 +79,7 @@ public class TicketFrame extends JFrame {
 		contentPane.add(BackButton);	
 		
 		JButton CancleButton = new JButton("");
-		
+		CancleButton.setBorderPainted(false);
 		CancleAction action2 = new CancleAction();
 		action2.oriFrame2 = this;
 		
