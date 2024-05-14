@@ -23,6 +23,8 @@ import javax.swing.SwingConstants;
 
 import projectPackage.MainFrame.PANELNAME;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.border.EmptyBorder;
 
@@ -94,6 +96,23 @@ public class Login_New extends JPanel {
 				}
 			}
 		});
+		
+		textField_Pw.addKeyListener(new KeyAdapter()
+		{
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)						
+				{
+					if(Try_Login())
+					{
+						//mainFrame.PageChange(PANELNAME.MAIN);
+						mainFrame.Login_Progress();
+						mainFrame.PageChange(PANELNAME.MAIN);
+					}
+				}
+			}
+		} );
 		add(LoginBtn);
 		
 		lblId = new JLabel("아이디");
