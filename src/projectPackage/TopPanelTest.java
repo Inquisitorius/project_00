@@ -78,7 +78,8 @@ public class TopPanelTest extends JPanel {
 				// TODO Auto-generated method stub
 				if(e.getKeyCode() == KeyEvent.VK_ENTER)						
 				{
-					String searchText = textField_1.getText().toLowerCase();
+					String searchText = textField_1.getText().toLowerCase();					
+					
 	                switch (searchText) {
 	                    case "범죄도시4":
 	                    	mainFrame.Set_selectedMovieName_TicketReserve("범죄도시4");
@@ -107,7 +108,40 @@ public class TopPanelTest extends JPanel {
 	                    	((OhtanisPanel)mainFrame.Get_Panel_Main()).getMonPopup().setVisible(true);
 	                        break;
 	                    default:
-	                        JOptionPane.showMessageDialog(null, "검색 결과가 없습니다.");
+	                    	
+	                    	String str00 = "범죄도시4";
+	                    	String str01 = "쿵푸팬더4";
+	                    	String str02 = "스턴트맨";
+	                    	String str03 = "챌린저스";
+	                    	String str04 = "몬스터 프렌즈";
+	                    	if(searchText.equals(""))
+	                    	{
+	                    		JOptionPane.showMessageDialog(null, "검색 결과가 없습니다.");
+	                    	}
+	                    	else if(str00.contains(searchText))
+	                    	{
+	                    		textField_1.setText(str00);
+	                    	}
+	                    	else if(str01.contains(searchText))
+	                    	{
+	                    		textField_1.setText(str01);
+	                    	}
+	                    	else if(str02.contains(searchText))
+	                    	{
+	                    		textField_1.setText(str02);
+	                    	}
+	                    	else if(str03.contains(searchText))
+	                    	{
+	                    		textField_1.setText(str03);
+	                    	}
+	                    	else if(str04.contains(searchText))
+	                    	{
+	                    		textField_1.setText(str04);
+	                    	}
+	                    	else
+	                    	{
+	                    		JOptionPane.showMessageDialog(null, "검색 결과가 없습니다.");
+	                    	}
 	                        break;
 	                }
 				}
@@ -150,7 +184,40 @@ public class TopPanelTest extends JPanel {
                     	((OhtanisPanel)mainFrame.Get_Panel_Main()).getMonPopup().setVisible(true);
                         break;
                     default:
-                        JOptionPane.showMessageDialog(null, "검색 결과가 없습니다.");
+                    	
+                    	String str00 = "범죄도시4";
+                    	String str01 = "쿵푸팬더4";
+                    	String str02 = "스턴트맨";
+                    	String str03 = "챌린저스";
+                    	String str04 = "몬스터 프렌즈";
+                    	if(searchText.equals(""))
+                    	{
+                    		JOptionPane.showMessageDialog(null, "검색 결과가 없습니다.");
+                    	}
+                    	else if(str00.contains(searchText))
+                    	{
+                    		textField_1.setText(str00);
+                    	}
+                    	else if(str01.contains(searchText))
+                    	{
+                    		textField_1.setText(str01);
+                    	}
+                    	else if(str02.contains(searchText))
+                    	{
+                    		textField_1.setText(str02);
+                    	}
+                    	else if(str03.contains(searchText))
+                    	{
+                    		textField_1.setText(str03);
+                    	}
+                    	else if(str04.contains(searchText))
+                    	{
+                    		textField_1.setText(str04);
+                    	}
+                    	else
+                    	{
+                    		JOptionPane.showMessageDialog(null, "검색 결과가 없습니다.");
+                    	}
                         break;
                 }
             }
