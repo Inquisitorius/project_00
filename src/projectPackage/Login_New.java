@@ -38,7 +38,6 @@ public class Login_New extends JPanel {
 	private JLabel lblpw;
 	private JLabel lblNewLabel;
 	private JButton joinBtn;
-	private JLabel label_alert;
 	private JButton LoginBtn;
 
 	/**
@@ -70,21 +69,21 @@ public class Login_New extends JPanel {
 	{
 		textField_Id = new JTextField();
 		textField_Id.setBorder(new EmptyBorder(0, 10, 0, 0));
-		textField_Id.setBounds(418, 195, 497, 40);
+		textField_Id.setBounds(418, 244, 497, 40);
 		add(textField_Id);
 		textField_Id.setColumns(10);
 		
 		textField_Pw = new JPasswordField();
 		textField_Pw.setBorder(new EmptyBorder(0, 10, 0, 0));
 		textField_Pw.setColumns(10);
-		textField_Pw.setBounds(418, 245, 497, 40);
+		textField_Pw.setBounds(418, 294, 497, 40);
 		add(textField_Pw);		
 		
 		
 		LoginBtn = new JButton("");
 		LoginBtn.setBorderPainted(false);
 		LoginBtn.setIcon(new ImageIcon(Login_New.class.getResource("/image/button/login.png")));
-		LoginBtn.setBounds(805, 305, 110, 42);
+		LoginBtn.setBounds(805, 354, 110, 42);
 		LoginBtn.addMouseListener(new MouseAdapter() {
 			@Override public void mouseClicked(MouseEvent e)
 			{
@@ -118,19 +117,19 @@ public class Login_New extends JPanel {
 		lblId = new JLabel("아이디");
 		lblId.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
 		lblId.setForeground(new Color(255, 255, 255));
-		lblId.setBounds(351, 195, 55, 40);
+		lblId.setBounds(351, 244, 55, 40);
 		add(lblId);
 		
 		lblpw = new JLabel("비밀번호");
 		lblpw.setForeground(Color.WHITE);
 		lblpw.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-		lblpw.setBounds(351, 245, 61, 40);
+		lblpw.setBounds(351, 294, 61, 40);
 		add(lblpw);
 		
 		lblNewLabel = new JLabel("아직 아이디가 없으신가요?");
 		lblNewLabel.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(419, 322, 148, 35);
+		lblNewLabel.setBounds(419, 371, 148, 35);
 		add(lblNewLabel);
 		
 		joinBtn = new JButton("");
@@ -140,19 +139,13 @@ public class Login_New extends JPanel {
 			}
 		});
 		joinBtn.setIcon(new ImageIcon(Login_New.class.getResource("/image/button/join_s.png")));
-		joinBtn.setBounds(559, 315, 32, 32);
+		joinBtn.setBounds(559, 364, 32, 32);
 		add(joinBtn);
 		joinBtn.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	                mainFrame.PageChange(MainFrame.PANELNAME.JOIN_AGREE);
 	            }
 	        });
-		
-		label_alert = new JLabel("");
-		label_alert.setForeground(Color.WHITE);
-		label_alert.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
-		label_alert.setBounds(418, 163, 497, 35);
-		add(label_alert);
 		
 	}
 	
