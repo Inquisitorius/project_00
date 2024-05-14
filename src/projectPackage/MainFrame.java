@@ -73,6 +73,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {		
 		
 		this.setTitle("CGVING");
+		this.setResizable(false);
 		this.messageObj = new PageChangeMessage(this);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
