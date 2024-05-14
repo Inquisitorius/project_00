@@ -98,13 +98,13 @@ public class JinsungInformation extends JPanel {
 		JLabel Movie_name = new JLabel("영화명");
 		Movie_name.setForeground(Color.WHITE);
 		Movie_name.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Movie_name.setBounds(220, 235, 111, 41);
+		Movie_name.setBounds(320, 220, 111, 40);
 		panel.add(Movie_name);
 
 		JLabel Movi_namep = new JLabel("영화제목불러오기");
 		Movi_namep.setForeground(Color.WHITE);
 		Movi_namep.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Movi_namep.setBounds(956, 235, 202, 41);
+		Movi_namep.setBounds(770, 220, 245, 40);
 		panel.add(Movi_namep);
 
 		try {
@@ -125,19 +125,19 @@ public class JinsungInformation extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Movi_namep.setText(movie_name);
+		Movi_namep.setText("");
 
 		// 예매번호
 		JLabel ticketNum = new JLabel("예매 번호");
 		ticketNum.setForeground(Color.WHITE);
 		ticketNum.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		ticketNum.setBounds(220, 159, 152, 51);
+		ticketNum.setBounds(320, 160, 152, 40);
 		panel.add(ticketNum);
 
 		JLabel ticket_Nump = new JLabel("0000-001");
 		ticket_Nump.setForeground(Color.WHITE);
 		ticket_Nump.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		ticket_Nump.setBounds(956, 146, 143, 77);
+		ticket_Nump.setBounds(770, 160, 245, 40);
 		panel.add(ticket_Nump);
 
 		try {
@@ -155,19 +155,19 @@ public class JinsungInformation extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		ticket_Nump.setText(String.valueOf(ticket_no));
+		ticket_Nump.setText("");
 
 		// 극장명
 		JLabel Local_name = new JLabel("극장명");
 		Local_name.setForeground(Color.WHITE);
 		Local_name.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Local_name.setBounds(220, 297, 111, 41);
+		Local_name.setBounds(320, 280, 111, 40);
 		panel.add(Local_name);
 
 		JLabel Local_namep = new JLabel("CGV의정부");
 		Local_namep.setForeground(Color.WHITE);
 		Local_namep.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Local_namep.setBounds(956, 297, 179, 41);
+		Local_namep.setBounds(770, 280, 258, 40);
 		panel.add(Local_namep);
 
 		try {
@@ -184,19 +184,19 @@ public class JinsungInformation extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Local_namep.setText(local_name);
+		Local_namep.setText("");
 
 		// 상영시간
 		JLabel Movie_time = new JLabel("상영일시");
 		Movie_time.setForeground(Color.WHITE);
 		Movie_time.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Movie_time.setBounds(220, 367, 111, 41);
+		Movie_time.setBounds(320, 340, 111, 40);
 		panel.add(Movie_time);
 
 		JLabel Movie_timep = new JLabel("null");
 		Movie_timep.setForeground(Color.WHITE);
 		Movie_timep.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Movie_timep.setBounds(815, 367, 284, 41);
+		Movie_timep.setBounds(770, 340, 302, 40);
 		panel.add(Movie_timep);
 		
 		try {
@@ -215,18 +215,20 @@ public class JinsungInformation extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Movie_timep.setText(time);
+		Movie_timep.setText("");
 
 		JButton BackButton = new JButton("");
+		BackButton.setBorderPainted(false);
 		BackButton.addActionListener(new BackAction());
 		BackButton.setIcon(new ImageIcon(JinsungInformation.class.getResource("/image/button/back.png")));
-		BackButton.setBounds(842, 534, 110, 42);
+		BackButton.setBounds(520, 460, 110, 42);
 		panel.add(BackButton);
 
 		JButton InfoButton = new JButton("");
+		InfoButton.setBorderPainted(false);
 		InfoButton.addActionListener(new InfoAction());
 		InfoButton.setIcon(new ImageIcon(JinsungInformation.class.getResource("/image/jinsung/ticketinfoma.png")));
-		InfoButton.setBounds(989, 534, 110, 42);
+		InfoButton.setBounds(668, 460, 110, 42);
 		panel.add(InfoButton);
 
 		this.setVisible(false);
