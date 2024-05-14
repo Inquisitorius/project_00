@@ -98,7 +98,7 @@ public class JinsungInformation extends JPanel {
 		JLabel Movie_name = new JLabel("영화명");
 		Movie_name.setForeground(Color.WHITE);
 		Movie_name.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Movie_name.setBounds(330, 220, 111, 40);
+		Movie_name.setBounds(340, 220, 111, 40);
 		panel.add(Movie_name);
 
 		JLabel Movi_namep = new JLabel("영화제목불러오기");
@@ -131,7 +131,7 @@ public class JinsungInformation extends JPanel {
 		JLabel ticketNum = new JLabel("예매 번호");
 		ticketNum.setForeground(Color.WHITE);
 		ticketNum.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		ticketNum.setBounds(330, 160, 152, 40);
+		ticketNum.setBounds(340, 160, 152, 40);
 		panel.add(ticketNum);
 
 		JLabel ticket_Nump = new JLabel("0000-001");
@@ -161,7 +161,7 @@ public class JinsungInformation extends JPanel {
 		JLabel Local_name = new JLabel("극장명");
 		Local_name.setForeground(Color.WHITE);
 		Local_name.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Local_name.setBounds(330, 280, 111, 40);
+		Local_name.setBounds(340, 280, 111, 40);
 		panel.add(Local_name);
 
 		JLabel Local_namep = new JLabel("CGV의정부");
@@ -190,7 +190,7 @@ public class JinsungInformation extends JPanel {
 		JLabel Movie_time = new JLabel("상영일시");
 		Movie_time.setForeground(Color.WHITE);
 		Movie_time.setFont(new Font("나눔고딕", Font.BOLD, 26));
-		Movie_time.setBounds(330, 340, 111, 40);
+		Movie_time.setBounds(340, 340, 111, 40);
 		panel.add(Movie_time);
 
 		JLabel Movie_timep = new JLabel("null");

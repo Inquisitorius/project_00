@@ -51,7 +51,7 @@ public class Ticketreserve extends JPanel {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
-		panel.setBounds(134, 10, 934, 591);
+		panel.setBounds(155, 10, 934, 591);
 		add(panel);
 		panel.setLayout(null);
 
@@ -66,40 +66,42 @@ public class Ticketreserve extends JPanel {
 		ticketreserve_1.setBounds(77, 93, 60, 41);
 		panel_1.add(ticketreserve_1);
 		ticketreserve_1.setForeground(new Color(255, 255, 255));
-		ticketreserve_1.setFont(new Font("맑은 고딕", Font.PLAIN, 28));
+		ticketreserve_1.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
 
 		JLabel ticketreserve_2 = new JLabel("지역");
 		ticketreserve_2.setBounds(279, 86, 71, 55);
 		panel_1.add(ticketreserve_2);
 		ticketreserve_2.setForeground(new Color(255, 255, 255));
-		ticketreserve_2.setFont(new Font("맑은 고딕", Font.PLAIN, 28));
+		ticketreserve_2.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
 
 		JLabel ticketreserve_3 = new JLabel("극장");
 		ticketreserve_3.setBounds(457, 86, 71, 55);
 		panel_1.add(ticketreserve_3);
 		ticketreserve_3.setForeground(new Color(255, 255, 255));
-		ticketreserve_3.setFont(new Font("맑은 고딕", Font.PLAIN, 28));
+		ticketreserve_3.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
 
 		JLabel ticketreserve_4 = new JLabel("시간");
 		ticketreserve_4.setBounds(723, 86, 71, 55);
 		panel_1.add(ticketreserve_4);
 		ticketreserve_4.setForeground(new Color(255, 255, 255));
-		ticketreserve_4.setFont(new Font("맑은 고딕", Font.PLAIN, 28));
+		ticketreserve_4.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
 
 		JLabel ticketreserve = new JLabel("영화예매하기");
-		ticketreserve.setBounds(350, 10, 223, 55);
+		ticketreserve.setBounds(346, 10, 228, 55);
 		panel_1.add(ticketreserve);
-		ticketreserve.setForeground(new Color(255, 255, 255));
-		ticketreserve.setFont(new Font("나눔고딕 ExtraBold", Font.BOLD, 35));
+		ticketreserve.setForeground(new Color(238, 46, 36));
+		ticketreserve.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 40));
 
 		JButton BackButton = new JButton("");
 		BackButton.addActionListener(new BackAction());
+		BackButton.setBorderPainted(false);
 		BackButton.setIcon(new ImageIcon(Ticketreserve.class.getResource("/image/button/back.png")));
 		BackButton.setBounds(12, 504, 110, 42);
 		panel_1.add(BackButton);
 
 		JButton SeatButton = new JButton("");
 		SeatButton.addActionListener(new SeatAction());
+		SeatButton.setBorderPainted(false);
 		SeatButton.setIcon(new ImageIcon(Ticketreserve.class.getResource("/image/button/select.png")));
 		SeatButton.setBounds(788, 504, 110, 42);
 		panel_1.add(SeatButton);
