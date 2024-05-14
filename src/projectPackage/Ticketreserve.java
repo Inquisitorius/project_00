@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
+import javax.swing.SwingConstants;
 
 public class Ticketreserve extends JPanel {
 
@@ -65,31 +66,36 @@ public class Ticketreserve extends JPanel {
 		// 고정값
 
 		JLabel ticketreserve_1 = new JLabel("영화");
-		ticketreserve_1.setBounds(77, 93, 60, 41);
+		ticketreserve_1.setHorizontalAlignment(SwingConstants.CENTER);
+		ticketreserve_1.setBounds(84, 94, 60, 50);
 		panel_1.add(ticketreserve_1);
 		ticketreserve_1.setForeground(new Color(255, 255, 255));
-		ticketreserve_1.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
+		ticketreserve_1.setFont(new Font("나눔고딕", Font.BOLD, 26));
 
 		JLabel ticketreserve_2 = new JLabel("지역");
-		ticketreserve_2.setBounds(279, 86, 71, 55);
+		ticketreserve_2.setHorizontalAlignment(SwingConstants.CENTER);
+		ticketreserve_2.setBounds(278, 94, 71, 50);
 		panel_1.add(ticketreserve_2);
 		ticketreserve_2.setForeground(new Color(255, 255, 255));
-		ticketreserve_2.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
+		ticketreserve_2.setFont(new Font("나눔고딕", Font.BOLD, 26));
 
 		JLabel ticketreserve_3 = new JLabel("극장");
-		ticketreserve_3.setBounds(457, 86, 71, 55);
+		ticketreserve_3.setHorizontalAlignment(SwingConstants.CENTER);
+		ticketreserve_3.setBounds(461, 94, 71, 50);
 		panel_1.add(ticketreserve_3);
 		ticketreserve_3.setForeground(new Color(255, 255, 255));
-		ticketreserve_3.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
+		ticketreserve_3.setFont(new Font("나눔고딕", Font.BOLD, 26));
 
 		JLabel ticketreserve_4 = new JLabel("시간");
-		ticketreserve_4.setBounds(723, 86, 71, 55);
+		ticketreserve_4.setHorizontalAlignment(SwingConstants.CENTER);
+		ticketreserve_4.setBounds(717, 94, 71, 50);
 		panel_1.add(ticketreserve_4);
 		ticketreserve_4.setForeground(new Color(255, 255, 255));
-		ticketreserve_4.setFont(new Font("맑은 고딕", Font.PLAIN, 30));
+		ticketreserve_4.setFont(new Font("나눔고딕", Font.BOLD, 26));
 
-		JLabel ticketreserve = new JLabel("영화예매하기");
-		ticketreserve.setBounds(346, 10, 228, 55);
+		JLabel ticketreserve = new JLabel("Select Movie");
+		ticketreserve.setHorizontalAlignment(SwingConstants.CENTER);
+		ticketreserve.setBounds(339, 21, 255, 55);
 		panel_1.add(ticketreserve);
 		ticketreserve.setForeground(new Color(238, 46, 36));
 		ticketreserve.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 40));
@@ -98,14 +104,14 @@ public class Ticketreserve extends JPanel {
 		BackButton.addActionListener(new BackAction());
 		BackButton.setBorderPainted(false);
 		BackButton.setIcon(new ImageIcon(Ticketreserve.class.getResource("/image/button/back.png")));
-		BackButton.setBounds(12, 504, 110, 42);
+		BackButton.setBounds(12, 494, 110, 42);
 		panel_1.add(BackButton);
 
 		JButton SeatButton = new JButton("");
 		SeatButton.addActionListener(new SeatAction());
 		SeatButton.setBorderPainted(false);
 		SeatButton.setIcon(new ImageIcon(Ticketreserve.class.getResource("/image/button/select.png")));
-		SeatButton.setBounds(788, 504, 110, 42);
+		SeatButton.setBounds(788, 494, 110, 42);
 		panel_1.add(SeatButton);
 
 		// 영화제목 리스트
@@ -124,7 +130,7 @@ public class Ticketreserve extends JPanel {
 		movie_location_list.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		
 		JScrollPane locationP = new JScrollPane(movie_location_list);
-		locationP.setBounds(229, 144, 167, 333);
+		locationP.setBounds(229, 144, 163, 334);
 		panel_1.add(locationP);
 
 		// 극장 리스트

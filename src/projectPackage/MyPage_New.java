@@ -82,7 +82,7 @@ public class MyPage_New extends JPanel {
 		mypageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		mypageLabel.setForeground(new Color(238, 46, 36));
 		mypageLabel.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 48));
-		mypageLabel.setBounds(502, 36, 240, 56);
+		mypageLabel.setBounds(520, 36, 240, 56);
 		add(mypageLabel);
 
 		JLabel lblId = new JLabel("ID");
