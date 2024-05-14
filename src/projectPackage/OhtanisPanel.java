@@ -198,7 +198,7 @@ public class OhtanisPanel extends JPanel {
 			JButton reserveBtn = new JButton("");
 			reserveBtn.setBorderPainted(false);
 			reserveBtn.setIcon(new ImageIcon(OhtanisPanel.class.getResource("/image/button/reserve.png")));
-			reserveBtn.setBounds(1084, 261, 110, 42);
+			reserveBtn.setBounds(1080, 262, 110, 42);
 			add(reserveBtn);
 			reserveBtn.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
