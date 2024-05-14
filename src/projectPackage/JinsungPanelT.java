@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,6 +27,7 @@ public class JinsungPanelT extends JPanel {
 	private Connection conn;
 		
 	private TicketVo ticketInfo;
+	private TicketVo ticketInfo2;
 	int ticket_no = 0;
 	String movie_name = "";
 	String time = "";
@@ -33,50 +35,85 @@ public class JinsungPanelT extends JPanel {
 	String mh_name = "";
 	String seat_info = "";
 	String local_name = "";
+	
+	private JLabel Title;
+	private JLabel show_image;
+	private JLabel ticketNump;
+	private JLabel timep;
+	private JLabel localp;
+	private JLabel screenp;
+	private JLabel personp;
 
 	/**
 	 * Create the panel.
 	 */
+	
+	public void PageInit()	
+	{
+		Title.setText(ticketInfo2.getMovie_Name());
+		ticketNump.setText(Integer.toString(ticketInfo2.getTicket_no()));
+		timep.setText(ticketInfo2.getSchedule_time());
+		localp.setText(ticketInfo2.getLocal_name());
+		screenp.setText(ticketInfo2.getTheater_Name());
+		
+		MoviePosterUpdate();
+	}
+	
+	public void MoviePosterUpdate()
+	{
+		String Dir = "";
+		try 
+		{
+			Class.forName("oracle.jdbc.OracleDriver");
+			Connection conn = DriverManager.getConnection(
+					"jdbc:oracle:thin:@//14.42.124.35:1521/XE",
+					"c##wjrls", 
+					"881125");
+			
+			String rawString = ticketInfo2.getMovie_Name();	
+			
+			String sql = "SELECT FILE_DIRECTORY FROM MOVIE WHERE MOVIE_NAME = '" + rawString +"' " ;
+			PreparedStatement pstmt3 = conn.prepareStatement(sql);			
+
+			ResultSet rs = pstmt3.executeQuery();
+			rs.next();
+			
+			Dir = rs.getString("FILE_DIRECTORY");		
+			System.out.println(Dir);
+		} 
+		catch (SQLException | ClassNotFoundException e) 
+		{		
+			e.printStackTrace(); 
+		}
+		
+		ImageIcon tempIcon = new ImageIcon(JinsungPanelT.class.getResource(Dir));
+		tempIcon = imageSetSize(tempIcon, 90, 128);
+		show_image.setIcon(tempIcon);
+	}
+			
 
 	public JinsungPanelT(MainFrame mainFrame) {
 
 		this.mainFrame = mainFrame;
 		ticketInfo  = new TicketVo(); 
 		
-		SQLDataconnect();
 		setLayout(null);
 		this.setSize(1280, 800 - 150);
 		this.setPreferredSize(new Dimension(1280, 800 - 150));
 		this.setBackground(Color.white);
-
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
 		panel.setBounds(0, 0, 1280, 650);
 		add(panel);
-		
-		try {
-			String sql = "" + " SELECT FILE_DIRECTORY " + " FROM MOVIE " + " WHERE MOVIE_NAME=? " ;
-					PreparedStatement pstmt3 = conn.prepareStatement(sql);
-			pstmt3.setString(1, "스턴트맨");
-
-			ResultSet rs = pstmt3.executeQuery();
-
-			while (rs.next()) {
-				
-			}
-		
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
 		panel.setLayout(null);
 		
-		JLabel show_image = new JLabel("");
-		show_image.setBounds(340, 88, 124, 162);
+		//SQLDataconnect();
 		
-		ImageIcon tempIcon = new ImageIcon(JinsungPanelT.class.getResource("/image/ohtani/stuntman.jpg"));
-		tempIcon = imageSetSize(tempIcon, 90, 128);
-		show_image.setIcon(tempIcon);
+		show_image = new JLabel("");
+		show_image.setBounds(340, 88, 124, 162);	
 		panel.add(show_image);
+		
 
 		JLabel lblNewLabelfix = new JLabel("Reservation");
 		lblNewLabelfix.setHorizontalAlignment(SwingConstants.CENTER);
@@ -92,30 +129,13 @@ public class JinsungPanelT extends JPanel {
 		Title_name.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(Title_name);
 
-		JLabel Title = new JLabel("영화");
+		Title = new JLabel("영화");
 		Title.setBounds(770, 260, 202, 40);
 		Title.setForeground(Color.WHITE);
 		Title.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(Title);
 
-		try {
-			String sql = "" + " SELECT MOVIE_NAME " + " FROM MOVIE " + " WHERE MOVIE_COMMENT = ? ";
-
-			PreparedStatement pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setString(1, "스턴트");
-
-			ResultSet rs = pstmt2.executeQuery();
-
-			while (rs.next()) {
-
-				movie_name = rs.getString("MOVIE_NAME");
-			}
-
-			pstmt2.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		Title.setText("제목");
+		
 
 		// 예매 번호
 		JLabel ticketNum = new JLabel("예매 번호");
@@ -125,30 +145,11 @@ public class JinsungPanelT extends JPanel {
 		ticketNum.setFont(new Font("나눔고딕", Font.BOLD, 28));
 		panel.add(ticketNum);
 
-		JLabel ticketNump = new JLabel("1234-567");
+		ticketNump = new JLabel("1234-567");
 		ticketNum.setForeground(Color.WHITE);
 		ticketNum.setFont(new Font("나눔고딕", Font.BOLD, 28));
 		panel.add(ticketNum);
-
-		try {
-			String sql = "" + " SELECT TICKET_NO " + " FROM TICKET " + " Where USER_NO = ? ";
-
-			PreparedStatement pstmt1 = conn.prepareStatement(sql);
-			pstmt1.setString(1, "2");
-
-			ResultSet rs = pstmt1.executeQuery();
-			while (rs.next()) {
-
-				// 티켓번호
-				ticket_no = rs.getInt("TICKET_NO");
-
-			}
-			pstmt1.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		ticketNum.setText("티켓번호");
-
+		
 		// 상영시간
 		JLabel Time = new JLabel("상영일시");
 		Time.setBounds(340, 300, 111, 40);
@@ -156,29 +157,11 @@ public class JinsungPanelT extends JPanel {
 		Time.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(Time);
 
-		JLabel timep = new JLabel("00:00");
+		timep = new JLabel("00:00");
 		timep.setBounds(770, 300, 179, 40);
 		timep.setForeground(Color.WHITE);
 		timep.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(timep);
-
-		try {
-			String sql = "" + " SELECT SCHEDULE_TIME " + " FROM MOVIESCHEDULE " + " WHERE SCHEDULE_NO = ? ";
-
-			PreparedStatement pstmt3 = conn.prepareStatement(sql);
-			pstmt3.setString(1, "2");
-
-			ResultSet rs = pstmt3.executeQuery();
-
-			while (rs.next()) {
-				time = rs.getString("SCHEDULE_TIME");
-
-			}
-			pstmt3.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		timep.setText("상영관");
 
 		// 영화관 지역이름
 		JLabel movielocal = new JLabel("극장명");
@@ -187,27 +170,11 @@ public class JinsungPanelT extends JPanel {
 		movielocal.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(movielocal);
 
-		JLabel localp = new JLabel("");
+		localp = new JLabel("");
 		localp.setBounds(770, 340, 179, 40);
 		localp.setForeground(Color.WHITE);
 		localp.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(localp);
-
-		try {
-			String sql = "" + " SELECT LOCAL_NAME " + " FROM LOCAL " + " WHERE LOCAL_POSITION = ? ";
-			PreparedStatement pstmt1 = conn.prepareStatement(sql);
-			pstmt1.setString(1, "경기도 의정부시 평화로 525");
-
-			ResultSet rs = pstmt1.executeQuery();
-
-			while (rs.next()) {
-				local_name = rs.getString("LOCAL_NAME");
-			}
-			pstmt1.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		localp.setText("극장");
 
 		// 상영관
 		JLabel screen = new JLabel("상영관");
@@ -215,44 +182,21 @@ public class JinsungPanelT extends JPanel {
 		screen.setForeground(Color.WHITE);
 		screen.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(screen);
-		JLabel screenp = new JLabel("0관");
+		
+		screenp = new JLabel("");
 		screenp.setBounds(770, 380, 189, 40);
 		screenp.setForeground(Color.WHITE);
 		screenp.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(screenp);
 
-		try {
-			String sql = "" + " SELECT MOVIEHOUSE_NAME " + " FROM MovieHouse " + " WHERE LOCAL_NO =? ";
-
-			PreparedStatement pstmt1 = conn.prepareStatement(sql);
-			pstmt1.setString(1, "");
-
-			ResultSet rs = pstmt1.executeQuery();
-
-			while (rs.next()) {
-				th_name = rs.getString("MOVIEHOUSE_NAME");
-				screenp.setText(th_name);
-			}
-			pstmt1.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
+	
 		JLabel person = new JLabel("좌석");
 		person.setBounds(340, 420, 111, 40);
 		person.setForeground(Color.WHITE);
 		person.setFont(new Font("나눔고딕", Font.PLAIN, 22));
 		panel.add(person);
 
-		JLabel personp = new JLabel("A1,A2");
+		JLabel personp = new JLabel("");
 		personp.setBounds(770, 420, 124, 40);
 		personp.setForeground(Color.WHITE);
 		personp.setFont(new Font("나눔고딕", Font.PLAIN, 22));
@@ -352,34 +296,34 @@ public class JinsungPanelT extends JPanel {
 	
 	// 티켓취소
 	public void CancleProgress() {
-		SQLDataconnect();
+		//SQLDataconnect();
 		
-		try {
-			String sql = "" + " DELETE FROM MOVIE " + "WHERE TICKET =? ";
-			PreparedStatement pstmt1 = conn.prepareStatement(sql);
-			pstmt1.setString(1, "41");
-			System.out.println("Progress in----");
+		try 
+		{
+			Class.forName("oracle.jdbc.OracleDriver");
+			Connection conn_temp = DriverManager.getConnection(
+					"jdbc:oracle:thin:@//14.42.124.35:1521/XE",
+					"c##wjrls", 
+					"881125");
+			
+			String sql = " UPDATE TICKET  SET TICKET_STATUS = 'CC' "
+					+ "WHERE TICKET_NO = ? ";
+			PreparedStatement pstmt1 = conn_temp.prepareStatement(sql);
+			pstmt1.setInt(1, this.ticketInfo2.getTicket_no());			
 
 			int rs = pstmt1.executeUpdate();
+			
+			pstmt1.close();
+			conn_temp.close();
 
 			if (rs < 0 || rs > 1)
 				System.out.println("err : movie ticket delete rs cnt : " + rs);
 			
-		}
-		  //catch (ClassNotFoundException e) { 
-		  //e.printStackTrace(); }
-		  catch (SQLException e) {
+		}		
+		  catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
-		} finally {
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
-		// --> 전에 있던 텍스트 날려주세요.
-		// TextInit();
+		} 
+		
 	}
 
 	/*
@@ -398,5 +342,10 @@ public class JinsungPanelT extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			ticketFrame.setVisible(true);
 		}
+	}
+
+	public void Set_TicketInfo_Cancle(TicketVo ticketInfo) {
+		// TODO Auto-generated method stub
+		this.ticketInfo2 = ticketInfo;
 	}
 }

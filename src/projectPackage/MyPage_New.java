@@ -236,11 +236,15 @@ public class MyPage_New extends JPanel {
        	 				return;
        	 			
        	 			int row = t.convertRowIndexToModel(i);
-       	 			int ticketNo = Integer.parseInt((String)m.getValueAt(row, 0));
+       	 			int ticketNo = Integer.parseInt((String)m.getValueAt(row, 0));       	 			
        	 			
+       	 			String status = (String)m.getValueAt(row, 5);
        	 			
-       	 			System.out.println(ticketNo);
-       	 		//mainFrame.PageChange(PANELNAME.TICKETINFO);
+       	 			if(!status.equals("RS"))
+       	 				return;
+       	 			
+       	 			mainFrame.Set_TicketInfomationPage_TicketNo(ticketNo);
+       	 			mainFrame.PageChange(PANELNAME.TICKETINFO);
        	 			
        	 		}
        	 	}

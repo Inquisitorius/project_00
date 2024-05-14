@@ -251,13 +251,24 @@ public class MainFrame extends JFrame {
 	    	  panelMap.get(MainFrame.PANELNAME.SEATSELECT).setVisible(true);
 	    	  break;
 	      case TICKETINFO:
+	    	  ((JinsungInformation)panelMap.get(MainFrame.PANELNAME.TICKETINFO)).PageInit();
 	    	  panelMap.get(MainFrame.PANELNAME.TICKETINFO).setVisible(true);
 	    	  break;  
 	      case TICKETCANCLE:
+	    	  ((JinsungPanelT)panelMap.get(MainFrame.PANELNAME.TICKETCANCLE)).PageInit();
 	    	  panelMap.get(MainFrame.PANELNAME.TICKETCANCLE).setVisible(true);
-	    	  break;
-	    	
+	    	  break;	    	
 		}
+	}
+	
+	public void Set_TicketInfo_Cancle(TicketVo ticketInfo)
+	{
+		((JinsungPanelT)panelMap.get(MainFrame.PANELNAME.TICKETCANCLE)).Set_TicketInfo_Cancle(ticketInfo);
+	}
+	
+	public void Set_TicketInfomationPage_TicketNo(int ticketNo)
+	{
+		((JinsungInformation)panelMap.get(MainFrame.PANELNAME.TICKETINFO)).Set_TicketNo(ticketNo);
 	}
 	
 	public void Set_TicketRserveData_forSeatSelect(String _moviName, String _movieHouseName, String _localName, String _timeData)
