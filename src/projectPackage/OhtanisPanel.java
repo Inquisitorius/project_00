@@ -315,7 +315,7 @@ public class OhtanisPanel extends JPanel {
 			chalPopup.setVisible(false);
 			monPopup.setVisible(true);
 			
-			mainFrame.Set_selectedMovieName_TicketReserve("꼬마참새리차드");
+			mainFrame.Set_selectedMovieName_TicketReserve("몬스터프렌즈");
 		}
 	}
 }
