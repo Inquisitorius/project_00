@@ -194,18 +194,18 @@ public class OhtanisPanel extends JPanel {
 			imageLabel.addMouseListener(new MyMouseListener());
 			add(imageLabel);
 			
-			JLabel reserveBtn = new JLabel("");
+						
+			JButton reserveBtn = new JButton("");
+			reserveBtn.setBorderPainted(false);
 			reserveBtn.setIcon(new ImageIcon(OhtanisPanel.class.getResource("/image/button/reserve.png")));
-			reserveBtn.setBounds(1080, 260, 110, 42);
+			reserveBtn.setBounds(1084, 261, 110, 42);
 			add(reserveBtn);
-			reserveBtn.addMouseListener(new MouseAdapter() 
-			{
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-					mainFrame.PageChange(PANELNAME.TICKETING);
-				}
-			});
+			reserveBtn.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                mainFrame.PageChange(MainFrame.PANELNAME.TICKETING);
+	            }
+	        });		
+					
 			
 			
 			
