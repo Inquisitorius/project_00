@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -298,7 +299,9 @@ public class SeatSelectPage extends JPanel {
 		}
 		
 		SelectedCntLabel.setText(selectedSeat + " 개 좌석이 선택되었습니다.");
-		totalPrice.setText("Total :  " + price);
+		DecimalFormat df = new DecimalFormat("#,###");
+		
+		totalPrice.setText("Total :  " +  df.format(price));		
 	}
 	
 	public int Count_SelectedSeat()
