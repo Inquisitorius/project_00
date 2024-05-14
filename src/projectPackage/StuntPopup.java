@@ -47,13 +47,13 @@ public class StuntPopup extends JFrame {
         imageLabel.setBounds(50, 72, 150, 214);
         contentPane.add(imageLabel);
         
-        JButton btnNewButton = new JButton("");
-        btnNewButton.setBorderPainted(false);
-        btnNewButton.setIcon(new ImageIcon(StuntPopup.class.getResource("/image/button/reserve.png")));
-        btnNewButton.setBounds(73, 306, 110, 42);
-        contentPane.add(btnNewButton);
+        JButton reserveBtn = new JButton("");
+        reserveBtn.setBorderPainted(false);
+        reserveBtn.setIcon(new ImageIcon(StuntPopup.class.getResource("/image/button/reserve.png")));
+        reserveBtn.setBounds(73, 306, 110, 42);
+        contentPane.add(reserveBtn);
         
-        btnNewButton.addActionListener(new ActionListener() {
+        reserveBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		//progress
         		parentPanel.TicketMove();
