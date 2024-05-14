@@ -202,6 +202,8 @@ public class OhtanisPanel extends JPanel {
 			add(reserveBtn);
 			reserveBtn.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
+	            	
+	            	mainFrame.Set_selectedMovieName_TicketReserve("");
 	                mainFrame.PageChange(MainFrame.PANELNAME.TICKETING);
 	            }
 	        });		
@@ -256,7 +258,8 @@ public class OhtanisPanel extends JPanel {
 			kungfuPopup.setVisible(false);
 			chalPopup.setVisible(false);
 			monPopup.setVisible(false);
-
+			
+			mainFrame.Set_selectedMovieName_TicketReserve("범죄도시4");
 		}
 	}
 
@@ -269,6 +272,8 @@ public class OhtanisPanel extends JPanel {
 			kungfuPopup.setVisible(false);
 			chalPopup.setVisible(false);
 			monPopup.setVisible(false);
+			
+			mainFrame.Set_selectedMovieName_TicketReserve("스턴트맨");
 		}
 	}
 
@@ -281,6 +286,8 @@ public class OhtanisPanel extends JPanel {
 			kungfuPopup.setVisible(true);
 			chalPopup.setVisible(false);
 			monPopup.setVisible(false);
+			
+			mainFrame.Set_selectedMovieName_TicketReserve("쿵푸팬더4");
 		}
 	}
 
@@ -293,6 +300,8 @@ public class OhtanisPanel extends JPanel {
 			kungfuPopup.setVisible(false);
 			chalPopup.setVisible(true);
 			monPopup.setVisible(false);
+			
+			mainFrame.Set_selectedMovieName_TicketReserve("챌린저스");
 		}
 	}
 	
@@ -305,6 +314,8 @@ public class OhtanisPanel extends JPanel {
 			kungfuPopup.setVisible(false);
 			chalPopup.setVisible(false);
 			monPopup.setVisible(true);
+			
+			mainFrame.Set_selectedMovieName_TicketReserve("꼬마참새리차드");
 		}
 	}
 }

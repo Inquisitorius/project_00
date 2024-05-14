@@ -26,6 +26,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ListModel;
 
 public class Ticketreserve extends JPanel {
 
@@ -33,6 +34,7 @@ public class Ticketreserve extends JPanel {
 	private MainFrame mainTestFrame;
 	private JList<String> movie_name_list, movie_location_list, movie_theater_list, movie_time_list;
 	private JScrollPane thaeterP;
+	private String selectedMovieName;
 	
 	private enum LISTYPE {MOVIE, LOCAL, MOVIEHOUSE, TIME, END };
 
@@ -152,8 +154,24 @@ public class Ticketreserve extends JPanel {
 		this.loadSqlData_test(movie_name_list, LISTYPE.MOVIE, "", "", "");
 		
 		DefaultListModel<String> nullObj = new DefaultListModel<String>();
-		
 		movie_location_list.setModel(nullObj);
+		
+		
+		ListModel<String> temp = movie_name_list.getModel();
+		for(int i = 0 ; i < temp.getSize(); ++i)
+		{
+			if(temp.getElementAt(i).equals(selectedMovieName))
+			{
+				movie_name_list.setSelectedIndex(i);				
+				String selectValue = movie_name_list.getSelectedValue();
+				System.out.println(selectValue);
+				loadSqlData_test(movie_location_list, LISTYPE.LOCAL, selectValue, "", "");
+				
+				break;
+			}
+		}
+		
+		//movie_location_list.setModel(nullObj);
 		movie_time_list.setModel(nullObj);
 		movie_theater_list.setModel(nullObj);		
 	}
@@ -215,6 +233,11 @@ public class Ticketreserve extends JPanel {
 			
 		});
 		
+	}
+	
+	public void Set_selectedMovieName(String name)
+	{
+		this.selectedMovieName = name;
 	}
 	
 	public void loadSqlData_test(JList<String> _list, LISTYPE _type, String movieName, String LocalName, String houseName)
@@ -346,7 +369,7 @@ public class Ticketreserve extends JPanel {
 			
 			if( movieCheker < 0 || localChecker < 0 || timeChecker < 0 || houseChecker < 0)
 			{
-				JOptionPane.showMessageDialog(null, "선택하라우.");
+				JOptionPane.showMessageDialog(null, "선택사항 확인 부탁드립니다.");
 				return;
 			}			
 			

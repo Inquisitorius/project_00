@@ -123,10 +123,6 @@ public class MainFrame extends JFrame {
 	    panelMap.put(MainFrame.PANELNAME.TICKETINFO, ContentPanel16);
 	    panelMap.put(MainFrame.PANELNAME.TICKETCANCLE, ContentPanel17);
 	    
-
-		
-		//System.out.println(MainFrame.class.getResource("./../image/ring.jpg"));
-		//System.out.println(MainFrame.class.getResource("").getPath());
 		
 		//Main판넬 설정
 		setBounds(100, 100, 1280, 800);
@@ -259,6 +255,11 @@ public class MainFrame extends JFrame {
 	    	  panelMap.get(MainFrame.PANELNAME.TICKETCANCLE).setVisible(true);
 	    	  break;	    	
 		}
+	}
+	
+	public void Set_selectedMovieName_TicketReserve(String movieName)
+	{
+		((Ticketreserve)panelMap.get(MainFrame.PANELNAME.TICKETING)).Set_selectedMovieName(movieName);
 	}
 	
 	public void Set_TicketInfo_Cancle(TicketVo ticketInfo)
