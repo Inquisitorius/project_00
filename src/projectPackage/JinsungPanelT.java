@@ -168,13 +168,6 @@ public class JinsungPanelT extends JPanel {
 		show_image.setBounds(206, 162, 150, 214);	
 		panel.add(show_image);
 
-		JLabel lblNewLabelfix = new JLabel("Reservation");
-		lblNewLabelfix.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabelfix.setForeground(new Color(238, 46, 36));
-		lblNewLabelfix.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 40));
-		lblNewLabelfix.setBounds(520, 22, 223, 77);
-		panel.add(lblNewLabelfix);
-
 		// 영화명
 		JLabel Title_name = new JLabel("영화명");
 		Title_name.setBounds(436, 197, 111, 40);
@@ -272,6 +265,11 @@ public class JinsungPanelT extends JPanel {
 		cancleButton.addActionListener(new CancleAction());
 		cancleButton.setIcon(new ImageIcon(JinsungPanelT.class.getResource("/image/jinsung/ticketcancle.png")));
 		panel.add(cancleButton);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(JinsungPanelT.class.getResource("/image/title/reserve2.png")));
+		lblNewLabel.setBounds(510, 24, 270, 80);
+		panel.add(lblNewLabel);
 
 		this.setVisible(false);
 	}

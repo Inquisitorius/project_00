@@ -160,37 +160,6 @@ public class JoinAgree extends JPanel {
         add(textField_4);
 
         setupButtons();
-        // 버튼 설정
-        /*JButton btnNewButton_1 = new JButton("");
-        btnNewButton_1.setBorderPainted(false);
-        btnNewButton_1.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/back.png")));
-        btnNewButton_1.setBounds(855, 499, 110, 42);
-        add(btnNewButton_1);
-        btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                mainFrame.PageChange(MainFrame.PANELNAME.MAIN);  // Assuming PANELNAME.OHTANI is correct
-            }
-        });
-
-        JButton btnNewButton_2 = new JButton("");
-        btnNewButton_2.setBorderPainted(false);
-        btnNewButton_2.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/join2.png")));
-        btnNewButton_2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (validateEmail(textField_3.getText()) && validatePasswords(new String(passwordField_1.getPassword()), new String(passwordField_2.getPassword()))) {
-                    JOptionPane.showMessageDialog(null, "회원가입 정보가 확인되었습니다.");
-                }
-            }
-        });
-        btnNewButton_2.setBounds(998, 499, 110, 42);
-        add(btnNewButton_2);*/
-
-        JLabel lblNewLabel_1 = new JLabel("Terms & Policy");
-        lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 40));
-        lblNewLabel_1.setForeground(new Color(238, 46, 36));
-        lblNewLabel_1.setBounds(180, 44, 301, 42);
-        add(lblNewLabel_1);
         
         JLabel lblNewLabel_2 = new JLabel("아이디");
         lblNewLabel_2.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
@@ -228,12 +197,15 @@ public class JoinAgree extends JPanel {
         lblNewLabel_7.setBounds(690, 417, 71, 15);
         add(lblNewLabel_7);
         
-        JLabel lblNewLabel_1_1 = new JLabel("Sign in");
-        lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel_1_1.setForeground(new Color(238, 46, 36));
-        lblNewLabel_1_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 40));
-        lblNewLabel_1_1.setBounds(787, 44, 301, 42);
-        add(lblNewLabel_1_1);
+        JLabel lblNewLabel = new JLabel("New label");
+        lblNewLabel.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/title/terms2.png")));
+        lblNewLabel.setBounds(182, 32, 270, 80);
+        add(lblNewLabel);
+        
+        JLabel lblNewLabel_1 = new JLabel("New label");
+        lblNewLabel_1.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/title/sign2.png")));
+        lblNewLabel_1.setBounds(804, 32, 270, 80);
+        add(lblNewLabel_1);
     }
 
     private void initializeUserInputFields() {

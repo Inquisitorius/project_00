@@ -77,14 +77,6 @@ public class MyPage_New extends JPanel {
 		this.setBackground(new Color(0, 0, 0));
 		setLayout(null);
 
-		JLabel mypageLabel = new JLabel("MyPage");
-		mypageLabel.setBackground(new Color(255, 255, 255));
-		mypageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		mypageLabel.setForeground(new Color(238, 46, 36));
-		mypageLabel.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 48));
-		mypageLabel.setBounds(520, 36, 240, 56);
-		add(mypageLabel);
-
 		JLabel lblId = new JLabel("ID");
 		lblId.setHorizontalAlignment(SwingConstants.CENTER);
 		lblId.setForeground(Color.WHITE);
@@ -251,6 +243,11 @@ public class MyPage_New extends JPanel {
 	
 		sPane.setViewportView(table);
 		this.add(sPane, BorderLayout.CENTER);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(MyPage_New.class.getResource("/image/title/mypage2.png")));
+		lblNewLabel.setBounds(520, 25, 270, 80);
+		add(lblNewLabel);
 	}
 
 	public void Get_TicketInfo() {

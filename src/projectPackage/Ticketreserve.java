@@ -93,13 +93,6 @@ public class Ticketreserve extends JPanel {
 		ticketreserve_4.setForeground(new Color(255, 255, 255));
 		ticketreserve_4.setFont(new Font("나눔고딕", Font.BOLD, 26));
 
-		JLabel ticketreserve = new JLabel("Select Movie");
-		ticketreserve.setHorizontalAlignment(SwingConstants.CENTER);
-		ticketreserve.setBounds(339, 21, 255, 55);
-		panel_1.add(ticketreserve);
-		ticketreserve.setForeground(new Color(238, 46, 36));
-		ticketreserve.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 40));
-
 		JButton BackButton = new JButton("");
 		BackButton.addActionListener(new BackAction());
 		BackButton.setBorderPainted(false);
@@ -151,6 +144,11 @@ public class Ticketreserve extends JPanel {
 		JScrollPane time = new JScrollPane(movie_time_list);
 		time.setBounds(606, 144, 292, 334);
 		panel_1.add(time);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(Ticketreserve.class.getResource("/image/title/select2.png")));
+		lblNewLabel.setBounds(335, 10, 270, 80);
+		panel_1.add(lblNewLabel);
 		
 		ListInit();
 	}
