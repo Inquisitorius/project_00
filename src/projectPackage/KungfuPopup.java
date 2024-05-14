@@ -46,15 +46,15 @@ public class KungfuPopup extends JFrame {
         imageLabel.setBounds(50, 72, 150, 214);
         contentPane.add(imageLabel);
         
-        JButton btnNewButton = new JButton("");
-        btnNewButton.addActionListener(new ActionListener() {
+        JButton reserveBtn = new JButton("");
+        reserveBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
-        btnNewButton.setBorderPainted(false);
-        btnNewButton.setIcon(new ImageIcon(KungfuPopup.class.getResource("/image/button/reserve.png")));
-        btnNewButton.setBounds(73, 306, 110, 42);
-        contentPane.add(btnNewButton);
+        reserveBtn.setBorderPainted(false);
+        reserveBtn.setIcon(new ImageIcon(KungfuPopup.class.getResource("/image/button/reserve.png")));
+        reserveBtn.setBounds(73, 306, 110, 42);
+        contentPane.add(reserveBtn);
  
     }
     

@@ -53,18 +53,18 @@ public class ChalPopup extends JFrame {
         imageLabel.setBounds(50, 72, 150, 214);
         contentPane.add(imageLabel);
         
-        JButton btnNewButton = new JButton("");
-        btnNewButton.setBorderPainted(false);
-        btnNewButton.setIcon(new ImageIcon(ChalPopup.class.getResource("/image/button/reserve.png")));
-        btnNewButton.setBounds(73, 306, 110, 42);
-        btnNewButton.addActionListener(new ActionListener() {
+        JButton reserveBtn = new JButton("");
+        reserveBtn.setBorderPainted(false);
+        reserveBtn.setIcon(new ImageIcon(ChalPopup.class.getResource("/image/button/reserve.png")));
+        reserveBtn.setBounds(73, 306, 110, 42);
+        reserveBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		//progress
         		parentPanel.TicketMove();
         	}
         });
         
-        contentPane.add(btnNewButton);
+        contentPane.add(reserveBtn);
         
     }
 }

@@ -23,6 +23,15 @@ public class JinsungInformation extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JPanel JinsungPanelT;
 	private MainFrame mainFrame;
+	
+	private JLabel Movi_namep;
+	private JLabel ticket_Nump;
+	private JLabel Local_namep;
+	private JLabel Movie_timep;
+	
+	private TicketVo ticketObj;
+	
+	private int TicketNo = -1;
 
 	/**
 	 * Create the panel.
@@ -30,6 +39,8 @@ public class JinsungInformation extends JPanel {
 	public JinsungInformation(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 
+		ticketObj = new TicketVo();
+		
 		Connection conn = null;
 
 		int ticket_no = 0;
@@ -101,7 +112,7 @@ public class JinsungInformation extends JPanel {
 		Movie_name.setBounds(340, 220, 111, 40);
 		panel.add(Movie_name);
 
-		JLabel Movi_namep = new JLabel("영화제목불러오기");
+		Movi_namep = new JLabel("영화제목불러오기");
 		Movi_namep.setForeground(Color.WHITE);
 		Movi_namep.setFont(new Font("나눔고딕", Font.BOLD, 26));
 		Movi_namep.setBounds(770, 220, 245, 40);
@@ -134,7 +145,7 @@ public class JinsungInformation extends JPanel {
 		ticketNum.setBounds(340, 160, 152, 40);
 		panel.add(ticketNum);
 
-		JLabel ticket_Nump = new JLabel("0000-001");
+		ticket_Nump = new JLabel("0000-001");
 		ticket_Nump.setForeground(Color.WHITE);
 		ticket_Nump.setFont(new Font("나눔고딕", Font.BOLD, 26));
 		ticket_Nump.setBounds(770, 160, 245, 40);
@@ -164,7 +175,7 @@ public class JinsungInformation extends JPanel {
 		Local_name.setBounds(340, 280, 111, 40);
 		panel.add(Local_name);
 
-		JLabel Local_namep = new JLabel("CGV의정부");
+		Local_namep = new JLabel("CGV의정부");
 		Local_namep.setForeground(Color.WHITE);
 		Local_namep.setFont(new Font("나눔고딕", Font.BOLD, 26));
 		Local_namep.setBounds(770, 280, 258, 40);
@@ -193,7 +204,7 @@ public class JinsungInformation extends JPanel {
 		Movie_time.setBounds(340, 340, 111, 40);
 		panel.add(Movie_time);
 
-		JLabel Movie_timep = new JLabel("null");
+		Movie_timep = new JLabel("null");
 		Movie_timep.setForeground(Color.WHITE);
 		Movie_timep.setFont(new Font("나눔고딕", Font.BOLD, 26));
 		Movie_timep.setBounds(770, 340, 302, 40);
@@ -233,6 +244,68 @@ public class JinsungInformation extends JPanel {
 
 		this.setVisible(false);
 	}
+	
+	public void PageInit()
+	{
+		if(TicketNo <= 0)
+		{
+			System.out.println("비정상적인 접근");
+			return;
+		}
+		
+		ticketObj = new TicketVo();
+		
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			Connection conn = DriverManager.getConnection(
+					"jdbc:oracle:thin:@//14.42.124.35:1521/XE",
+					"c##wjrls", 
+					"881125");
+
+			String sql = "SELECT LOCAL.LOCAL_NAME, A.TICKET_NO, A.SEAT_INFO, A.SEAT_INFO, A.USER_NO, ui.USER_NAME ,m.SCHEDULE_NO,t2.THEATER_NAME , m3.MOVIEHOUSE_NAME ,m.SCHEDULE_TIME, m.SCHEDULE_ENDTIME, m2.MOVIE_NAME "
+					+ "from " + "( "
+					+ "(((((SELECT t.TICKET_NO ,t.SEAT_NO, s.SEAT_INFO, T.SCHEDULE_NO, T.USER_NO  FROM TICKET t JOIN SEAT s ON t.SEAT_NO = s.SEAT_NO) A "
+					+ "JOIN MOVIESCHEDULE m ON A.SCHEDULE_NO = m.SCHEDULE_NO ) "
+					+ "JOIN MOVIE m2 ON m.MOVIE_NO = m2.MOVIE_NO) "
+					+ "JOIN MOVIEHOUSE m3 ON m3.MOVIEHOUSE_NO = m.MOVIEHOUSE_NO) "
+					+ "JOIN THEATER t2 ON t2.MOVIEHOUSE_NO = m3.MOVIEHOUSE_NO) "
+					+ "JOIN USER_INFO ui ON ui.USER_NO = A.USER_NO) " + "JOIN LOCAL ON LOCAL.LOCAL_NO = m3.LOCAL_NO "
+					+ "WHERE a.TICKET_NO = " + this.TicketNo;
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();			
+			
+			ticketObj.setTicket_no(rs.getInt("TICKET_NO"));
+			ticketObj.setMovie_Name(rs.getString("MOVIE_NAME"));
+			ticketObj.setSchedule_time(rs.getString("SCHEDULE_TIME"));
+			ticketObj.setTheater_Name(rs.getString("THEATER_NAME"));
+			ticketObj.setMovieHouse_Name(rs.getString("MOVIEHOUSE_NAME"));
+			ticketObj.setSeat_Info(rs.getString("SEAT_INFO"));
+			ticketObj.setLocal_name(rs.getString("LOCAL_NAME"));
+			
+			pstmt.close();
+			conn.close();			
+		
+			} catch (ClassNotFoundException e) { 
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+	
+		Movi_namep.setText(ticketObj.getMovie_Name());
+		ticket_Nump.setText(Integer.toString(ticketObj.getTicket_no()));
+		Local_namep.setText(ticketObj.getLocal_name());
+		Movie_timep.setText(ticketObj.getSchedule_time());
+	}
+	
+	public void Set_TicketNo(int ticketNo)
+	{
+		System.out.println(ticketNo);
+		this.TicketNo = ticketNo;
+	}	
+	
 
 	ImageIcon imageSetSize(ImageIcon icon, int i, int j) { // image Size Setting
 		Image ximg = icon.getImage(); // ImageIcon을 Image로 변환.
@@ -243,8 +316,10 @@ public class JinsungInformation extends JPanel {
 
 	class InfoAction implements ActionListener {
 		@Override
-		public void actionPerformed(ActionEvent e) {
-
+		public void actionPerformed(ActionEvent e) {			
+			
+			System.out.println(ticketObj.getMovie_Name());
+			mainFrame.Set_TicketInfo_Cancle(ticketObj);
 			mainFrame.PageChange(MainFrame.PANELNAME.TICKETCANCLE);
 		}
 	}
