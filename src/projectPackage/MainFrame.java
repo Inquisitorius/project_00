@@ -119,7 +119,6 @@ public class MainFrame extends JFrame {
 	public void PageChange(PANELNAME name)
 	{		
 		this.sceneChanger.PageChange(name);
-		
 	}
 	
 	public void Set_selectedMovieName_TicketReserve(String movieName)

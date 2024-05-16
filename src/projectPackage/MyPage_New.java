@@ -166,9 +166,9 @@ public class MyPage_New extends JPanel {
 		UserInfoTableModel InfoModel = new UserInfoTableModel(data, columnName);
 		table.setModel(InfoModel);
 		
-		table.getColumn("TICKET_NO").setWidth(0);
-		table.getColumn("TICKET_NO").setMinWidth(0);
-		table.getColumn("TICKET_NO").setMaxWidth(0);
+		table.getColumn("티켓번호").setWidth(0);
+		table.getColumn("티켓번호").setMinWidth(0);
+		table.getColumn("티켓번호").setMaxWidth(0);
 	}
 	
 	public void TableInit() {
@@ -176,12 +176,19 @@ public class MyPage_New extends JPanel {
 		columnName = new Vector<String>();
 		data = new Vector<Vector<String>>();
 
-		columnName.add("TICKET_NO");
-		columnName.add("MOVIE_NAME");
-		columnName.add("MOVIEHOUSE_NAME");
-		columnName.add("SEAT_INFO");
-		columnName.add("SCHEDULE_TIME");
-		columnName.add("TICKET_STATUS");
+		//columnName.add("TICKET_NO");
+		//columnName.add("MOVIE_NAME");
+		//columnName.add("MOVIEHOUSE_NAME");
+		//columnName.add("SEAT_INFO");
+		//columnName.add("SCHEDULE_TIME");
+		//columnName.add("TICKET_STATUS");
+		
+		columnName.add("티켓번호");
+		columnName.add("영화이름");
+		columnName.add("영화관 이름");
+		columnName.add("좌석 번호");
+		columnName.add("시간");
+		columnName.add("티켓 상태");
 
 		//Get_TicketInfo();
 		
@@ -191,9 +198,9 @@ public class MyPage_New extends JPanel {
 		table = new TableDark();
 		table.setModel(InfoModel);
 		
-		table.getColumn("TICKET_NO").setWidth(0);
-		table.getColumn("TICKET_NO").setMinWidth(0);
-		table.getColumn("TICKET_NO").setMaxWidth(0);
+		table.getColumn("티켓번호").setWidth(0);
+		table.getColumn("티켓번호").setMinWidth(0);
+		table.getColumn("티켓번호").setMaxWidth(0);
 		
 		table.getTableHeader().setReorderingAllowed(false); // 컬럼들 이동 불가
 		table.getTableHeader().setResizingAllowed(false); // 컬럼 크기 조절 불가

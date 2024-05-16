@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -105,13 +106,30 @@ public class JinsungPanelT extends JPanel {
 		 * Movie_timep.setText(ticketInfo2.getSchedule_time());
 		 */
 		Title.setText(ticketInfo2.getMovie_Name());
-		ticketNum.setText(Integer.toString(ticketInfo2.getTicket_no()));
+		
+		//TicketNumberCreator(ticketInfo2);
+		//ticketNum.setText(Integer.toString(ticketInfo2.getTicket_no()));
+		ticketNum.setText(TicketNumberCreator(ticketInfo2));
+		
 		timep.setText(ticketInfo2.getSchedule_time());
 		localp.setText(ticketInfo2.getLocal_name());
 		screenp.setText(ticketInfo2.getTheater_Name());
 		personp.setText(ticketInfo2.getSeat_Info());
 		
 		MoviePosterUpdate();
+	}
+	
+	public String TicketNumberCreator(TicketVo ticketInfo)
+	{
+		String result = Integer.toString(ticketInfo.getUser_no());
+		result += Integer.toString(ticketInfo.getTicket_no());
+		
+		
+		String[] seat = ticketInfo.getSeat_Info().split("_");
+		result += seat[0] + seat[1];
+		
+		
+		return result;
 	}
 	
 	public void MoviePosterUpdate()
