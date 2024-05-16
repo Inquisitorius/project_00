@@ -34,7 +34,7 @@ public class SceneChanger {
 	    JPanel ContentPanel13 = new JoinAgree(this.mainFrame);
 	    JPanel ContentPanel14 = new MyPage_New(this.mainFrame);
 	    JPanel ContentPanel15 = new SeatSelectPage(this.mainFrame);
-	    JPanel ContentPanel16 = new JinsungInformation(this.mainFrame);
+	    //JPanel ContentPanel16 = new JinsungInformation(this.mainFrame);
 	    JPanel ContentPanel17 = new JinsungPanelT(this.mainFrame);
 	    
 	    panelMap.put(MainFrame.PANELNAME.MAIN, ContentPanel);
@@ -46,7 +46,7 @@ public class SceneChanger {
 	    panelMap.put(MainFrame.PANELNAME.JOIN_AGREE, ContentPanel13);
 	    panelMap.put(MainFrame.PANELNAME.MYPAGE, ContentPanel14);
 	    panelMap.put(MainFrame.PANELNAME.SEATSELECT, ContentPanel15);
-	    panelMap.put(MainFrame.PANELNAME.TICKETINFO, ContentPanel16);
+	    //panelMap.put(MainFrame.PANELNAME.TICKETINFO, ContentPanel16);
 	    panelMap.put(MainFrame.PANELNAME.TICKETCANCLE, ContentPanel17);
 	    
 	    //Main Page Visible
@@ -62,7 +62,7 @@ public class SceneChanger {
 	    this.mainFrame.PanelAdd(ContentPanel13);
 	    this.mainFrame.PanelAdd(ContentPanel14);
 	    this.mainFrame.PanelAdd(ContentPanel15);
-	    this.mainFrame.PanelAdd(ContentPanel16);
+	    //this.mainFrame.PanelAdd(ContentPanel16);
 	    this.mainFrame.PanelAdd(ContentPanel17);
 	    
 	}

@@ -321,7 +321,7 @@ public class JoinAgree extends JPanel {
 						
 			
 			String sql = "INSERT INTO USER_INFO(USER_NO, USER_NAME, USER_ID, USER_PW, USER_EMAIL, USER_PHONE, AUTH_NO) "
-					+ " VALUES(USER_BNO.NEXTVAL, ? , ? , ?, ?, ?, 2)";
+					+ " VALUES(USER_BNO.NEXTVAL, ? , ? , ?, ?, ?, 1)";
 			
 			
 	        PreparedStatement pstmt = conn.prepareStatement(sql);
