@@ -30,6 +30,7 @@ import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.ImageIcon;
 
 public class Admin_UserList extends JPanel {
 
@@ -64,10 +65,11 @@ public class Admin_UserList extends JPanel {
 		
 		this.setVisible(false);
 		
-		JLabel lblAdminUserlist = new JLabel("Admin");
+		JLabel lblAdminUserlist = new JLabel("");
+		lblAdminUserlist.setIcon(new ImageIcon(Admin_UserList.class.getResource("/image/title/admin.png")));
 		lblAdminUserlist.setForeground(new Color(255, 255, 255));
 		lblAdminUserlist.setFont(new Font("나눔바른고딕", Font.BOLD, 20));
-		lblAdminUserlist.setBounds(28, 34, 1199, 55);
+		lblAdminUserlist.setBounds(-111, 0, 545, 170);
 		add(lblAdminUserlist);
 		/*---------------------------------------------------------*/
 		
