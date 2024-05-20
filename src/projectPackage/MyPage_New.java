@@ -256,6 +256,17 @@ public class MyPage_New extends JPanel {
 		lblNewLabel.setIcon(new ImageIcon(MyPage_New.class.getResource("/image/title/mypage2.png")));
 		lblNewLabel.setBounds(520, 25, 270, 80);
 		add(lblNewLabel);
+		
+		JButton BackBtn = new JButton("");
+		BackBtn.setBorderPainted(false);
+		BackBtn.setIcon(new ImageIcon(MyPage_New.class.getResource("/image/button/back.png")));
+		BackBtn.setBounds(316, 471, 110, 42);
+		add(BackBtn);
+		BackBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.PageChange(MainFrame.PANELNAME.MAIN);
+            }
+        });
 	}
 
 	public void Get_TicketInfo() {

@@ -246,12 +246,12 @@ public class JoinAgree extends JPanel {
     }
 
     private void setupButtons() {
-        JButton btnNewButton_1 = new JButton("");
-        btnNewButton_1.setBorderPainted(false);
-        btnNewButton_1.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/back.png")));
-        btnNewButton_1.setBounds(855, 499, 110, 42);
-        add(btnNewButton_1);
-        btnNewButton_1.addActionListener(new ActionListener() {
+        JButton BackBtn = new JButton("");
+        BackBtn.setBorderPainted(false);
+        BackBtn.setIcon(new ImageIcon(JoinAgree.class.getResource("/image/button/back.png")));
+        BackBtn.setBounds(855, 499, 110, 42);
+        add(BackBtn);
+        BackBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 mainFrame.PageChange(MainFrame.PANELNAME.MAIN);
             }
