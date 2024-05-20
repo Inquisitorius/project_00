@@ -54,7 +54,7 @@ public class TicketFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(370, 260, 700, 500);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 0, 0));
+		contentPane.setBackground(new Color(75, 75, 75));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
