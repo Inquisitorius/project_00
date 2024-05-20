@@ -77,11 +77,11 @@ public class MyPage_New extends JPanel {
 		this.setBackground(new Color(0, 0, 0));
 		setLayout(null);
 
-		JLabel lblId = new JLabel("ID");
-		lblId.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblId = new JLabel("아이디");
+		lblId.setHorizontalAlignment(SwingConstants.LEFT);
 		lblId.setForeground(Color.WHITE);
 		lblId.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-		lblId.setBounds(121, 135, 100, 56);
+		lblId.setBounds(160, 135, 68, 56);
 		add(lblId);
 
 		textField_id = new JTextField();
@@ -90,11 +90,11 @@ public class MyPage_New extends JPanel {
 		add(textField_id);
 		textField_id.setColumns(10);
 
-		JLabel lblPw = new JLabel("PW");
-		lblPw.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblPw = new JLabel("비밀번호");
+		lblPw.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPw.setForeground(Color.WHITE);
 		lblPw.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-		lblPw.setBounds(121, 201, 100, 56);
+		lblPw.setBounds(160, 201, 72, 56);
 		add(lblPw);
 
 		textField_pw = new JTextField();
@@ -102,11 +102,11 @@ public class MyPage_New extends JPanel {
 		textField_pw.setBounds(232, 201, 316, 56);
 		add(textField_pw);
 
-		JLabel lblName = new JLabel("NAME");
-		lblName.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblName = new JLabel("이 름");
+		lblName.setHorizontalAlignment(SwingConstants.LEFT);
 		lblName.setForeground(Color.WHITE);
 		lblName.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-		lblName.setBounds(121, 267, 100, 56);
+		lblName.setBounds(160, 267, 65, 56);
 		add(lblName);
 
 		textField_name = new JTextField();
@@ -114,11 +114,11 @@ public class MyPage_New extends JPanel {
 		textField_name.setBounds(232, 267, 316, 56);
 		add(textField_name);
 
-		JLabel lblEmail = new JLabel("EMAIL");
-		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblEmail = new JLabel("이메일");
+		lblEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		lblEmail.setForeground(Color.WHITE);
 		lblEmail.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-		lblEmail.setBounds(121, 333, 100, 56);
+		lblEmail.setBounds(160, 333, 67, 56);
 		add(lblEmail);
 
 		textField_mail = new JTextField();
@@ -126,11 +126,11 @@ public class MyPage_New extends JPanel {
 		textField_mail.setBounds(232, 333, 316, 56);
 		add(textField_mail);
 
-		JLabel lblPhone = new JLabel("PHONE");
-		lblPhone.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblPhone = new JLabel("휴대전화");
+		lblPhone.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPhone.setForeground(Color.WHITE);
 		lblPhone.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
-		lblPhone.setBounds(121, 399, 100, 56);
+		lblPhone.setBounds(160, 399, 72, 56);
 		add(lblPhone);
 
 		textField_phone = new JTextField();
