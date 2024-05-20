@@ -42,7 +42,7 @@ public class PageChangeMessage extends JDialog {
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(12, 20, 413, 55);
+		lblNewLabel.setBounds(12, 20, 395, 55);
 		contentPanel.add(lblNewLabel);
 		
 		this.setTitle("CGVING");
