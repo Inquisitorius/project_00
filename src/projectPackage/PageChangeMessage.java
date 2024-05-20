@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import java.awt.Font;
 
 public class PageChangeMessage extends JDialog {
 
@@ -39,6 +40,7 @@ public class PageChangeMessage extends JDialog {
 		contentPanel.setLayout(null);
 		
 		lblNewLabel = new JLabel("");
+		lblNewLabel.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(12, 10, 413, 55);
 		contentPanel.add(lblNewLabel);
