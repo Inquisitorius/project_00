@@ -71,7 +71,7 @@ public class TicketFrame extends JFrame {
 		
 		BackAction action = new BackAction();
 		action.oriFrame = this;
-		
+		 
 		BackButton.addActionListener(action);
 	
 		BackButton.setIcon(new ImageIcon(JinsungInformation.class.getResource("/image/jinsung/No.png")));
