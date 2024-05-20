@@ -56,7 +56,7 @@ public class PageChangeMessage extends JDialog {
 				thisObj.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(325, 50, 100, 42);
+		btnNewButton.setBounds(343, 56, 82, 36);
 		contentPanel.add(btnNewButton);
 		
 		this.setVisible(false);
