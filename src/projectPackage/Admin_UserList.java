@@ -172,7 +172,11 @@ public class Admin_UserList extends JPanel {
         			 usinfo.setUser_name((String)m.getValueAt(row, 3));
         			 usinfo.setUser_email((String)m.getValueAt(row, 4));
         			 usinfo.setUser_phone((String)m.getValueAt(row, 5));
-        			 usinfo.setAuth_no(Integer.parseInt( (String)m.getValueAt(row, 6) ));
+        			 
+        			 int auth = ConvertAuthNo_forDB((String)m.getValueAt(row, 6));
+        			 usinfo.setAuth_no(auth);
+        			 
+        			 //usinfo.setAuth_no(Integer.parseInt( (String)m.getValueAt(row, 6) ));
         			 
         			 
         			 userDetailFrame.FrameInit(usinfo);  
@@ -196,10 +200,10 @@ public class Admin_UserList extends JPanel {
 		
 		comboBox = new JComboBox<String>();
 		
-		comboBox.insertItemAt("USER_ID", FINDTYPE.USER_ID.ordinal());
-		comboBox.insertItemAt("USER_NAME", FINDTYPE.USER_NAME.ordinal());
-		comboBox.insertItemAt("AUTH_NO", FINDTYPE.AUTH_NO.ordinal());		
-		comboBox.insertItemAt("USER_NO", FINDTYPE.USER_NO.ordinal());		
+		comboBox.insertItemAt("ID", FINDTYPE.USER_ID.ordinal());
+		comboBox.insertItemAt("이름", FINDTYPE.USER_NAME.ordinal());
+		comboBox.insertItemAt("유저권한", FINDTYPE.AUTH_NO.ordinal());		
+		comboBox.insertItemAt("유저번호", FINDTYPE.USER_NO.ordinal());		
 		//comboBox.insertItemAt("AUTH_NO", 5);
 		
 		comboBox.setBounds(657, 119, 105, 30);
@@ -256,7 +260,10 @@ public class Admin_UserList extends JPanel {
 				info.add(usinfo.getUser_name());
 				info.add(usinfo.getUser_email());
 				info.add(usinfo.getUser_phone());
-				info.add(Integer.toString(usinfo.getAuth_no()));
+				
+				info.add(this.ConvertAuthNo_forClient(usinfo.getAuth_no()));
+				
+				//info.add(Integer.toString(usinfo.getAuth_no()));
 				
 				data.add(info);
 			}
@@ -289,8 +296,10 @@ public class Admin_UserList extends JPanel {
 		}
 		else if(index == FINDTYPE.AUTH_NO.ordinal())
 		{
+			int inputConvert = this.ConvertAuthNo_forDB(input);
+			
 			sql = "select USER_NO, USER_ID, USER_PW, USER_NAME, USER_EMAIL, USER_PHONE, AUTH_NO from USER_INFO"
-					+ " WHERE AUTH_NO LIKE '%"+ input + "%' ORDER BY USER_NO";
+					+ " WHERE AUTH_NO LIKE '%"+ inputConvert + "%' ORDER BY USER_NO";
 		}
 		else if(index == FINDTYPE.USER_NO.ordinal())
 		{
@@ -299,6 +308,55 @@ public class Admin_UserList extends JPanel {
 		}		
 		
 		return sql;
+	}
+	
+	public String ConvertAuthNo_forClient(int status)
+	{
+		String result = "";
+		
+		System.out.println(status);
+		
+		switch (status) {
+		case 1:
+			result = "USER AUTH";
+			break;
+		case 2:
+			result = "MASTER AUTH";
+			break;
+		case 3:
+			result = "ADMIN VIEWER";
+			break;
+			
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + status);
+		}
+		
+			
+		return result;
+	}
+	
+	public int ConvertAuthNo_forDB(String status)
+	{
+		int result = -1;
+		
+		String auth_01 = "USER AUTH";
+		String auth_02 = "MASTER AUTH";
+		String auth_03 = "ADMIN VIEWER";
+
+		if (auth_01.contains(status)) 
+		{
+			result = 1;
+		}
+		else if(auth_02.contains(status)) 
+		{
+			result = 2;
+		}
+		else if(auth_03.contains(status)) 
+		{
+			result = 3;
+		}		
+			
+		return result;
 	}
 	
 	public void Refresh_Table()
@@ -358,7 +416,9 @@ public class Admin_UserList extends JPanel {
 				info.add(usinfo.getUser_name());
 				info.add(usinfo.getUser_email());
 				info.add(usinfo.getUser_phone());
-				info.add(Integer.toString(usinfo.getAuth_no()));
+				
+				info.add(this.ConvertAuthNo_forClient(usinfo.getAuth_no()));
+				//info.add(Integer.toString(usinfo.getAuth_no()));
 				
 				data.add(info);
 			}
