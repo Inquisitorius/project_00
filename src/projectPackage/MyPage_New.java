@@ -228,6 +228,7 @@ public class MyPage_New extends JPanel {
        	 			
        	 			String status = (String)m.getValueAt(row, 5);
        	 			
+       	 			status = ConvertTicketStatus_forDB(status);
        	 			if(!status.equals("RS"))
        	 				return;
        	 			
@@ -319,7 +320,11 @@ public class MyPage_New extends JPanel {
 				info.add(ticket.getMovieHouse_Name());
 				info.add(ticket.getSeat_Info()); 
 				info.add(ticket.Get_SimpleSchedule_time());
-				info.add(ticket.getTicket_status());
+				
+				//ConvertTicketStatus_forClient
+				String status = ticket.getTicket_status();
+				status = ConvertTicketStatus_forClient(ticket.getTicket_status());
+				info.add(status);
 				
 				data.add(info);
 			}
@@ -368,6 +373,28 @@ public class MyPage_New extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public String ConvertTicketStatus_forClient(String status)
+	{
+		String result = "";
+		if(status.equals("RS"))
+			result = "예약";
+		else if(status.equals("CC"))
+			result = "취소";
+			
+		return result;
+	}
+	
+	public String ConvertTicketStatus_forDB(String status)
+	{
+		String result = "";
+		if(status.equals("예약"))
+			result = "RS";
+		else if(status.equals("취소"))
+			result = "CC";
+			
+		return result;
 	}
 
 	public String ChangeDateFormat(String dateStr) 
