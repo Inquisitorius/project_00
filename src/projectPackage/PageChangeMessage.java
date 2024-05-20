@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class PageChangeMessage extends JDialog {
 
@@ -37,10 +38,13 @@ public class PageChangeMessage extends JDialog {
 		contentPanel.setLayout(null);
 		
 		lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(12, 10, 413, 55);
 		contentPanel.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("OK");
+		this.setTitle("CGVING");
+		
+		JButton btnNewButton = new JButton("확인");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {		
 				mainFrame.PageChange(pageSave);
