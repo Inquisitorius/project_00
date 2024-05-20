@@ -32,7 +32,7 @@ public class PageChangeMessage extends JDialog {
 		
 		thisObj = this;
 		
-		setBounds(760, 400, 453, 141);
+		setBounds(550, 450, 453, 141);
 		
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
