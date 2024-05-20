@@ -288,6 +288,11 @@ public class JinsungPanelT extends JPanel {
 		lblNewLabel.setIcon(new ImageIcon(JinsungPanelT.class.getResource("/image/title/reserve2.png")));
 		lblNewLabel.setBounds(510, 24, 270, 80);
 		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon(JinsungPanelT.class.getResource("/image/button/cgving_th.png")));
+		lblNewLabel_1.setBounds(699, 124, 64, 16);
+		panel.add(lblNewLabel_1);
 
 		this.setVisible(false);
 	}
