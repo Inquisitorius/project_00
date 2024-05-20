@@ -160,6 +160,9 @@ public class UserDetailInfoFrame extends JFrame {
 		idText = new JTextField();
 		idText.setBounds(154, 10, 268, 34);
 		contentPane.add(idText);
+		
+		idText.setEditable(false);
+		
 		idText.setColumns(10);
 		
 		lblPw = new JLabel("PW");

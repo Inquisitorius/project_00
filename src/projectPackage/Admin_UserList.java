@@ -73,6 +73,7 @@ public class Admin_UserList extends JPanel {
 		
 		textField = new JTextField();
 		textField.setBounds(771, 119, 347, 30);
+		
 		add(textField);
 		textField.setColumns(10);
 		
@@ -116,13 +117,21 @@ public class Admin_UserList extends JPanel {
 		
 		Get_UserInfomation(data);
 		
-		columnName.add("USER_NO");
+		/*columnName.add("USER_NO");
 		columnName.add("USER_ID");
 		columnName.add("USER_PW");
 		columnName.add("USER_NAME");
 		columnName.add("USER_EMAIL");
 		columnName.add("USER_PHONE");
-		columnName.add("AUTH_NO");
+		columnName.add("AUTH_NO");*/
+		
+		columnName.add("유저번호");
+		columnName.add("ID");
+		columnName.add("PW");
+		columnName.add("이름");
+		columnName.add("이메일");
+		columnName.add("전화번호");
+		columnName.add("권한정보");
 		
 		UserInfoTableModel aa = new UserInfoTableModel(data,columnName);
 		
