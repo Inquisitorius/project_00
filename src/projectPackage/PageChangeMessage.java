@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class PageChangeMessage extends JDialog {
 
@@ -44,14 +45,16 @@ public class PageChangeMessage extends JDialog {
 		
 		this.setTitle("CGVING");
 		
-		JButton btnNewButton = new JButton("확인");
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setIcon(new ImageIcon(PageChangeMessage.class.getResource("/image/button/ok.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {		
 				mainFrame.PageChange(pageSave);
 				thisObj.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(295, 69, 130, 23);
+		btnNewButton.setBounds(315, 50, 110, 42);
 		contentPanel.add(btnNewButton);
 		
 		this.setVisible(false);
