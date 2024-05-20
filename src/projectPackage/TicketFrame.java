@@ -52,7 +52,7 @@ public class TicketFrame extends JFrame {
 	 */
 	public TicketFrame() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(300, 300, 700, 500);
+		setBounds(370, 260, 700, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,7 +88,8 @@ public class TicketFrame extends JFrame {
 		CancleButton.setBounds(182, 303, 135, 44);
 		contentPane.add(CancleButton);
 		
-		
+		this.setTitle("CGVING");
+		this.setResizable(false);
 	}
 	class BackAction implements ActionListener {
 		//
