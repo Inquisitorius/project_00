@@ -59,15 +59,15 @@ public class Admin_UserList extends JPanel {
 		
 		this.setSize(1280,800-150);
 		this.setPreferredSize(new Dimension(1280,800-150));
-		this.setBackground(Color.darkGray);
+		this.setBackground(Color.black);
 		setLayout(null);
 		
 		this.setVisible(false);
 		
-		JLabel lblAdminUserlist = new JLabel("Admin - UserList");
+		JLabel lblAdminUserlist = new JLabel("Admin");
 		lblAdminUserlist.setForeground(new Color(255, 255, 255));
-		lblAdminUserlist.setFont(new Font("나눔바른고딕", Font.PLAIN, 20));
-		lblAdminUserlist.setBounds(12, 10, 1256, 55);
+		lblAdminUserlist.setFont(new Font("나눔바른고딕", Font.BOLD, 20));
+		lblAdminUserlist.setBounds(28, 34, 1199, 55);
 		add(lblAdminUserlist);
 		/*---------------------------------------------------------*/
 		
@@ -163,7 +163,6 @@ public class Admin_UserList extends JPanel {
         			 
         			 int row = t.convertRowIndexToModel(i);
         			 String s = String.format("%s (%s)", m.getValueAt(row, 0), m.getValueAt(row, 1));
-        			 System.out.println(s);
         			 
         			 UserInfoVo usinfo = new UserInfoVo();
         			 usinfo.setUser_no(Integer.parseInt( (String)m.getValueAt(row, 0) ));
@@ -313,8 +312,6 @@ public class Admin_UserList extends JPanel {
 	public String ConvertAuthNo_forClient(int status)
 	{
 		String result = "";
-		
-		System.out.println(status);
 		
 		switch (status) {
 		case 1:
