@@ -284,8 +284,7 @@ public class TopPanelTest extends JPanel {
         
         adminPageBtn = new JButton("");
         adminPageBtn.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		System.out.println("12321");
+        	public void actionPerformed(ActionEvent e) {        		
         		//PAGE MOVE
         		mainFrame.PageChange(PANELNAME.PAGE0);
         	}
@@ -322,7 +321,7 @@ public class TopPanelTest extends JPanel {
     	lblNewLabel_1.setText(text);
     	lblNewLabel_1.setVisible(true);
     	
-    	if(mainFrame.Get_UserInfo() != null && mainFrame.Get_UserInfo().getAuth_no() != 3)
+    	if(mainFrame.Get_UserInfo() != null && mainFrame.Get_UserInfo().getAuth_no() != 1)
     	{
     		adminPageBtn.setVisible(true);
     	}
