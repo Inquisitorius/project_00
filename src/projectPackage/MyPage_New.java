@@ -371,6 +371,11 @@ public class MyPage_New extends JPanel {
 
 			if (rs == 1) {
 				JOptionPane.showMessageDialog(null, "변경되었습니다.");
+				this.mainFrame.Get_UserInfo().setUser_name(textField_name.getText());
+				this.mainFrame.Get_UserInfo().setUser_pw(textField_pw.getText());
+				this.mainFrame.Get_UserInfo().setUser_phone(textField_phone.getText());				
+				this.mainFrame.Get_UserInfo().setUser_email(textField_mail.getText());
+				
 			} else {
 				JOptionPane.showMessageDialog(null, "Err : Update UserInfo.");
 			}
